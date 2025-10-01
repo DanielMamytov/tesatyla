@@ -63,6 +63,7 @@ dependencies {
     kapt(libs.room.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    implementation ("androidx.compose.material3:material3:1.0.0")
 
 
 }
