@@ -64,6 +64,5 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation ("androidx.compose.material3:material3:1.0.0")
-
-
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 }

@@ -2,4 +2,11 @@
     <string name="app_name">tesatyla</string>
     <string name="splash_loading_message">Preparing your royal journey...</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="onboarding_daily_learning_title">Train a Little Every Day</string>
+    <string name="onboarding_daily_learning_description">Each royal step strengthens your discipline. Even a few minutes daily bring you closer to mastery.</string>
+    <string name="onboarding_quick_tips_title">Quick Pieces of Wisdom</string>
+    <string name="onboarding_quick_tips_description">Practical royal advice you can apply instantly. Short lessons, great victories.</string>
+    <string name="onboarding_progress_title">Build Your Kingdom of Skills</string>
+    <string name="onboarding_progress_description">Each completed lesson is a jewel in your crown. Watch your royal achievements grow brighter.</string>
+    <string name="onboarding_enter_kingdom">Enter the Kingdom</string>
 </resources>
