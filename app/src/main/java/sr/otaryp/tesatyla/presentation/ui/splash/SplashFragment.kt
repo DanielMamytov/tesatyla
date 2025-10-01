@@ -9,6 +9,7 @@ import android.view.animation.LinearInterpolator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -73,7 +74,14 @@ class SplashFragment : Fragment() {
             } else {
                 R.id.onBoardingFragment
             }
-            findNavController().navigate(destination)
+            val options = navOptions {
+                popUpTo(R.id.splashFragment) {
+                    inclusive = true
+                }
+            }
+
+            findNavController().navigate(destination, null, options)
+
         }
     }
 

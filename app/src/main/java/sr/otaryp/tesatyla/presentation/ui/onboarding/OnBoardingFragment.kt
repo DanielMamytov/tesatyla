@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
+
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.preferences.LaunchPreferences
 import sr.otaryp.tesatyla.databinding.FragmentOnBoardingBinding
@@ -27,7 +29,12 @@ class OnBoardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnEnterKingdom.setOnClickListener {
             LaunchPreferences.setOnboardingComplete(requireContext())
-            findNavController().navigate(R.id.action_onBoardingFragment_to_nav_home)
+            val options = navOptions {
+                popUpTo(R.id.onBoardingFragment) {
+                    inclusive = true
+                }
+            }
+            findNavController().navigate(R.id.nav_home, null, options)
         }
     }
 
