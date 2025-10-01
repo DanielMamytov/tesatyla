@@ -2,12 +2,66 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/articleFragment">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/articleFragment"
+        android:id="@+id/splashFragment"
+        android:name="sr.otaryp.tesatyla.presentation.ui.splash.SplashFragment"
+        android:label="Splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="sr.otaryp.tesatyla.presentation.ui.onboarding.OnBoardingFragment"
+        android:label="Onboarding"
+        tools:layout="@layout/fragment_on_boarding">
+        <action
+            android:id="@+id/action_onBoardingFragment_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/onBoardingFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="sr.otaryp.tesatyla.presentation.ui.main.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_lessons"
+        android:name="sr.otaryp.tesatyla.presentation.ui.lessons.LessonListFragment"
+        android:label="Lessons"
+        tools:layout="@layout/fragment_lesson_list" />
+
+    <fragment
+        android:id="@+id/nav_articles"
         android:name="sr.otaryp.tesatyla.presentation.ui.article.ArticleFragment"
-        android:label="fragment_article"
+        android:label="Articles"
         tools:layout="@layout/fragment_article" />
+
+    <fragment
+        android:id="@+id/nav_progress"
+        android:name="sr.otaryp.tesatyla.presentation.ui.progress.ProgressFragment"
+        android:label="Progress"
+        tools:layout="@layout/fragment_progress" />
+
+    <fragment
+        android:id="@+id/nav_focus"
+        android:name="sr.otaryp.tesatyla.presentation.ui.focus.FocusFragment"
+        android:label="Focus"
+        tools:layout="@layout/fragment_focus" />
+
 </navigation>
