@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+
+
 import androidx.viewpager2.widget.ViewPager2
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.preferences.LaunchPreferences
 import sr.otaryp.tesatyla.databinding.FragmentOnBoardingBinding
+import kotlin.math.abs
 
 class OnBoardingFragment : Fragment() {
 
@@ -32,6 +36,7 @@ class OnBoardingFragment : Fragment() {
             OnboardingSlide(
                 titleRes = R.string.onboarding_progress_title,
                 descriptionRes = R.string.onboarding_progress_description
+
             )
         )
     }
@@ -39,6 +44,7 @@ class OnBoardingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
+
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
@@ -50,12 +56,14 @@ class OnBoardingFragment : Fragment() {
 
         binding.viewPagerOnboarding.adapter = OnboardingPagerAdapter(slides)
 
+
         updateEnterButtonVisibility(0)
 
         pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 updateEnterButtonVisibility(position)
+
             }
         }.also { callback ->
             binding.viewPagerOnboarding.registerOnPageChangeCallback(callback)
@@ -71,6 +79,7 @@ class OnBoardingFragment : Fragment() {
             findNavController().navigate(R.id.nav_home, null, options)
         }
     }
+
 
     private fun updateEnterButtonVisibility(position: Int) {
         binding.btnEnterKingdom.isVisible = position == slides.lastIndex

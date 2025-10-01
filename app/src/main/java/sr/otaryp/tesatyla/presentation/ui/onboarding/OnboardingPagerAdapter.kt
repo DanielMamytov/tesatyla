@@ -7,6 +7,7 @@ import sr.otaryp.tesatyla.databinding.ItemOnboardingSlideBinding
 
 class OnboardingPagerAdapter(
     private val slides: List<OnboardingSlide>,
+
 ) : RecyclerView.Adapter<OnboardingPagerAdapter.SlideViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SlideViewHolder {
@@ -26,11 +27,13 @@ class OnboardingPagerAdapter(
 
     class SlideViewHolder(
         private val binding: ItemOnboardingSlideBinding,
+
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(slide: OnboardingSlide) {
             binding.textTitle.setText(slide.titleRes)
             binding.textDescription.setText(slide.descriptionRes)
+
         }
     }
 }
