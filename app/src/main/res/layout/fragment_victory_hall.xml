@@ -61,6 +61,7 @@
 
         <!-- Next Lesson Button -->
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNextLesson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
@@ -75,6 +76,7 @@
 
         <!-- Replay Lesson Button -->
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnReplayLesson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/replay_lesson_bg"

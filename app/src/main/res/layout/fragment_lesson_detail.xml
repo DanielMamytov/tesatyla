@@ -47,6 +47,7 @@
         </FrameLayout>
 
         <ImageView
+            android:id="@+id/illustration"
             android:layout_width="match_parent"
             android:layout_height="255dp"
             android:src="@drawable/quest_photo" />
