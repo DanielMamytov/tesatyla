@@ -81,6 +81,7 @@ class SplashFragment : Fragment() {
             }
 
             findNavController().navigate(destination, null, options)
+
         }
     }
 
