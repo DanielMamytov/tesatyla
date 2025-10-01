@@ -34,10 +34,10 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="Shape.Round12">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">12dp</item>
-    </style>
+<!--    <style name="shape.Round12">-->
+<!--        <item name="cornerFamily">rounded</item>-->
+<!--        <item name="cornerSize">12dp</item>-->
+<!--    </style>-->
 
     <style name="BottomNavTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">12sp</item>
