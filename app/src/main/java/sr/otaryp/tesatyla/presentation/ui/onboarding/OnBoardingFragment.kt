@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
+
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -58,6 +59,7 @@ class OnBoardingFragment : Fragment() {
 
         setupViewPager()
         setupIndicators()
+
         updateEnterButtonVisibility(0)
 
         pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
@@ -65,6 +67,7 @@ class OnBoardingFragment : Fragment() {
                 super.onPageSelected(position)
                 updateEnterButtonVisibility(position)
                 updateIndicators(position)
+
             }
         }.also { callback ->
             binding.viewPagerOnboarding.registerOnPageChangeCallback(callback)
@@ -137,6 +140,7 @@ class OnBoardingFragment : Fragment() {
         }
     }
 
+
     private fun updateEnterButtonVisibility(position: Int) {
         binding.btnEnterKingdom.isVisible = position == slides.lastIndex
     }
@@ -145,6 +149,7 @@ class OnBoardingFragment : Fragment() {
         pageChangeCallback?.let { binding.viewPagerOnboarding.unregisterOnPageChangeCallback(it) }
         binding.viewPagerOnboarding.adapter = null
         binding.layoutIndicators.removeAllViews()
+
         pageChangeCallback = null
         _binding = null
         super.onDestroyView()
