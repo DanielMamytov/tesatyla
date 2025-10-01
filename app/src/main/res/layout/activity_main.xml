@@ -29,7 +29,7 @@
         android:background="@drawable/bg_bottom_nav"
         app:itemBackground="@android:color/transparent"
         app:itemRippleColor="@android:color/transparent"
-        app:itemTextColor="@color/bottom_nav_text_selector"
+        app:itemTextColor="#FFD700"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
