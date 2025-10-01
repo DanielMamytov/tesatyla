@@ -1,10 +1,20 @@
 <resources>
     <!-- Shared shape appearance for rounded 12dp corners -->
-    <style name="Shape.Round12">
+    <style name="Shape.Round12" parent="@style/ShapeAppearance.MaterialComponents.SmallComponent">
+
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
     </style>
 
+    <!-- Alias to satisfy views referencing @style/shape -->
+    <style name="shape" parent="@style/Shape.Round12" />
+
+    <style name="BottomNav_NoIndicator">
+
+        <!-- remove the default Material3 active indicator -->
+        <item name="android:color">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 
     <style name="BottomNavTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">12sp</item>
