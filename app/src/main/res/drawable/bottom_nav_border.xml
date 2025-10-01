@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Gradient Border -->
+    <solid android:color="#F8BB24"/>
+    <corners android:radius="12dp" /> <!-- Adjust corner radius -->
+    <stroke
+        android:color="#F8BB24"
+        android:width="4dp"/> <!-- Border thickness -->
+</shape>

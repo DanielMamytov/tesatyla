@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dialog_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set your royal quest:\nchoose 3 main goals\nfor today and guard\nthem well."
+            android:textColor="#511300"
+            android:textFontWeight="400"
+            android:fontFamily="@font/katibeh_regular"
+            android:textSize="30sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNextT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_enter_kingdom"
+            android:includeFontPadding="false"
+            android:minWidth="160dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="35dp"
+            android:paddingVertical="14dp"
+            android:text="Next tip"
+            android:textAllCaps="false"
+            android:textColor="#FFE08A"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGotIt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_enter_kingdom"
+            android:includeFontPadding="false"
+            android:minWidth="160dp"
+            android:minHeight="0dp"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="35dp"
+            android:paddingVertical="14dp"
+            android:text="Got it"
+            android:textAllCaps="false"
+            android:textColor="#FFE08A"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</FrameLayout>

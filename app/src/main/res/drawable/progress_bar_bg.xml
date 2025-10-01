@@ -1,0 +1,15 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background of the progress bar -->
+    <solid android:color="#F8D925" /> <!-- Start of gradient (outer border color) -->
+    <corners android:radius="20dp" /> <!-- Rounded corners for the progress bar -->
+    <stroke
+        android:width="4dp"
+        android:color="#FEBB3D" />
+
+    <!-- Gradient of the progress bar -->
+    <gradient
+        android:angle="0"
+        android:centerColor="#1DF2F8"
+        android:endColor="#FEBB3D"
+        android:startColor="#1DF2F8" />
+</shape>

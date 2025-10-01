@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#2C0033" /> <!-- фон под иконками -->
+    <stroke
+        android:width="2dp"
+        android:color="#FFD700" /> <!-- золотая рамка -->
+    <corners android:radius="18dp" />
+</shape>

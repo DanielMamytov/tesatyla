@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#1AFFFFFF">
+
+    <!-- Pressed state -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- Shadow -->
+            <item android:bottom="6dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="12dp" />
+                    <solid android:color="#33000000" />
+                </shape>
+            </item>
+
+            <!-- Button body (darker while pressed) -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="12dp" />
+                    <gradient
+                        android:type="linear"
+                        android:angle="270"
+                        android:startColor="#980A0A"
+                        android:endColor="#5A0000" />
+                    <stroke
+                        android:width="3dp"
+                        android:color="#F6C84A" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Default state -->
+    <item>
+        <layer-list>
+            <!-- Shadow -->
+            <item android:bottom="6dp">
+                <shape android:shape="rectangle">
+                    <corners android:radius="12dp" />
+                    <solid android:color="#33000000" />
+                </shape>
+            </item>
+
+            <!-- Button body -->
+            <item>
+                <shape android:shape="rectangle">
+                    <corners android:radius="12dp" />
+                    <gradient
+                        android:type="linear"
+                        android:angle="270"
+                        android:startColor="#AE0D0D"
+                        android:endColor="#790000" />
+                    <stroke
+                        android:width="3dp"
+                        android:color="#F6C84A" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</ripple>

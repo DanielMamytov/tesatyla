@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        android:titleTextAppearance="@style/BottomNavTextAppearance" />
+
+    <item
+        android:id="@+id/lessons"
+        android:icon="@drawable/ic_lessons"
+        android:title="Lessons"
+        android:titleTextAppearance="@style/BottomNavTextAppearance" />
+
+    <item
+        android:id="@+id/articles"
+        android:icon="@drawable/ic_articles"
+        android:title="Articles"
+        android:titleTextAppearance="@style/BottomNavTextAppearance" />
+
+    <item
+        android:id="@+id/progress"
+        android:icon="@drawable/ic_progress"
+        android:title="Progress"
+        android:titleTextAppearance="@style/BottomNavTextAppearance" />
+
+    <item
+        android:id="@+id/focus"
+        android:icon="@drawable/ic_focus"
+        android:title="Focus"
+        android:titleTextAppearance="@style/BottomNavTextAppearance" />
+
+</menu>
