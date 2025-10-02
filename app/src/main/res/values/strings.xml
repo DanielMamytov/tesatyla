@@ -29,4 +29,27 @@ Your quests await.</string>
 
 
     <string name="article_back">Back</string>
+
+    <string name="lesson_action_continue">Continue Quest</string>
+    <string name="lesson_action_review">Review Quest</string>
+    <string name="lesson_title_pomodoro_trials">Pomodoro Trials</string>
+    <string name="lesson_description_pomodoro_trials">Train in timed battles: 25 minutes of focus, 5 minutes of rest.</string>
+    <string name="lesson_title_scrolls_of_order">Scrolls of Order</string>
+    <string name="lesson_description_scrolls_of_order">Master the art of daily to-do lists to command your kingdom wisely.</string>
+    <string name="lesson_title_defend_against_distractions">Defend Against Distractions</string>
+    <string name="lesson_description_defend_against_distractions">Learn strategies to guard your focus from invading chaos.</string>
+    <string name="lesson_title_timekeepers_path">The Timekeeper’s Path</string>
+    <string name="lesson_description_timekeepers_path">Harness time blocks to rule your day with clarity and strength.</string>
+    <string name="lesson_title_procrastination_dragon">The Procrastination Dragon</string>
+    <string name="lesson_description_procrastination_dragon">Face the beast of delay and strike with proven action techniques.</string>
+    <string name="lesson_title_focus_forge">The Focus Forge</string>
+    <string name="lesson_description_focus_forge">Sharpen your concentration with practical drills and single-tasking mastery.</string>
+    <string name="lesson_title_energy_management">Energy Management</string>
+    <string name="lesson_description_energy_management">Align royal duties with your natural energy cycles and let rest refuel you.</string>
+    <string name="lesson_title_task_alchemy">Task Alchemy</string>
+    <string name="lesson_description_task_alchemy">Transform overwhelming quests into clear, actionable steps fit for victory.</string>
+    <string name="lesson_title_habit_loop">The Habit Loop</string>
+    <string name="lesson_description_habit_loop">Understand how habits are forged and craft routines that lead to success.</string>
+    <string name="lesson_title_reflection_chamber">The Reflection Chamber</string>
+    <string name="lesson_description_reflection_chamber">Review the day’s wins, lessons, and areas to improve for steady progress.</string>
 </resources>
