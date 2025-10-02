@@ -38,7 +38,17 @@
         android:id="@+id/nav_home"
         android:name="sr.otaryp.tesatyla.presentation.ui.main.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_lessons"
+            app:destination="@id/nav_lessons" />
+        <action
+            android:id="@+id/action_nav_home_to_lessonDetailFragment"
+            app:destination="@id/lessonDetailFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_lessons"
@@ -63,5 +73,30 @@
         android:name="sr.otaryp.tesatyla.presentation.ui.focus.FocusFragment"
         android:label="Focus"
         tools:layout="@layout/fragment_focus" />
+
+    <fragment
+        android:id="@+id/lessonDetailFragment"
+        android:name="sr.otaryp.tesatyla.presentation.ui.lessons.LessonDetailFragment"
+        android:label="Lesson Detail"
+        tools:layout="@layout/fragment_lesson_detail" />
+
+    <fragment
+        android:id="@+id/lessonStepDetailFragment"
+        android:name="sr.otaryp.tesatyla.presentation.ui.lessons.LessonStepDetailFragment"
+        android:label="Lesson Step Detail"
+        tools:layout="@layout/fragment_lesson_step_detail" />
+
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="sr.otaryp.tesatyla.presentation.ui.article.ArticleDetailFragment"
+        android:label="Article Detail"
+        tools:layout="@layout/fragment_article_detail">
+        <argument
+            android:name="articleTitle"
+            app:argType="string" />
+        <argument
+            android:name="articleContent"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

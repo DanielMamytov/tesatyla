@@ -8,13 +8,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingTop="30dp">
 
             <TextView
@@ -22,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="Back"
+                android:text="@string/article_back"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -31,19 +30,23 @@
                 android:layout_height="50dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="20dp"
+                android:contentDescription="@null"
                 android:src="@drawable/settings_bg" />
 
             <TextView
+                android:id="@+id/textArticleTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
+                android:maxWidth="280dp"
                 android:paddingTop="20dp"
-                android:text="Learn the 25–5 Pomodoro structure"
-                android:textSize="25sp" />
-
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:text="Learn the 25–5 Pomodoro structure" />
 
         </FrameLayout>
 
@@ -67,33 +70,37 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:contentDescription="@null"
                 android:src="@drawable/list_shorter" />
 
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginStart="5dp"
                 android:layout_gravity="center|bottom"
+                android:layout_marginStart="5dp"
+                android:contentDescription="@null"
                 android:src="@drawable/article_im1" />
-
 
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/steps_bg_im">
+            android:background="@drawable/steps_bg_im"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textArticleContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_18pt_regular"
                 android:paddingHorizontal="20dp"
-                android:text=" Theory: The Pomodoro method divides work into cycles of 25 minutes of focused work followed by 5 minutes of rest. These short sprints allow the brain to recharge regularly, preventing fatigue and increasing concentration. Long, uninterrupted work sessions often reduce effectiveness over time.  Practice: Read about the Pomodoro cycle. Write down the structure somewhere visible: 25 minutes work → 5 minutes rest → repeat 4 times → then a longer break of 15–30 minutes."
-                android:textColor="#DCFFFFFF"
-                android:textSize="14sp" />
+                android:paddingVertical="20dp"
+                android:textSize="14sp"
+                tools:text="Theory: The Pomodoro method divides work into cycles..." />
+</ScrollView>
 
         </LinearLayout>
 

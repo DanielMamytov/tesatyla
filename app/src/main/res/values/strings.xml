@@ -10,4 +10,23 @@
     <string name="onboarding_progress_description">Each completed lesson is a jewel in your crown. Watch your royal achievements grow brighter.</string>
     <string name="onboarding_enter_kingdom">Enter the Kingdom</string>
 
+    <string name="home_welcome_message">Rise, Young Knight!
+Your quests await.</string>
+    <string name="home_continue_section_title">Continue Lesson</string>
+    <string name="home_continue_card_title">Your quest continues</string>
+    <string name="home_continue_card_in_progress">Pick up your sword where you left it.</string>
+    <string name="home_continue_card_start">Start your first royal quest!</string>
+    <string name="home_inspiration_section_title">Discover Inspiration</string>
+    <string name="home_daily_tip_title">Daily Tip</string>
+    <string name="home_daily_tip_subtitle">A new royal whisper awaits each day.</string>
+    <string name="home_random_article_title">Random Article</string>
+    <string name="home_random_article_subtitle">Summon a scroll of fresh insight.</string>
+
+    <string name="dialog_tip_title">Royal Productivity Tip</string>
+    <string name="dialog_tip_next">Next Tip</string>
+    <string name="dialog_tip_close">Got it</string>
+    <string name="dialog_tip_position">Tip %1$d of %2$d</string>
+    <string name="dialog_tip_swipe_hint">Swipe left or right to explore more wisdom.</string>
+
+    <string name="article_back">Back</string>
 </resources>

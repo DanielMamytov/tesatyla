@@ -1,90 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/home_bg"
-    android:orientation="vertical"
+    android:fillViewport="true"
     tools:context=".presentation.ui.main.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Rise, Young Knight!\nYour quests await."
-            android:textSize="30sp" />
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="53dp"
-            android:layout_gravity="center"
-            android:src="@drawable/settings_bg" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Continue Lesson"
-            android:textColor="#FBF990"
-            android:textSize="20sp" />
-
         <LinearLayout
-            android:id="@+id/continueLesson"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:background="@drawable/bg_linear"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="20dp">
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/books" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textWelcome"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:text="@string/home_welcome_message"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:text="Your Quest Continues"
-                    android:textColor="#FBF990"
-                    android:textSize="18sp" />
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="53dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/settings_bg" />
 
-                <TextView
-                    android:id="@+id/card_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pick up your sword\nwhere you left off."
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
@@ -92,78 +48,160 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Discover Inspiration"
+                android:text="@string/home_continue_section_title"
                 android:textColor="#FBF990"
                 android:textSize="20sp" />
 
             <LinearLayout
-                android:id="@+id/dailyTip"
+                android:id="@+id/continueLesson"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:background="@drawable/bg_linear"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="15dp">
+                android:padding="20dp">
 
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:padding="10dp"
-                    android:src="@drawable/tip_im" />
+                    android:contentDescription="@null"
+                    android:src="@drawable/books" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="top"
                     android:layout_marginStart="20dp"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/textContinueLessonTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
-                        android:text="Daily Tip"
+                        android:text="@string/home_continue_card_title"
                         android:textColor="#FBF990"
-                        android:textSize="25sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-
+                    <TextView
+                        android:id="@+id/textContinueLessonMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_continue_card_in_progress"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/randomArticle"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/bg_linear"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="15dp">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:padding="10dp"
-                    android:src="@drawable/random_im" />
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="20dp"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/home_inspiration_section_title"
+                    android:textColor="#FBF990"
+                    android:textSize="20sp" />
 
-                    <TextView
+                <LinearLayout
+                    android:id="@+id/dailyTip"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:background="@drawable/bg_linear"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:contentDescription="@null"
+                        android:padding="10dp"
+                        android:src="@drawable/tip_im" />
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:text="Random Article"
-                        android:textColor="#FBF990"
-                        android:textSize="25sp" />
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/home_daily_tip_title"
+                            android:textColor="#FBF990"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_daily_tip_subtitle"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/randomArticle"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_linear"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:contentDescription="@null"
+                        android:padding="10dp"
+                        android:src="@drawable/random_im" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/home_random_article_title"
+                            android:textColor="#FBF990"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_random_article_subtitle"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
