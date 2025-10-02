@@ -1,0 +1,49 @@
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="185dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/list_with_quests"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/inter_18pt_bold"
+            android:gravity="center"
+            android:text="Step 1: Learn the 25–5 Pomodoro\nstructure"
+            android:textColor="#511300"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Theory: The Pomodoro method divides work into cycles of 25 minutes ..." />
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNextT2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:background="@drawable/btn_enter_kingdom1"
+        android:minWidth="160dp"
+        android:minHeight="0dp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="14dp"
+        android:text="Continue"
+        android:textAllCaps="false"
+        android:textColor="#FFE08A"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</FrameLayout>

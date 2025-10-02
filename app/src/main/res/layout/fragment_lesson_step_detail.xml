@@ -99,6 +99,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCompleteQuest"
             android:layout_width="wrap_content"
             android:text="Complete the quest"
             android:textColor="@color/white"
