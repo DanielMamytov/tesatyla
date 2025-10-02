@@ -102,9 +102,10 @@
                 tools:text="Theory: The Pomodoro method divides work into cycles..." />
 </ScrollView>
 
-        </LinearLayout>
 
+        </LinearLayout>
     </LinearLayout>
 
-
 </ScrollView>
+
+

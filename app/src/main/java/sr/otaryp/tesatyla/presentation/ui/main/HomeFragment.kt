@@ -1,10 +1,13 @@
 package sr.otaryp.tesatyla.presentation.ui.main
 
 import android.os.Bundle
+
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import sr.otaryp.tesatyla.R
@@ -72,6 +75,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     private fun showDailyTipDialog() {
         val dialogBinding = DialogSetRoyalQuestBinding.inflate(layoutInflater)
         val tips = InspirationRepository.dailyTips
@@ -99,6 +103,7 @@ class HomeFragment : Fragment() {
             currentIndex = (currentIndex + 1) % tips.size
             renderTip()
         }
+
 
         dialog.show()
     }
