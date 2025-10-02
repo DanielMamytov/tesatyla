@@ -31,7 +31,7 @@ Your quests await.</string>
     <string name="article_back">Back</string>
 
     <string name="lesson_action_continue">Continue Quest</string>
-    <string name="lesson_action_review">Review Quest</string>
+    <string name="lesson_action_repeat">Repeat Challenge</string>
     <string name="lesson_back">Back</string>
     <string name="lesson_teaches_label">What it teaches</string>
     <string name="lesson_steps_title">Quest Steps</string>
