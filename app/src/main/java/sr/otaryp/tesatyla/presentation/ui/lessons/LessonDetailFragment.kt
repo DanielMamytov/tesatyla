@@ -1,21 +1,92 @@
 package sr.otaryp.tesatyla.presentation.ui.lessons
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import sr.otaryp.tesatyla.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.launch
+import sr.otaryp.tesatyla.data.preferences.LessonProgressPreferences
+import sr.otaryp.tesatyla.databinding.FragmentLessonDetailBinding
 
 class LessonDetailFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lesson_detail, container, false)
+    private val args: LessonDetailFragmentArgs by navArgs()
+
+    private var _binding: FragmentLessonDetailBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel: LessonDetailViewModel by viewModels {
+        LessonDetailViewModel.provideFactory(requireContext(), args.lessonId)
     }
 
+    private val stepsAdapter = LessonStepsAdapter(::onStepSelected)
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentLessonDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
+        setupRecyclerView()
+        observeUiState()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setupToolbar() {
+        binding.btnBack.setOnClickListener { findNavController().navigateUp() }
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvSteps.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = stepsAdapter
+            setHasFixedSize(false)
+        }
+    }
+
+    private fun observeUiState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { state ->
+                    binding.tvLessonTitle.text = state.title
+                    binding.tvLessonDescription.text = state.description
+                    binding.tvLessonTeaching.text = state.teaching
+                    stepsAdapter.submitList(state.steps)
+
+                    LessonProgressPreferences.setCurrentLesson(
+                        requireContext(),
+                        state.lessonId,
+                        state.title
+                    )
+                }
+            }
+        }
+    }
+
+    private fun onStepSelected(step: LessonStepItem) {
+        val directions = LessonDetailFragmentDirections
+            .actionLessonDetailFragmentToLessonStepDetailFragment(
+                lessonId = step.lessonId,
+                stepId = step.id
+            )
+        findNavController().navigate(directions)
+    }
 }

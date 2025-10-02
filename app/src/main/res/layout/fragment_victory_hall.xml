@@ -9,29 +9,28 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="120dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <!-- Header: фиолетовый фон только сверху -->
             <FrameLayout
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#420840"
                 android:paddingTop="30dp"
-                android:paddingBottom="12dp">
+                android:paddingBottom="16dp"
+                android:paddingHorizontal="20dp">
 
                 <TextView
                     android:id="@+id/btnBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="Back"
+                    android:text="@string/lesson_back"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
             </FrameLayout>
@@ -40,40 +39,63 @@
                 android:id="@+id/goldDivider"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@drawable/gradient_view"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:background="@drawable/gradient_view" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/steps_bg_im"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:id="@+id/tvVictoryTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_18pt_bold"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    tools:text="Victory Achieved!" />
+
+                <TextView
+                    android:id="@+id/tvVictoryMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/inter_18pt_regular"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    tools:text="You have completed Pomodoro Trials. The kingdom applauds your focus!" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginBottom="40dp"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Next Lesson Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNextLesson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/next_button_bg"
             android:fontFamily="@font/inter_18pt_extrabold"
             android:minWidth="200dp"
             android:paddingHorizontal="30dp"
-            android:text="Next Lesson"
+            android:text="@string/victory_next_lesson"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
-        <!-- Replay Lesson Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnReplayLesson"
             android:layout_width="wrap_content"
@@ -82,12 +104,8 @@
             android:fontFamily="@font/inter_18pt_extrabold"
             android:minWidth="200dp"
             android:paddingHorizontal="30dp"
-            android:text="Replay Lesson"
+            android:text="@string/victory_replay_lesson"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
-
     </LinearLayout>
-
-
-
 </FrameLayout>

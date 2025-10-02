@@ -5,107 +5,129 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/lesson_fragment_bg"
+    android:paddingBottom="24dp"
     tools:context=".presentation.ui.lessons.LessonStepDetailFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="30dp">
-
-            <TextView
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Back"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="end"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/settings_bg" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:paddingTop="20dp"
-                android:text="Lesson 1:\nPomodoro trials"
-                android:textSize="25sp" />
-
-
-        </FrameLayout>
-
-        <View
-            android:id="@+id/goldDivider"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/gradient_view"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/btnBack"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lesson_back"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tvLessonTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/inter_18pt_bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                tools:text="Lesson 1: Pomodoro Trials" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/gradient_view" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:src="@drawable/steps_bg" />
-
+                android:layout_height="240dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/steps_bg"
+                android:contentDescription="@null" />
 
             <TextView
+                android:id="@+id/tvStepTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|top"
+                android:layout_gravity="center_horizontal|top"
                 android:layout_marginTop="40dp"
-                android:text="Step 1:"
-                android:textSize="20sp" />
-
+                android:fontFamily="@font/inter_18pt_bold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:text="Step 1: Learn the 25–5 Pomodoro structure" />
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/steps_bg_im">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/steps_bg_im"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TextView
+                android:id="@+id/tvTheoryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_18pt_bold"
+                android:text="@string/lesson_step_theory"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvTheory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/inter_18pt_regular"
-                android:paddingHorizontal="20dp"
-                android:text=" Theory: The Pomodoro method divides work into cycles of 25 minutes of focused work followed by 5 minutes of rest. These short sprints allow the brain to recharge regularly, preventing fatigue and increasing concentration. Long, uninterrupted work sessions often reduce effectiveness over time.  Practice: Read about the Pomodoro cycle. Write down the structure somewhere visible: 25 minutes work → 5 minutes rest → repeat 4 times → then a longer break of 15–30 minutes."
-                android:textColor="#DCFFFFFF"
-                android:textSize="14sp" />
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="The Pomodoro method divides work into cycles of 25 minutes of focused work followed by 5 minutes of rest." />
 
-        </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCompleteQuest"
-            android:layout_width="wrap_content"
-            android:text="Complete the quest"
+            <TextView
+                android:id="@+id/tvPracticeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_18pt_bold"
+                android:text="@string/lesson_step_practice"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvPractice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_18pt_regular"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                tools:text="Read about the Pomodoro cycle. Write down the structure somewhere visible." />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:paddingHorizontal="28dp"
+            android:paddingVertical="12dp"
+            android:text="@string/lesson_step_complete"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textAllCaps="true"
+            android:textSize="16sp" />
+</ScrollView>
             android:paddingHorizontal="20dp"
             android:letterSpacing="0.1"
             android:layout_marginBottom="10dp"

@@ -1,60 +1,119 @@
 package sr.otaryp.tesatyla.presentation.ui.lessons
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import kotlinx.coroutines.launch
 import sr.otaryp.tesatyla.R
+import sr.otaryp.tesatyla.data.preferences.LessonProgressPreferences
+import sr.otaryp.tesatyla.databinding.FragmentLessonStepDetailBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LessonStepDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LessonStepDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val args: LessonStepDetailFragmentArgs by navArgs()
+
+    private var _binding: FragmentLessonStepDetailBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel: LessonStepDetailViewModel by viewModels {
+        LessonStepDetailViewModel.provideFactory(
+            requireContext(),
+            args.lessonId,
+            args.stepId
+        )
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lesson_step_detail, container, false)
+    ): View {
+        _binding = FragmentLessonStepDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LessonStepDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LessonStepDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
+        setupButton()
+        observeUiState()
+        observeEvents()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setupToolbar() {
+        binding.btnBack.setOnClickListener { findNavController().navigateUp() }
+    }
+
+    private fun setupButton() {
+        binding.btnCompleteQuest.setOnClickListener {
+            viewModel.onCompleteStep()
+        }
+    }
+
+    private fun observeUiState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { state ->
+                    binding.tvLessonTitle.text = state.lessonTitle
+                    binding.tvStepTitle.text = state.stepTitle
+                    binding.tvTheory.text = state.theory
+                    binding.tvPractice.text = state.practice
+
+                    if (state.isCompleted) {
+                        binding.btnCompleteQuest.isEnabled = false
+                        binding.btnCompleteQuest.text = getString(R.string.lesson_step_completed_button)
+                    } else {
+                        binding.btnCompleteQuest.isEnabled = true
+                        binding.btnCompleteQuest.text = getString(R.string.lesson_step_complete)
+                    }
                 }
             }
+        }
+    }
+
+    private fun observeEvents() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.events.collect { event ->
+                    when (event) {
+                        LessonStepDetailEvent.StepCompleted -> {
+                            findNavController().popBackStack()
+                        }
+
+                        is LessonStepDetailEvent.LessonCompleted -> {
+                            val context = requireContext()
+                            if (event.nextLessonId != null && event.nextLessonTitle != null) {
+                                LessonProgressPreferences.setCurrentLesson(
+                                    context,
+                                    event.nextLessonId,
+                                    event.nextLessonTitle
+                                )
+                            } else {
+                                LessonProgressPreferences.clear(context)
+                            }
+
+                            val directions = LessonStepDetailFragmentDirections
+                                .actionLessonStepDetailFragmentToVictoryHallFragment(
+                                    lessonId = event.lessonId
+                                )
+                            findNavController().navigate(directions)
+                        }
+                    }
+                }
+            }
+        }
     }
 }

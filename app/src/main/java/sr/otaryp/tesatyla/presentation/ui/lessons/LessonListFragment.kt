@@ -5,12 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.preferences.LessonProgressPreferences
 import sr.otaryp.tesatyla.databinding.FragmentLessonListBinding
 import kotlin.LazyThreadSafetyMode
+import kotlinx.coroutines.launch
 
 class LessonListFragment : Fragment() {
 
@@ -19,6 +24,10 @@ class LessonListFragment : Fragment() {
 
     private val lessonAdapter by lazy(LazyThreadSafetyMode.NONE) {
         LessonAdapter(::onLessonSelected)
+    }
+
+    private val viewModel: LessonListViewModel by viewModels {
+        LessonListViewModel.provideFactory(requireContext())
     }
 
     override fun onCreateView(
@@ -34,7 +43,7 @@ class LessonListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         setupRecyclerView()
-        lessonAdapter.submitList(lessonExamples)
+        observeLessons()
     }
 
     override fun onDestroyView() {
@@ -56,78 +65,25 @@ class LessonListFragment : Fragment() {
         }
     }
 
+    private fun observeLessons() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.lessons.collect { lessons ->
+                    lessonAdapter.submitList(lessons)
+                }
+            }
+        }
+    }
+
     private fun onLessonSelected(lesson: LessonListItem) {
         LessonProgressPreferences.setCurrentLesson(
             requireContext(),
             lesson.id,
             lesson.title
         )
-        findNavController().navigate(R.id.lessonDetailFragment)
-    }
-
-    private val lessonExamples by lazy(LazyThreadSafetyMode.NONE) {
-        listOf(
-            LessonListItem(
-                id = 1,
-                title = getString(R.string.lesson_title_pomodoro_trials),
-                description = getString(R.string.lesson_description_pomodoro_trials),
-                isCompleted = true
-            ),
-            LessonListItem(
-                id = 2,
-                title = getString(R.string.lesson_title_scrolls_of_order),
-                description = getString(R.string.lesson_description_scrolls_of_order),
-                isCompleted = true
-            ),
-            LessonListItem(
-                id = 3,
-                title = getString(R.string.lesson_title_defend_against_distractions),
-                description = getString(R.string.lesson_description_defend_against_distractions),
-                isCompleted = false
-            ),
-            LessonListItem(
-                id = 4,
-                title = getString(R.string.lesson_title_timekeepers_path),
-                description = getString(R.string.lesson_description_timekeepers_path),
-                isCompleted = false
-            ),
-            LessonListItem(
-                id = 5,
-                title = getString(R.string.lesson_title_procrastination_dragon),
-                description = getString(R.string.lesson_description_procrastination_dragon),
-                isCompleted = false
-            ),
-            LessonListItem(
-                id = 6,
-                title = getString(R.string.lesson_title_focus_forge),
-                description = getString(R.string.lesson_description_focus_forge),
-                isCompleted = false
-            ),
-            LessonListItem(
-                id = 7,
-                title = getString(R.string.lesson_title_energy_management),
-                description = getString(R.string.lesson_description_energy_management),
-                isCompleted = false
-            ),
-            LessonListItem(
-                id = 8,
-                title = getString(R.string.lesson_title_task_alchemy),
-                description = getString(R.string.lesson_description_task_alchemy),
-                isCompleted = false
-            ),
-            LessonListItem(
-                id = 9,
-                title = getString(R.string.lesson_title_habit_loop),
-                description = getString(R.string.lesson_description_habit_loop),
-                isCompleted = false
-            ),
-            LessonListItem(
-                id = 10,
-                title = getString(R.string.lesson_title_reflection_chamber),
-                description = getString(R.string.lesson_description_reflection_chamber),
-                isCompleted = false
-            )
-        )
+        val directions = LessonListFragmentDirections
+            .actionNavLessonsToLessonDetailFragment(lesson.id)
+        findNavController().navigate(directions)
     }
 }
 

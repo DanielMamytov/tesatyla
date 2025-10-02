@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import sr.otaryp.tesatyla.presentation.ui.main.HomeFragmentDirections
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.content.InspirationRepository
 import sr.otaryp.tesatyla.data.preferences.LessonProgressPreferences
@@ -55,7 +56,9 @@ class HomeFragment : Fragment() {
             val navController = findNavController()
             val lessonProgress = LessonProgressPreferences.getCurrentLesson(requireContext())
             if (lessonProgress != null) {
-                navController.navigate(R.id.action_nav_home_to_lessonDetailFragment)
+                val directions = HomeFragmentDirections
+                    .actionNavHomeToLessonDetailFragment(lessonProgress.lessonId)
+                navController.navigate(directions)
             } else {
                 navController.navigate(R.id.action_nav_home_to_nav_lessons)
             }
