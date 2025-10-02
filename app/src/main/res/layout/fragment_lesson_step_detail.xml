@@ -109,6 +109,7 @@
                 android:text="@string/lesson_step_practice"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/tvPractice"
                 android:layout_width="match_parent"
@@ -118,22 +119,20 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 tools:text="Read about the Pomodoro cycle. Write down the structure somewhere visible." />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCompleteQuest"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
+            android:background="@drawable/button_complete_quest"
             android:paddingHorizontal="28dp"
             android:paddingVertical="12dp"
             android:text="@string/lesson_step_complete"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp" />
-</ScrollView>
-            android:paddingHorizontal="20dp"
-            android:letterSpacing="0.1"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/button_complete_quest"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
-
-
 </ScrollView>
