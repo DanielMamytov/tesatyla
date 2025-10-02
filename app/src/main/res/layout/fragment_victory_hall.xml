@@ -71,7 +71,6 @@
             android:paddingHorizontal="30dp"
             android:text="Next Lesson"
             android:textColor="#FFFFFF"
-
             android:textSize="16sp" />
 
         <!-- Replay Lesson Button -->
@@ -80,7 +79,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/replay_lesson_bg"
-
             android:fontFamily="@font/inter_18pt_extrabold"
             android:minWidth="200dp"
             android:paddingHorizontal="30dp"
