@@ -19,12 +19,9 @@ class LessonDetailViewModel(
         .observeLesson(lessonId)
         .map { lessonWithSteps ->
             val lesson = lessonWithSteps.lesson
-            LessonDetailUiState(
-                lessonId = lesson.id,
-                title = lesson.title,
-                description = lesson.description,
-                teaching = lesson.teaching,
-                steps = lessonWithSteps.steps.sortedBy { it.number }.map { step ->
+            val stepItems = lessonWithSteps.steps
+                .sortedBy { it.number }
+                .map { step ->
                     LessonStepItem(
                         id = step.id,
                         lessonId = lesson.id,
@@ -34,6 +31,16 @@ class LessonDetailViewModel(
                         isCompleted = step.isCompleted
                     )
                 }
+            val completedSteps = stepItems.count { it.isCompleted }
+            LessonDetailUiState(
+                lessonId = lesson.id,
+                title = lesson.title,
+                description = lesson.description,
+                teaching = lesson.teaching,
+                steps = stepItems,
+                completedSteps = completedSteps,
+                totalSteps = stepItems.size,
+                isCompleted = stepItems.isNotEmpty() && completedSteps == stepItems.size
             )
         }
         .stateIn(
@@ -64,7 +71,10 @@ data class LessonDetailUiState(
     val title: String = "",
     val description: String = "",
     val teaching: String = "",
-    val steps: List<LessonStepItem> = emptyList()
+    val steps: List<LessonStepItem> = emptyList(),
+    val completedSteps: Int = 0,
+    val totalSteps: Int = 0,
+    val isCompleted: Boolean = false
 )
 
 data class LessonStepItem(
