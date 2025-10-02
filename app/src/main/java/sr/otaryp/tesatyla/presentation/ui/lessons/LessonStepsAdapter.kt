@@ -3,7 +3,6 @@ package sr.otaryp.tesatyla.presentation.ui.lessons
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -32,33 +31,19 @@ class LessonStepsAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: LessonStepItem, onStepSelected: (LessonStepItem) -> Unit) {
-            val context = binding.root.context
-            binding.tvStepNumber.text = context.getString(R.string.lesson_step_number_format, item.stepNumber)
             binding.tvStepTitle.text = item.title
             binding.tvStepPreview.text = item.theoryPreview
 
             if (item.isCompleted) {
-                binding.tvStepStatus.visibility = View.VISIBLE
-                binding.tvStepStatus.setText(R.string.lesson_step_completed)
-                binding.btnStepAction.setText(R.string.lesson_step_review)
-                binding.ivStepStatus.setImageResource(R.drawable.shield_bg)
-                binding.cardContainer.setCardBackgroundColor(
-                    ContextCompat.getColor(context, R.color.step_card_background_completed)
-                )
-                binding.cardContainer.strokeColor =
-                    ContextCompat.getColor(context, R.color.step_card_stroke_completed)
+//                binding.tvStepStatus.visibility = View.VISIBLE
+//                binding.tvStepStatus.setText(R.string.lesson_step_completed)
+                binding.btnOpenStep.setText(R.string.lesson_step_review)
             } else {
-                binding.tvStepStatus.visibility = View.GONE
-                binding.btnStepAction.setText(R.string.lesson_step_open)
-                binding.ivStepStatus.setImageResource(R.drawable.shield_gray)
-                binding.cardContainer.setCardBackgroundColor(
-                    ContextCompat.getColor(context, R.color.step_card_background)
-                )
-                binding.cardContainer.strokeColor =
-                    ContextCompat.getColor(context, R.color.step_card_stroke)
+//                binding.tvStepStatus.visibility = View.GONE
+                binding.btnOpenStep.setText(R.string.lesson_step_open)
             }
 
-            binding.btnStepAction.setOnClickListener { onStepSelected(item) }
+            binding.btnOpenStep.setOnClickListener { onStepSelected(item) }
         }
     }
 
