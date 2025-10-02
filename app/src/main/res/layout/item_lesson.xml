@@ -1,0 +1,68 @@
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="210dp"
+    android:layout_marginBottom="16dp"
+    android:layout_marginTop="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lesson_list_bg" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/inter_18pt_bold"
+                android:text="Pomodoro Trials"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_18pt_medium"
+                android:text="Pick up your sword\nwhere you left off."
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/levelIm"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
+            android:scaleType="fitEnd"
+            android:src="@drawable/shield_bg" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:background="@drawable/btn_enter_kingdom1"
+        android:minWidth="160dp"
+        android:minHeight="0dp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="14dp"
+        android:text="Continue"
+        android:textAllCaps="false"
+        android:textColor="#FFE08A"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</FrameLayout>

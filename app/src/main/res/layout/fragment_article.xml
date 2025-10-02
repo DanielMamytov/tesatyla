@@ -4,19 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/article_fragment_bg"
-    android:fillViewport="true"
     tools:context=".presentation.ui.article.ArticleFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+
+
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:paddingBottom="20dp">
+            android:layout_height="match_parent"
+            android:paddingTop="30dp">
 
             <TextView
                 android:id="@+id/btnBack"
@@ -27,24 +27,25 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:paddingTop="8dp"
-                android:text="Productivity Articles"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/settings_bg" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:paddingTop="20dp"
+                android:text="Lesson 1:\nPomodoro trials"
+                android:textSize="25sp" />
+
+
         </FrameLayout>
 
         <View
@@ -52,31 +53,34 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/gradient_view" />
+            android:background="@drawable/gradient_view"
+            />
 
         <EditText
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/search_bar_background"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/search_ic"
-            android:fontFamily="@font/poppins_regular"
             android:hint="Search"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            android:fontFamily="@font/poppins_regular"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/search_ic"
             android:paddingVertical="10dp"
-            android:textColor="#666666A1" />
+            android:layout_marginHorizontal="30dp"
+            android:paddingEnd="16dp"
+            android:textColor="#666666A1"
+            android:background="@drawable/search_bar_background"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
 
-        <LinearLayout
-            android:id="@+id/articleContainer"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            tools:itemCount="20"
+            tools:listitem="@layout/article_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="32dp"
-            android:orientation="vertical" />
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"/>
     </LinearLayout>
+
+
 </ScrollView>

@@ -79,32 +79,29 @@ class HomeFragment : Fragment() {
     private fun showDailyTipDialog() {
         val dialogBinding = DialogSetRoyalQuestBinding.inflate(layoutInflater)
         val tips = InspirationRepository.dailyTips
-        var currentIndex = InspirationRepository.getTipIndexForToday()
+        var currentIndex = 0
 
         fun renderTip() {
-            val positionText = getString(
-                R.string.dialog_tip_position,
-                currentIndex + 1,
-                tips.size
-            )
-            dialogBinding.textTipContent.text = tips[currentIndex]
-            dialogBinding.textTipPosition.text = positionText
+            dialogBinding.tipText.text = tips[currentIndex] // меняем текст совета
         }
 
-        renderTip()
+        renderTip() // показываем первый совет
 
         val dialog = AlertDialog.Builder(requireContext())
             .setView(dialogBinding.root)
             .setCancelable(true)
             .create()
 
+        // Кнопка "Got it" закрывает окно
         dialogBinding.buttonClose.setOnClickListener { dialog.dismiss() }
+
+        // Кнопка "Next tip" → переключаемся на следующий совет
         dialogBinding.buttonNext.setOnClickListener {
             currentIndex = (currentIndex + 1) % tips.size
             renderTip()
         }
 
-
         dialog.show()
     }
+
 }

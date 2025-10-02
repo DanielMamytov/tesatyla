@@ -1,5 +1,6 @@
 package sr.otaryp.tesatyla.data.content
 
+import sr.otaryp.tesatyla.R
 import java.util.Calendar
 
 object InspirationRepository {
@@ -82,5 +83,20 @@ object InspirationRepository {
     fun getTipIndexForToday(): Int {
         val today = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
         return (today - 1) % dailyTips.size
+    }
+
+
+    fun imageFor(articleId: Int): Int = when (articleId) {
+        1 -> R.drawable.article_im1
+        2 -> R.drawable.article_im1
+        3 -> R.drawable.article_im1
+        4 -> R.drawable.article_im1
+        5 -> R.drawable.article_im1
+        6 -> R.drawable.article_im1
+        7 -> R.drawable.article_im1
+        8 -> R.drawable.article_im1
+        9 -> R.drawable.article_im1
+        10 -> R.drawable.article_im1
+        else -> R.drawable.article_im1
     }
 }

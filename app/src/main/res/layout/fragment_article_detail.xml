@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,6 +92,7 @@
             android:background="@drawable/steps_bg_im"
             android:orientation="vertical">
 
+
             <TextView
                 android:id="@+id/textArticleContent"
                 android:layout_width="wrap_content"
@@ -100,12 +102,11 @@
                 android:paddingVertical="20dp"
                 android:textSize="14sp"
                 tools:text="Theory: The Pomodoro method divides work into cycles..." />
-</ScrollView>
-
-
         </LinearLayout>
     </LinearLayout>
-
+    
 </ScrollView>
+
+
 
 

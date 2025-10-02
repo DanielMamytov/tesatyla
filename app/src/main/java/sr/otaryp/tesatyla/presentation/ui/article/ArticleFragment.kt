@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.content.InspirationRepository
 import sr.otaryp.tesatyla.databinding.FragmentArticleBinding
 import sr.otaryp.tesatyla.databinding.ItemArticleSummaryBinding
@@ -13,6 +16,8 @@ class ArticleFragment : Fragment() {
 
     private var _binding: FragmentArticleBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var adapter: ArticleAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,20 +30,28 @@ class ArticleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        renderArticles()
+
+        adapter = ArticleAdapter(
+            onItemClick = { article -> openDetail(article.id) },
+            onContinueClick = { article -> openDetail(article.id) }
+        )
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+//        binding.recyclerView.addItemDecoration(VerticalSpaceItemDecoration(6))
+
+        // подаем 10 статей в список
+        adapter.submitList(InspirationRepository.getArticles())
     }
 
-    private fun renderArticles() {
-        val articles = InspirationRepository.getArticles()
+    private fun openDetail(articleId: Int) {
+        // Если используешь SafeArgs:
+        // val action = ArticleFragmentDirections.actionArticleFragmentToArticleDetailFragment(articleId)
+        // findNavController().navigate(action)
 
-        binding.articleContainer.removeAllViews()
-        val inflater = LayoutInflater.from(requireContext())
-        articles.forEach { article ->
-            val itemBinding = ItemArticleSummaryBinding.inflate(inflater, binding.articleContainer, false)
-            itemBinding.textArticleTitle.text = article.title
-            itemBinding.textArticleContent.text = article.content
-            binding.articleContainer.addView(itemBinding.root)
-        }
+//        // Универсально через Bundle:
+//        val args = bundleOf("article_id" to articleId)
+//        findNavController().navigate(R.id.action_articleFragment_to_articleDetailFragment, args)
     }
 
     override fun onDestroyView() {
@@ -46,3 +59,4 @@ class ArticleFragment : Fragment() {
         _binding = null
     }
 }
+
