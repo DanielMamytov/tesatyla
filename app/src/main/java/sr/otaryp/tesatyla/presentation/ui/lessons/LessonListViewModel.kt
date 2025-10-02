@@ -21,7 +21,7 @@ class LessonListViewModel(
                 val entity = lesson.lesson
                 LessonListItem(
                     id = entity.id,
-                    title = entity.title,
+                    title = entity.title.replaceFirst(LESSON_TITLE_PREFIX_REGEX, "").trim(),
                     description = entity.description,
                     isCompleted = entity.isCompleted
                 )
@@ -34,6 +34,8 @@ class LessonListViewModel(
         )
 
     companion object {
+        private val LESSON_TITLE_PREFIX_REGEX = Regex("^Lesson \\d+:\\s*")
+
         fun provideFactory(context: Context): ViewModelProvider.Factory {
             val appContext = context.applicationContext
             return object : ViewModelProvider.Factory {

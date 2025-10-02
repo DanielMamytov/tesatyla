@@ -37,13 +37,14 @@ class LessonAdapter(
             binding.levelIm.setImageResource(iconRes)
 
             val buttonTextRes = if (item.isCompleted) {
-                R.string.lesson_action_review
+                R.string.lesson_action_repeat
             } else {
                 R.string.lesson_action_continue
             }
             binding.btnContinue.setText(buttonTextRes)
 
             binding.btnContinue.setOnClickListener { onLessonSelected(item) }
+            binding.root.setOnClickListener { onLessonSelected(item) }
         }
     }
 
