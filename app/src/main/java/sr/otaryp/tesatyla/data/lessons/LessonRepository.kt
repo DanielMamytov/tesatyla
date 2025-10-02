@@ -8,6 +8,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onStart
 
+
 class LessonRepository private constructor(
     private val lessonDao: LessonDao
 ) {
@@ -30,6 +31,7 @@ class LessonRepository private constructor(
 
     suspend fun completeStep(lessonId: Int, stepId: Int): StepCompletionResult {
         prepopulateJob.await()
+
         lessonDao.updateStepCompletion(stepId, true)
         val totalSteps = lessonDao.countStepsForLesson(lessonId)
         val completedSteps = lessonDao.countCompletedStepsForLesson(lessonId)
@@ -44,6 +46,7 @@ class LessonRepository private constructor(
 
     suspend fun resetLesson(lessonId: Int) {
         prepopulateJob.await()
+
         lessonDao.resetStepsForLesson(lessonId)
         lessonDao.updateLessonCompletion(lessonId, false)
     }
@@ -62,6 +65,7 @@ class LessonRepository private constructor(
         prepopulateJob.await()
         return lessonDao.getLessonById(lessonId)
     }
+
 
     private suspend fun prepopulateIfNeeded() {
         if (lessonDao.countLessons() > 0) return
