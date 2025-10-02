@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="step_card_background">#FFF5E5</color>
+    <color name="step_card_stroke">#E2B886</color>
+    <color name="step_card_background_completed">#FFE6B4</color>
+    <color name="step_card_stroke_completed">#FFC25A</color>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
+import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.preferences.LessonProgressPreferences
 import sr.otaryp.tesatyla.databinding.FragmentLessonDetailBinding
 
@@ -28,6 +30,7 @@ class LessonDetailFragment : Fragment() {
     }
 
     private val stepsAdapter = LessonStepsAdapter(::onStepSelected)
+    private var currentState: LessonDetailUiState? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +45,7 @@ class LessonDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         setupRecyclerView()
+        setupCallToAction()
         observeUiState()
     }
 
@@ -62,13 +66,57 @@ class LessonDetailFragment : Fragment() {
         }
     }
 
+    private fun setupCallToAction() {
+        binding.btnLessonCta.setOnClickListener {
+            currentState?.let { state ->
+                if (state.isCompleted) {
+                    val directions = LessonDetailFragmentDirections
+                        .actionLessonDetailFragmentToVictoryHallFragment(state.lessonId)
+                    findNavController().navigate(directions)
+                } else {
+                    val nextStep = state.steps.firstOrNull { !it.isCompleted }
+                    if (nextStep != null) {
+                        onStepSelected(nextStep)
+                    }
+                }
+            }
+        }
+    }
+
     private fun observeUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
+                    currentState = state
                     binding.tvLessonTitle.text = state.title
                     binding.tvLessonDescription.text = state.description
                     binding.tvLessonTeaching.text = state.teaching
+                    binding.ivLessonStatus.setImageResource(
+                        if (state.isCompleted) R.drawable.shield_bg else R.drawable.shield_gray
+                    )
+                    binding.tvLessonStatus.setText(
+                        if (state.isCompleted) {
+                            R.string.lesson_detail_progress_completed
+                        } else {
+                            R.string.lesson_detail_progress_in_progress
+                        }
+                    )
+                    binding.tvLessonProgress.text = getString(
+                        R.string.lesson_detail_progress_template,
+                        state.completedSteps,
+                        state.totalSteps
+                    )
+                    val hasSteps = state.totalSteps > 0
+                    binding.tvLessonProgress.isVisible = hasSteps
+                    binding.progressContainer.isVisible = hasSteps
+                    binding.btnLessonCta.setText(
+                        if (state.isCompleted) {
+                            R.string.lesson_detail_cta_victory
+                        } else {
+                            R.string.lesson_detail_cta_complete
+                        }
+                    )
+                    binding.btnLessonCta.isEnabled = hasSteps
                     stepsAdapter.submitList(state.steps)
 
                     LessonProgressPreferences.setCurrentLesson(

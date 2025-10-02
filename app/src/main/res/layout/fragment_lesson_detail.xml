@@ -1,113 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/lesson_fragment_bg"
-    android:paddingBottom="24dp"
+    android:paddingBottom="16dp"
     tools:context=".presentation.ui.lessons.LessonDetailFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:paddingHorizontal="20dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/btnBack"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp"
-            android:paddingTop="30dp"
-            android:paddingBottom="16dp">
+            android:fontFamily="@font/inter_18pt_bold"
+            android:text="@string/lesson_back"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/btnBack"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lesson_back"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/tvLessonTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/inter_18pt_bold"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="22sp"
-                tools:text="Lesson 1: Pomodoro Trials" />
-        </FrameLayout>
+        <TextView
+            android:id="@+id/tvLessonTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/inter_18pt_bold"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Pomodoro in Action" />
 
         <ImageView
-            android:id="@+id/illustration"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/quest_photo"
-            android:contentDescription="@null" />
+            android:id="@+id/ivLessonStatus"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/lesson_detail_status_icon"
+            android:src="@drawable/shield_gray"
+            app:layout_constraintBottom_toBottomOf="@id/tvLessonTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvLessonTitle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/progressContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerContainer">
+
+        <TextView
+            android:id="@+id/tvLessonStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_18pt_medium"
+            android:text="@string/lesson_detail_progress_in_progress"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvLessonProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/inter_18pt_regular"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            tools:text="1 / 4 steps" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/contentScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:fillViewport="true"
+        android:paddingBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@id/btnLessonCta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressContainer">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/steps_bg_im"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvLessonDescription"
+            <ImageView
+                android:id="@+id/illustration"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/quest_photo"
+                android:contentDescription="@null" />
+
+            <LinearLayout
+                android:id="@+id/lessonDescriptionContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_18pt_medium"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/steps_bg_im"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/tvLessonDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_18pt_medium"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    tools:text="Train in timed battles: 25 minutes of focus, 5 minutes of rest." />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvLessonTeachingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_18pt_bold"
+                android:text="@string/lesson_teaches_label"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvLessonTeaching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inter_18pt_regular"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                tools:text="Train in timed battles: 25 minutes of focus, 5 minutes of rest." />
+                tools:text="This lesson introduces you to the Pomodoro Technique — a method to increase focus and avoid burnout." />
+
+            <TextView
+                android:id="@+id/tvStepsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/inter_18pt_bold"
+                android:text="@string/lesson_steps_title"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSteps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/lessson_step_item" />
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <TextView
-            android:id="@+id/tvLessonTeachingLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/inter_18pt_bold"
-            android:text="@string/lesson_teaches_label"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLessonCta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_complete_quest"
+        android:minHeight="0dp"
+        android:paddingVertical="16dp"
+        android:text="@string/lesson_detail_cta_complete"
+        android:textAllCaps="false"
+        android:textColor="#FFE08A"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/tvLessonTeaching"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter_18pt_regular"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            tools:text="This lesson introduces you to the Pomodoro Technique — a method to increase focus and avoid burnout." />
-
-        <TextView
-            android:id="@+id/tvStepsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/inter_18pt_bold"
-            android:text="@string/lesson_steps_title"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSteps"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="12dp"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/lessson_step_item" />
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
