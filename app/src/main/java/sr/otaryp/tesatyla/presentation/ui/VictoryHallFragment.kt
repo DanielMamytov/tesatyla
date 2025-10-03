@@ -82,19 +82,19 @@ class VictoryHallFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
-                    val lessonTitle = state.lessonTitle
-                    val titleText = if (lessonTitle.isNotBlank()) {
-                        getString(R.string.victory_title_template, lessonTitle)
-                    } else {
-                        getString(R.string.victory_generic_title)
-                    }
-                    val messageText = if (lessonTitle.isNotBlank()) {
-                        getString(R.string.victory_message_template, lessonTitle)
-                    } else {
-                        getString(R.string.victory_generic_message)
-                    }
-                    binding.tvVictoryTitle.text = titleText
-                    binding.tvVictoryMessage.text = messageText
+//                    val lessonTitle = state.lessonTitle
+//                    val titleText = if (lessonTitle.isNotBlank()) {
+//                        getString(R.string.victory_title_template, lessonTitle)
+//                    } else {
+//                        getString(R.string.victory_generic_title)
+//                    }
+//                    val messageText = if (lessonTitle.isNotBlank()) {
+//                        getString(R.string.victory_message_template, lessonTitle)
+//                    } else {
+//                        getString(R.string.victory_generic_message)
+//                    }
+//                    binding.tvVictoryTitle.text = titleText
+//                    binding.tvVictoryMessage.text = messageText
 
                     if (state.nextLessonId != null && state.nextLessonTitle != null) {
                         binding.btnNextLesson.isEnabled = true

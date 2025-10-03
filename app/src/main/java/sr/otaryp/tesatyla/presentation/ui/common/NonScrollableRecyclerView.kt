@@ -24,5 +24,5 @@ class NonScrollableRecyclerView @JvmOverloads constructor(
         super.onMeasure(widthMeasureSpec, expandedHeightSpec)
     }
 
-    override fun canScrollVertically(): Boolean = false
+    override fun canScrollVertically(direction: Int): Boolean = false
 }

@@ -41,36 +41,7 @@
                 android:layout_height="2dp"
                 android:background="@drawable/gradient_view" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/steps_bg_im"
-                android:orientation="vertical"
-                android:padding="24dp">
 
-                <TextView
-                    android:id="@+id/tvVictoryTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_18pt_bold"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    tools:text="Victory Achieved!" />
-
-                <TextView
-                    android:id="@+id/tvVictoryMessage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/inter_18pt_regular"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    tools:text="You have completed Pomodoro Trials. The kingdom applauds your focus!" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
