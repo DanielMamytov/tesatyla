@@ -27,8 +27,10 @@ class ProgressViewModel(
 
     private val lessonProgress = repository.observeLessons()
         .map { lessons ->
-            val totalLessons = lessons.size
-            val completedLessons = lessons.count { it.lesson.isCompleted }
+            val totalLessons = lessons.sumOf { it.steps.size }
+            val completedLessons = lessons.sumOf { lesson ->
+                lesson.steps.count { it.isCompleted }
+            }
 
             val skills = SkillCatalog.skills.mapNotNull { skill ->
                 val skillLessons = lessons.filter { skill.lessonIds.contains(it.lesson.id) }
