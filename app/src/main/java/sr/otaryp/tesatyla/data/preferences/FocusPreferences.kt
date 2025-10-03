@@ -58,4 +58,10 @@ object FocusPreferences {
             0
         }
     }
+
+    fun clear(context: Context) {
+        sharedPreferences(context).edit {
+            clear()
+        }
+    }
 }
