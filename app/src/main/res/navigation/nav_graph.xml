@@ -55,6 +55,10 @@
         android:name="sr.otaryp.tesatyla.presentation.ui.lessons.LessonListFragment"
         android:label="Lessons"
         tools:layout="@layout/fragment_lesson_list">
+        <argument
+            android:name="skillId"
+            app:argType="string"
+            android:defaultValue="" />
         <action
             android:id="@+id/action_nav_lessons_to_nav_home"
             app:destination="@id/nav_home"
@@ -78,7 +82,11 @@
         android:id="@+id/nav_progress"
         android:name="sr.otaryp.tesatyla.presentation.ui.progress.ProgressFragment"
         android:label="Progress"
-        tools:layout="@layout/fragment_progress" />
+        tools:layout="@layout/fragment_progress">
+        <action
+            android:id="@+id/action_nav_progress_to_nav_lessons"
+            app:destination="@id/nav_lessons" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_focus"

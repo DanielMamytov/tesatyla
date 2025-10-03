@@ -5,14 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import sr.otaryp.tesatyla.R
-import sr.otaryp.tesatyla.data.preferences.FocusPreferences
 import sr.otaryp.tesatyla.databinding.FragmentProgressBinding
 
 class ProgressFragment : Fragment() {
 
     private var _binding: FragmentProgressBinding? = null
     private val binding get() = _binding!!
+    private val skillAdapter by lazy { SkillProgressAdapter(::onSkillSelected) }
+    private val viewModel: ProgressViewModel by viewModels {
+        ProgressViewModel.provideFactory(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,13 +35,15 @@ class ProgressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.progressBar.max = PROGRESS_MAX
-        updateProgress()
+        setupToolbar()
+        setupSkillList()
+        observeState()
+        binding.pomodoroProgress.max = ProgressViewModel.DAILY_POMODORO_GOAL
     }
 
     override fun onResume() {
         super.onResume()
-        updateProgress()
+        viewModel.refreshPomodoroCount(requireContext())
     }
 
     override fun onDestroyView() {
@@ -39,17 +51,43 @@ class ProgressFragment : Fragment() {
         _binding = null
     }
 
-    private fun updateProgress() {
-        val completedToday = FocusPreferences.ensureTodayCount(requireContext())
-        val percent = ((completedToday.toFloat() / DAILY_GOAL) * PROGRESS_MAX).toInt().coerceIn(0, PROGRESS_MAX)
-
-        binding.progressPercentage.text = getString(R.string.progress_percentage_format, percent)
-        binding.pomodoroCycles.text = getString(R.string.progress_cycles_format, completedToday)
-        binding.progressBar.progress = percent
+    private fun setupToolbar() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
-    companion object {
-        private const val DAILY_GOAL = 12f
-        private const val PROGRESS_MAX = 100
+    private fun setupSkillList() {
+        binding.skillProgressList.adapter = skillAdapter
+    }
+
+    private fun observeState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect(::renderState)
+            }
+        }
+    }
+
+    private fun renderState(state: ProgressUiState) = with(binding) {
+        textProgressPercentage.text = getString(R.string.progress_percentage_format, state.overallPercent)
+        textLessonsCompleted.text = getString(
+            R.string.progress_lessons_completed,
+            state.completedLessons,
+            state.totalLessons,
+        )
+        progressBar.progress = state.overallPercent
+        pomodoroCycles.text = getString(R.string.progress_cycles_format, state.pomodoroCycles)
+        pomodoroProgress.progress = state.pomodoroCycles.coerceAtMost(ProgressViewModel.DAILY_POMODORO_GOAL)
+
+        skillAdapter.submitList(state.skills)
+        skillProgressList.isVisible = state.skills.isNotEmpty()
+        textNoSkills.isVisible = state.skills.isEmpty()
+    }
+
+    private fun onSkillSelected(item: SkillProgressItem) {
+        val directions = ProgressFragmentDirections
+            .actionNavProgressToNavLessons(item.id)
+        findNavController().navigate(directions)
     }
 }
