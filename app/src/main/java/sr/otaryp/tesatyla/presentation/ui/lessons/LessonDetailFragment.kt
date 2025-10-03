@@ -107,6 +107,7 @@ class LessonDetailFragment : Fragment() {
                         state.totalSteps
                     )
                     val hasSteps = state.totalSteps > 0
+                    val hasAccessibleStep = state.steps.any { !it.isLocked && !it.isCompleted }
                     binding.tvLessonProgress.isVisible = hasSteps
                     binding.progressContainer.isVisible = hasSteps
                     binding.btnLessonCta.setText(
@@ -116,7 +117,8 @@ class LessonDetailFragment : Fragment() {
                             R.string.lesson_detail_cta_complete
                         }
                     )
-                    binding.btnLessonCta.isEnabled = hasSteps
+                    binding.btnLessonCta.isEnabled = state.isCompleted || hasAccessibleStep
+                    binding.btnLessonCta.alpha = if (state.isCompleted || hasAccessibleStep) 1f else 0.6f
                     stepsAdapter.submitList(state.steps)
 
                     LessonProgressPreferences.setCurrentLesson(
@@ -130,6 +132,7 @@ class LessonDetailFragment : Fragment() {
     }
 
     private fun onStepSelected(step: LessonStepItem) {
+        if (step.isLocked) return
         val directions = LessonDetailFragmentDirections
             .actionLessonDetailFragmentToLessonStepDetailFragment(
                 lessonId = step.lessonId,

@@ -44,11 +44,12 @@ Your quests await.</string>
     <string name="lesson_step_open">Open step</string>
     <string name="lesson_step_review">Review step</string>
     <string name="lesson_step_completed">Completed</string>
+    <string name="lesson_step_locked">Locked • Finish previous step</string>
     <string name="lesson_step_number_format">Step %1$d</string>
     <string name="lesson_step_theory">Theory</string>
     <string name="lesson_step_practice">Practice</string>
-    <string name="lesson_step_complete">Complete quest</string>
-    <string name="lesson_step_completed_button">Quest completed</string>
+    <string name="lesson_step_complete">Mark as Complete</string>
+    <string name="lesson_step_completed_button">Done</string>
     <string name="victory_next_lesson">Next Lesson</string>
     <string name="victory_replay_lesson">Replay Lesson</string>
     <string name="victory_title_template">Victory! %1$s completed</string>

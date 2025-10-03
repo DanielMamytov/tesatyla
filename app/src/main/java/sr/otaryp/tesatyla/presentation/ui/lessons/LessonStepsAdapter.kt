@@ -37,28 +37,58 @@ class LessonStepsAdapter(
             binding.tvStepTitle.text = item.title
             binding.tvStepPreview.text = item.theoryPreview
 
-            if (item.isCompleted) {
-                binding.tvStepStatus.visibility = View.VISIBLE
-                binding.tvStepStatus.setText(R.string.lesson_step_completed)
-                binding.btnStepAction.setText(R.string.lesson_step_review)
-                binding.ivStepStatus.setImageResource(R.drawable.shield_bg)
-                binding.cardContainer.setCardBackgroundColor(
-                    ContextCompat.getColor(context, R.color.step_card_background_completed)
-                )
-                binding.cardContainer.strokeColor =
-                    ContextCompat.getColor(context, R.color.step_card_stroke_completed)
-            } else {
-                binding.tvStepStatus.visibility = View.GONE
-                binding.btnStepAction.setText(R.string.lesson_step_open)
-                binding.ivStepStatus.setImageResource(R.drawable.shield_gray)
-                binding.cardContainer.setCardBackgroundColor(
-                    ContextCompat.getColor(context, R.color.step_card_background)
-                )
-                binding.cardContainer.strokeColor =
-                    ContextCompat.getColor(context, R.color.step_card_stroke)
+            when {
+                item.isCompleted -> {
+                    binding.tvStepStatus.visibility = View.VISIBLE
+                    binding.tvStepStatus.setText(R.string.lesson_step_completed)
+                    binding.btnStepAction.setText(R.string.lesson_step_review)
+                    binding.btnStepAction.isEnabled = true
+                    binding.btnStepAction.alpha = 1f
+                    binding.ivStepStatus.setImageResource(R.drawable.shield_bg)
+                    binding.cardContainer.setCardBackgroundColor(
+                        ContextCompat.getColor(context, R.color.step_card_background_completed)
+                    )
+                    binding.cardContainer.strokeColor =
+                        ContextCompat.getColor(context, R.color.step_card_stroke_completed)
+                }
+
+                item.isLocked -> {
+                    binding.tvStepStatus.visibility = View.GONE
+                    binding.btnStepAction.setText(R.string.lesson_step_locked)
+                    binding.btnStepAction.isEnabled = false
+                    binding.btnStepAction.alpha = 0.6f
+                    binding.ivStepStatus.setImageResource(R.drawable.shield_gray)
+                    binding.cardContainer.setCardBackgroundColor(
+                        ContextCompat.getColor(context, R.color.step_card_background)
+                    )
+                    binding.cardContainer.strokeColor =
+                        ContextCompat.getColor(context, R.color.step_card_stroke)
+                }
+
+                else -> {
+                    binding.tvStepStatus.visibility = View.GONE
+                    binding.btnStepAction.setText(R.string.lesson_step_open)
+                    binding.btnStepAction.isEnabled = true
+                    binding.btnStepAction.alpha = 1f
+                    binding.ivStepStatus.setImageResource(R.drawable.shield_gray)
+                    binding.cardContainer.setCardBackgroundColor(
+                        ContextCompat.getColor(context, R.color.step_card_background)
+                    )
+                    binding.cardContainer.strokeColor =
+                        ContextCompat.getColor(context, R.color.step_card_stroke)
+                }
             }
 
-            binding.btnStepAction.setOnClickListener { onStepSelected(item) }
+            binding.btnStepAction.setOnClickListener {
+                if (!item.isLocked) {
+                    onStepSelected(item)
+                }
+            }
+            binding.root.setOnClickListener {
+                if (!item.isLocked) {
+                    onStepSelected(item)
+                }
+            }
         }
     }
 

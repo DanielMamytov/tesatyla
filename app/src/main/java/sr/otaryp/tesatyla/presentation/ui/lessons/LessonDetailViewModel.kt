@@ -19,16 +19,19 @@ class LessonDetailViewModel(
         .observeLesson(lessonId)
         .map { lessonWithSteps ->
             val lesson = lessonWithSteps.lesson
-            val stepItems = lessonWithSteps.steps
-                .sortedBy { it.number }
-                .map { step ->
+            val sortedSteps = lessonWithSteps.steps.sortedBy { it.number }
+            val firstIncompleteIndex = sortedSteps.indexOfFirst { !it.isCompleted }
+            val stepItems = sortedSteps
+                .mapIndexed { index, step ->
+                    val isLocked = !step.isCompleted && firstIncompleteIndex != -1 && index > firstIncompleteIndex
                     LessonStepItem(
                         id = step.id,
                         lessonId = lesson.id,
                         stepNumber = step.number,
                         title = step.title,
                         theoryPreview = step.theory.take(160),
-                        isCompleted = step.isCompleted
+                        isCompleted = step.isCompleted,
+                        isLocked = isLocked
                     )
                 }
             val completedSteps = stepItems.count { it.isCompleted }
@@ -83,5 +86,6 @@ data class LessonStepItem(
     val stepNumber: Int,
     val title: String,
     val theoryPreview: String,
-    val isCompleted: Boolean
+    val isCompleted: Boolean,
+    val isLocked: Boolean
 )
