@@ -10,11 +10,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import sr.otaryp.tesatyla.data.preferences.LessonProgressPreferences
-import sr.otaryp.tesatyla.databinding.FragmentLessonListBinding
 import kotlin.LazyThreadSafetyMode
 import kotlinx.coroutines.launch
+import sr.otaryp.tesatyla.data.lessons.SkillCatalog
+import sr.otaryp.tesatyla.data.preferences.LessonProgressPreferences
+import sr.otaryp.tesatyla.databinding.FragmentLessonListBinding
+import sr.otaryp.tesatyla.R
 
 class LessonListFragment : Fragment() {
 
@@ -28,6 +31,8 @@ class LessonListFragment : Fragment() {
     private val viewModel: LessonListViewModel by viewModels {
         LessonListViewModel.provideFactory(requireContext())
     }
+
+    private val args: LessonListFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,9 +57,10 @@ class LessonListFragment : Fragment() {
 
     private fun setupToolbar() {
         binding.btnBack.setOnClickListener {
-            val directions = LessonListFragmentDirections.actionNavLessonsToNavHome()
-            findNavController().navigate(directions)
+            findNavController().navigateUp()
         }
+        val skill = SkillCatalog.findSkill(args.skillId)
+        binding.tvTitle.text = skill?.title ?: getString(R.string.lesson_list_title_all)
     }
 
     private fun setupRecyclerView() {
@@ -69,7 +75,13 @@ class LessonListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.lessons.collect { lessons ->
-                    lessonAdapter.submitList(lessons)
+                    val skill = SkillCatalog.findSkill(args.skillId)
+                    val filtered = if (skill != null) {
+                        lessons.filter { lesson -> skill.lessonIds.contains(lesson.id) }
+                    } else {
+                        lessons
+                    }
+                    lessonAdapter.submitList(filtered)
                 }
             }
         }
