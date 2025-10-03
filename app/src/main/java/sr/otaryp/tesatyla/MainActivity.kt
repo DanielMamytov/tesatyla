@@ -7,12 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import sr.otaryp.tesatyla.presentation.ui.setupCustomBottomNav
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -54,5 +59,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    }
+        private fun openHome() = navigateToRootDestination(R.id.nav_home)
+
+        private fun openLessons() = navigateToRootDestination(R.id.nav_lessons)
+
+        private fun openArticles() = navigateToRootDestination(R.id.nav_articles)
+
+        private fun openProgress() = navigateToRootDestination(R.id.nav_progress)
+
+        private fun openFocus() = navigateToRootDestination(R.id.nav_focus)
+
+        private fun navigateToRootDestination(destinationId: Int) {
+            if (!::navController.isInitialized) return
+            if (navController.currentDestination?.id == destinationId) return
+
+            val navOptions = NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .setPopUpTo(R.id.nav_graph, false)
+                .build()
+
+            navController.navigate(destinationId, null, navOptions)
+        }
 }
