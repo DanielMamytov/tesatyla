@@ -30,21 +30,19 @@ class LessonAdapter(
             binding.titleTv.text = item.title
             binding.textDescription.text = item.description
 
-            val iconRes = if (item.isCompleted) {
-                R.drawable.shield_bg
-            } else {
-                R.drawable.shield_gray
-            }
+
             binding.levelIm.apply {
-                setImageResource(iconRes)
+                setImageResource(R.drawable.shield_gray)
                 contentDescription = binding.root.context.getString(
-                    if (item.isCompleted) {
-                        R.string.lesson_status_completed_icon_description
-                    } else {
-                        R.string.lesson_status_in_progress_icon_description
-                    }
+                    R.string.lesson_status_in_progress_icon_description
                 )
-                isVisible = true
+                if (item.isCompleted) {
+                    setImageResource(R.drawable.shield_bg)
+                    contentDescription = binding.root.context.getString(
+                        R.string.lesson_status_completed_icon_description
+                    )
+                }
+
             }
 
             val buttonTextRes = if (item.isCompleted) {
