@@ -22,11 +22,12 @@
 
             <TextView
                 android:id="@+id/btnBack"
-                style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lesson_back"
-                android:textColor="@color/white" />
+                android:drawableStart="@drawable/arrow_back"
+                android:text="Back"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <ImageView
                 android:layout_width="50dp"

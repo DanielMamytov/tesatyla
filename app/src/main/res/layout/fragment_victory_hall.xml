@@ -7,6 +7,15 @@
     android:background="@drawable/victory_bg"
     tools:context=".presentation.ui.VictoryHallFragment">
 
+    <TextView
+        android:id="@+id/btnBack2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/arrow_back"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,28 +27,59 @@
             android:orientation="vertical">
 
             <FrameLayout
-                android:id="@+id/header"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#420840"
-                android:paddingTop="30dp"
-                android:paddingBottom="16dp"
-                android:paddingHorizontal="20dp">
+                android:layout_height="match_parent"
+                android:background="#00420840">
 
-                <TextView
-                    android:id="@+id/btnBack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lesson_back"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="#420840" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="30dp">
+
+                    <TextView
+                        android:id="@+id/btnBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/arrow_back"
+                        android:text="Back"
+                        android:layout_marginStart="20dp"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="#00FFFFFF">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="53dp"
+                            android:layout_gravity="end"
+                            android:elevation="1dp"
+                            android:src="@drawable/settings_bg" />
+
+                        <View
+                            android:id="@+id/goldDivider"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/gradient_view"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </FrameLayout>
+
+                </FrameLayout>
+
             </FrameLayout>
-
-            <View
-                android:id="@+id/goldDivider"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@drawable/gradient_view" />
 
 
         </LinearLayout>

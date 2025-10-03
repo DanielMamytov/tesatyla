@@ -31,8 +31,8 @@
                     android:id="@+id/btnBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="@string/article_back"
+                    android:drawableStart="@drawable/arrow_back"
+                    android:text="Back"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -113,88 +113,12 @@
             android:text="@string/progress_skill_section"
             android:textSize="20sp" />
 
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/skillProgressList"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="16dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/lesson_list_bg" />
-
-            <LinearLayout
-                android:id="@+id/skill_card_root"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="30dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/skill_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/inter_18pt_bold"
-                        android:text="@string/lesson_title_pomodoro_trials"
-                        android:textSize="20sp"
-                        tools:text="Pomodoro Trials" />
-
-                    <TextView
-                        android:id="@+id/skill_lessons"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_18pt_bold"
-                        android:textColor="@color/white"
-                        android:textSize="13sp"
-                        tools:text="9 of 12 lessons completed" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/skill_percent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/inter_18pt_extrabold"
-                            android:textColor="#00F8FF"
-                            android:textSize="20sp"
-                            tools:text="45%" />
-
-                        <ProgressBar
-                            android:id="@+id/progressBar"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:layout_marginTop="5dp"
-                            android:max="100"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/progress_layer"
-                            tools:progress="45" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
-                    android:layout_gravity="center_vertical|end"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/shield_gray" />
-            </LinearLayout>
-        </FrameLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"/>
     </LinearLayout>
 
 </ScrollView>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ class ProgressFragment : Fragment() {
 
     private var _binding: FragmentProgressBinding? = null
     private val binding get() = _binding!!
+    private val skillAdapter by lazy { SkillProgressAdapter(::onSkillSelected) }
     private val viewModel: ProgressViewModel by viewModels {
         ProgressViewModel.provideFactory(requireContext())
     }
@@ -34,7 +36,9 @@ class ProgressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
+        setupSkillList()
         observeState()
+        binding.pomodoroProgress.max = ProgressViewModel.DAILY_POMODORO_GOAL
     }
 
     override fun onResume() {
@@ -53,6 +57,10 @@ class ProgressFragment : Fragment() {
         }
     }
 
+    private fun setupSkillList() {
+        binding.skillProgressList.adapter = skillAdapter
+    }
+
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -62,51 +70,19 @@ class ProgressFragment : Fragment() {
     }
 
     private fun renderState(state: ProgressUiState) = with(binding) {
-        progressPercentage.text = getString(R.string.progress_percentage_format, state.overallPercent)
-        progressPercentage.contentDescription = getString(
-            R.string.progress_overall_content_description,
-            state.overallPercent,
+        textProgressPercentage.text = getString(R.string.progress_percentage_format, state.overallPercent)
+        textLessonsCompleted.text = getString(
+            R.string.progress_lessons_completed,
             state.completedLessons,
             state.totalLessons,
         )
+        progressBar.progress = state.overallPercent
         pomodoroCycles.text = getString(R.string.progress_cycles_format, state.pomodoroCycles)
+        pomodoroProgress.progress = state.pomodoroCycles.coerceAtMost(ProgressViewModel.DAILY_POMODORO_GOAL)
 
-        val highlightedSkill = state.skills.firstOrNull()
-
-        if (highlightedSkill != null) {
-            skillTitle.text = highlightedSkill.title
-            skillLessons.text = getString(
-                R.string.progress_lessons_completed,
-                highlightedSkill.completedLessons,
-                highlightedSkill.totalLessons,
-            )
-            skillPercent.text = getString(
-                R.string.progress_percentage_format,
-                highlightedSkill.completionPercent,
-            )
-            progressBar.progress = highlightedSkill.completionPercent
-            skillCardRoot.contentDescription = getString(
-                R.string.progress_skill_content_description,
-                highlightedSkill.title,
-                highlightedSkill.completedLessons,
-                highlightedSkill.totalLessons,
-                highlightedSkill.completionPercent,
-            )
-            skillCardRoot.setOnClickListener { onSkillSelected(highlightedSkill) }
-            skillCardRoot.isEnabled = true
-            skillCardRoot.isClickable = true
-            skillCardRoot.isFocusable = true
-        } else {
-            skillTitle.text = getString(R.string.progress_no_skills_title)
-            skillLessons.text = getString(R.string.progress_no_skills)
-            skillPercent.text = getString(R.string.progress_percentage_format, 0)
-            progressBar.progress = 0
-            skillCardRoot.setOnClickListener(null)
-            skillCardRoot.isEnabled = false
-            skillCardRoot.isClickable = false
-            skillCardRoot.isFocusable = false
-            skillCardRoot.contentDescription = getString(R.string.progress_no_skills)
-        }
+        skillAdapter.submitList(state.skills)
+        skillProgressList.isVisible = state.skills.isNotEmpty()
+        textNoSkills.isVisible = state.skills.isEmpty()
     }
 
     private fun onSkillSelected(item: SkillProgressItem) {

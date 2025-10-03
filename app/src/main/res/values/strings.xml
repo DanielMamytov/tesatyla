@@ -98,10 +98,7 @@ Your quests await.</string>
     <string name="progress_lessons_completed">%1$d of %2$d lessons completed</string>
     <string name="progress_title">Your Progress</string>
     <string name="progress_overall_title">Overall Progress</string>
-    <string name="progress_skill_section">Skill Mastery</string>
-    <string name="progress_no_skills_title">No Skills</string>
+    <string name="progress_skill_section">Skill Progress</string>
     <string name="progress_no_skills">No skills to display yet.</string>
     <string name="progress_motivation">Keep going! Every lesson makes your kingdom stronger.</string>
-    <string name="progress_overall_content_description">%1$d percent complete, %2$d of %3$d lessons finished</string>
-    <string name="progress_skill_content_description">%1$s skill, %2$d of %3$d lessons complete, %4$d percent</string>
 </resources>
