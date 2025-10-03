@@ -27,21 +27,27 @@ class ProgressViewModel(
 
     private val lessonProgress = repository.observeLessons()
         .map { lessons ->
-            val totalLessons = lessons.size
-            val completedLessons = lessons.count { it.lesson.isCompleted }
+            val totalLessons = lessons.sumOf { it.steps.size }
+            val completedLessons = lessons.sumOf { lesson ->
+                lesson.steps.count { it.isCompleted }
+            }
 
             val skills = SkillCatalog.skills.mapNotNull { skill ->
                 val skillLessons = lessons.filter { skill.lessonIds.contains(it.lesson.id) }
                 if (skillLessons.isEmpty()) return@mapNotNull null
 
-                val total = skillLessons.size
-                val completed = skillLessons.count { it.lesson.isCompleted }
+                val total = skillLessons.sumOf { it.steps.size }
+                val completed = skillLessons.sumOf { lesson ->
+                    lesson.steps.count { it.isCompleted }
+                }
+                val isComplete = total > 0 && completed == total
                 SkillProgressItem(
                     id = skill.id,
                     title = skill.title,
                     completedLessons = completed,
                     totalLessons = total,
                     completionPercent = if (total == 0) 0 else ((completed.toFloat() / total) * 100).roundToInt(),
+                    isComplete = isComplete,
                 )
             }
 
@@ -113,5 +119,6 @@ data class SkillProgressItem(
     val completedLessons: Int,
     val totalLessons: Int,
     val completionPercent: Int,
+    val isComplete: Boolean,
 )
 
