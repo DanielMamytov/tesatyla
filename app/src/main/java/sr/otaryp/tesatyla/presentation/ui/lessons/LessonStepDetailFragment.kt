@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -68,17 +69,42 @@ class LessonStepDetailFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
                     binding.tvLessonTitle.text = state.lessonTitle
-                    binding.tvStepTitle.text = state.stepTitle
+                    val formattedTitle = if (state.stepNumber > 0 && state.stepTitle.isNotBlank()) {
+                        getString(
+                            R.string.lesson_step_detail_title_format,
+                            state.stepNumber,
+                            state.stepTitle
+                        )
+                    } else {
+                        state.stepTitle
+                    }
+                    binding.tvStepTitle.text = formattedTitle
                     binding.tvTheory.text = state.theory
                     binding.tvPractice.text = state.practice
 
-                    if (state.isCompleted) {
-                        binding.btnCompleteQuest.isEnabled = false
-                        binding.btnCompleteQuest.text = getString(R.string.lesson_step_completed_button)
-                    } else {
-                        binding.btnCompleteQuest.isEnabled = true
-                        binding.btnCompleteQuest.text = getString(R.string.lesson_step_complete)
+                    when {
+                        state.isCompleted -> {
+                            binding.tvStepStatus.isVisible = true
+                            binding.tvStepStatus.setText(R.string.lesson_step_completed_message)
+                            binding.btnCompleteQuest.isEnabled = false
+                            binding.btnCompleteQuest.text = getString(R.string.lesson_step_completed_button)
+                        }
+
+                        state.isLocked -> {
+                            binding.tvStepStatus.isVisible = true
+                            binding.tvStepStatus.setText(R.string.lesson_step_locked_detail)
+                            binding.btnCompleteQuest.isEnabled = false
+                            binding.btnCompleteQuest.text = getString(R.string.lesson_step_locked)
+                        }
+
+                        else -> {
+                            binding.tvStepStatus.isVisible = false
+                            binding.btnCompleteQuest.isEnabled = true
+                            binding.btnCompleteQuest.text = getString(R.string.lesson_step_complete)
+                        }
                     }
+                    binding.btnCompleteQuest.alpha =
+                        if (binding.btnCompleteQuest.isEnabled) 1f else 0.6f
                 }
             }
         }
