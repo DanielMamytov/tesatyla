@@ -1,7 +1,8 @@
 package sr.otaryp.tesatyla.presentation.ui.main
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -94,6 +95,8 @@ class HomeFragment : Fragment() {
             .setView(dialogBinding.root)
             .setCancelable(true)
             .create()
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         // Кнопка "Got it" закрывает окно
         dialogBinding.buttonClose.setOnClickListener { dialog.dismiss() }
