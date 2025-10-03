@@ -6,7 +6,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
 
 
 class LessonRepository private constructor(
@@ -16,18 +17,25 @@ class LessonRepository private constructor(
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private val prepopulateJob = scope.async { prepopulateIfNeeded() }
 
-    fun observeLessons(): Flow<List<LessonWithSteps>> = lessonDao.getLessonsWithSteps()
-        .onStart { prepopulateJob.await() }
+    fun observeLessons(): Flow<List<LessonWithSteps>> = flow {
+        prepopulateJob.await()
+        emitAll(lessonDao.getLessonsWithSteps())
+    }
 
-    fun observeLesson(lessonId: Int): Flow<LessonWithSteps> = lessonDao.getLessonWithSteps(lessonId)
-        .onStart { prepopulateJob.await() }
+    fun observeLesson(lessonId: Int): Flow<LessonWithSteps> = flow {
+        prepopulateJob.await()
+        emitAll(lessonDao.getLessonWithSteps(lessonId))
+    }
 
-    fun observeLessonSteps(lessonId: Int): Flow<List<LessonStepEntity>> =
-        lessonDao.getStepsForLesson(lessonId)
-            .onStart { prepopulateJob.await() }
+    fun observeLessonSteps(lessonId: Int): Flow<List<LessonStepEntity>> = flow {
+        prepopulateJob.await()
+        emitAll(lessonDao.getStepsForLesson(lessonId))
+    }
 
-    fun observeStep(stepId: Int): Flow<LessonStepEntity> = lessonDao.getStep(stepId)
-        .onStart { prepopulateJob.await() }
+    fun observeStep(stepId: Int): Flow<LessonStepEntity> = flow {
+        prepopulateJob.await()
+        emitAll(lessonDao.getStep(stepId))
+    }
 
     suspend fun completeStep(lessonId: Int, stepId: Int): StepCompletionResult {
         prepopulateJob.await()
