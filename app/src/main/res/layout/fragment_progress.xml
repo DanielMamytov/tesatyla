@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,7 +36,6 @@
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
-
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -57,29 +55,28 @@
                         android:layout_height="3dp"
                         android:layout_gravity="bottom"
                         android:layout_marginBottom="20dp"
-
                         android:background="@drawable/gradient_view"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </FrameLayout>
-
             </FrameLayout>
-
         </FrameLayout>
 
         <TextView
+            android:id="@+id/text_progress_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/inter_18pt_bold"
-            android:text="Your Progress"
+            android:text="@string/progress_title"
             android:textSize="25sp" />
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -102,16 +99,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/inter_18pt_bold"
-            android:text="Pomodoro Cycles Completed: 0"
-            android:textSize="18sp" />
+            android:text="@string/progress_cycles_format"
+            android:textSize="18sp"
+            tools:text="Pomodoro Cycles Completed: 4" />
 
         <TextView
+            android:id="@+id/skill_mastery_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/inter_18pt_bold"
-            android:text="Skill Mastery"
+            android:text="@string/progress_skill_section"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
