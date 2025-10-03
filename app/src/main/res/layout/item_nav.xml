@@ -23,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="14dp"
-        android:paddingVertical="6dp"
         android:text="Label"
         android:textSize="18sp"
         android:textStyle="bold"

@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_focus
         )
 
-        val bottomNav = findViewById<View>(R.id.customBottomNav)
+        val bottomNav = findViewById<View>(R.id.bottomBar)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNav?.isVisible = destination.id in destinationsWithBottomNav
