@@ -1,60 +1,170 @@
 package sr.otaryp.tesatyla.presentation.ui.focus
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 import sr.otaryp.tesatyla.R
+import sr.otaryp.tesatyla.data.preferences.FocusPreferences
+import sr.otaryp.tesatyla.databinding.FragmentFocusBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FocusFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FocusFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var _binding: FragmentFocusBinding? = null
+    private val binding get() = _binding!!
+
+    private var countDownTimer: CountDownTimer? = null
+    private var isTimerRunning = false
+    private var isFocusSession = true
+    private var remainingMillis = FOCUS_DURATION_MILLIS
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        _binding = FragmentFocusBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupUi()
+        setupListeners()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        countDownTimer?.cancel()
+        _binding = null
+    }
+
+    private fun setupUi() {
+        binding.progressBar.max = PROGRESS_MAX
+        binding.sessionInfo.text = getString(
+            R.string.focus_session_info,
+            FOCUS_DURATION_MINUTES,
+            BREAK_DURATION_MINUTES,
+        )
+        updateCompletedPomodoros()
+        updateSessionLabels()
+        updateTimerUi()
+    }
+
+    private fun setupListeners() {
+        binding.btnStart.setOnClickListener { startTimer() }
+        binding.btnPause.setOnClickListener { pauseTimer() }
+        binding.btnReplay.setOnClickListener { resetTimer() }
+    }
+
+    private fun startTimer() {
+        if (isTimerRunning) return
+
+        countDownTimer = object : CountDownTimer(remainingMillis, TICK_INTERVAL_MILLIS) {
+            override fun onTick(millisUntilFinished: Long) {
+                remainingMillis = millisUntilFinished
+                updateTimerUi()
+            }
+
+            override fun onFinish() {
+                remainingMillis = 0L
+                updateTimerUi()
+                handleTimerFinished()
+            }
+        }.also { it.start() }
+
+        isTimerRunning = true
+    }
+
+    private fun pauseTimer() {
+        countDownTimer?.cancel()
+        countDownTimer = null
+        isTimerRunning = false
+    }
+
+    private fun resetTimer() {
+        pauseTimer()
+        isFocusSession = true
+        remainingMillis = FOCUS_DURATION_MILLIS
+        updateSessionLabels()
+        updateTimerUi()
+    }
+
+    private fun handleTimerFinished() {
+        isTimerRunning = false
+        if (isFocusSession) {
+            Toast.makeText(requireContext(), getString(R.string.focus_victory_message), Toast.LENGTH_SHORT).show()
+            val updatedCount = FocusPreferences.incrementTodayCount(requireContext())
+            binding.completedPomodoros.text = updatedCount.toString()
+            isFocusSession = false
+            remainingMillis = BREAK_DURATION_MILLIS
+            updateSessionLabels()
+            updateTimerUi()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.focus_break_message, BREAK_DURATION_MINUTES),
+                Toast.LENGTH_SHORT,
+            ).show()
+            startTimer()
+        } else {
+            Toast.makeText(requireContext(), getString(R.string.focus_break_complete_message), Toast.LENGTH_SHORT).show()
+            isFocusSession = true
+            remainingMillis = FOCUS_DURATION_MILLIS
+            updateSessionLabels()
+            updateTimerUi()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_focus, container, false)
+    private fun updateSessionLabels() {
+        val sessionLabelRes = if (isFocusSession) {
+            R.string.focus_session_label
+        } else {
+            R.string.break_session_label
+        }
+        binding.sessionStatus.setText(sessionLabelRes)
+        binding.sessionInfo.text = getString(
+            R.string.focus_session_info,
+            FOCUS_DURATION_MINUTES,
+            BREAK_DURATION_MINUTES,
+        )
+    }
+
+    private fun updateCompletedPomodoros() {
+        val count = FocusPreferences.ensureTodayCount(requireContext())
+        binding.completedPomodoros.text = count.toString()
+    }
+
+    private fun updateTimerUi() {
+        binding.timer.text = formatTime(remainingMillis)
+        val duration = if (isFocusSession) FOCUS_DURATION_MILLIS else BREAK_DURATION_MILLIS
+        val progress = if (duration == 0L) {
+            0
+        } else {
+            val elapsed = duration - remainingMillis
+            ((elapsed.coerceAtLeast(0L).toFloat() / duration) * PROGRESS_MAX).toInt().coerceIn(0, PROGRESS_MAX)
+        }
+        binding.progressBar.progress = progress
+    }
+
+    private fun formatTime(millis: Long): String {
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(millis)
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(millis) % SECONDS_IN_MINUTE
+        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FocusFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FocusFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        private const val FOCUS_DURATION_MINUTES = 25
+        private const val BREAK_DURATION_MINUTES = 5
+        private const val PROGRESS_MAX = 100
+        private const val SECONDS_IN_MINUTE = 60
+        private const val TICK_INTERVAL_MILLIS = 1_000L
+
+        private val FOCUS_DURATION_MILLIS = TimeUnit.MINUTES.toMillis(FOCUS_DURATION_MINUTES.toLong())
+        private val BREAK_DURATION_MILLIS = TimeUnit.MINUTES.toMillis(BREAK_DURATION_MINUTES.toLong())
     }
 }
