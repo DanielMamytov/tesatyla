@@ -36,6 +36,5 @@
         <item name="android:textColor">#FFD700</item>
     </style>
 
-    <!-- Legacy alias used by menu previews -->
-    <style name="BottomNavTextAppearance" parent="@style/TextAppearance.NavLabel" />
+
 </resources>
