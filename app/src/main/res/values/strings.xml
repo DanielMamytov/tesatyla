@@ -96,6 +96,7 @@ Your quests await.</string>
     <string name="progress_percentage_format">%1$d%%</string>
     <string name="progress_cycles_format">Pomodoro Cycles Completed: %1$d</string>
     <string name="progress_lessons_completed">%1$d of %2$d lessons completed</string>
+    <string name="progress_steps_completed">%1$d of %2$d steps completed</string>
     <string name="progress_title">Your Progress</string>
     <string name="progress_overall_title">Overall Progress</string>
     <string name="progress_skill_section">Skill Progress</string>

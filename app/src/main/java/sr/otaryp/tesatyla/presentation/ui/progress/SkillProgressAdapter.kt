@@ -31,9 +31,9 @@ class SkillProgressAdapter(
             val context = binding.root.context
             binding.textSkillTitle.text = item.title
             binding.textSkillLessons.text = context.getString(
-                R.string.progress_lessons_completed,
-                item.completedLessons,
-                item.totalLessons,
+                R.string.progress_steps_completed,
+                item.completedSteps,
+                item.totalSteps,
             )
             binding.textSkillPercent.text = context.getString(
                 R.string.progress_percentage_format,
