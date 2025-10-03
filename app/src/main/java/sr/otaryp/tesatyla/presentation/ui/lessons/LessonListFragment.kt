@@ -66,24 +66,24 @@ class LessonListFragment : Fragment() {
     }
 
     private fun observeLessons() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.lessons.collect { lessons ->
-                    lessonAdapter.submitList(lessons)
-                }
-            }
+
+viewLifecycleOwner.lifecycleScope.launch {
+    viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.lessons.collect { lessons ->
+            lessonAdapter.submitList(lessons)
         }
     }
-
-    private fun onLessonSelected(lesson: LessonListItem) {
-        LessonProgressPreferences.setCurrentLesson(
-            requireContext(),
-            lesson.id,
-            lesson.title
-        )
-        val directions = LessonListFragmentDirections
-            .actionNavLessonsToLessonDetailFragment(lesson.id)
-        findNavController().navigate(directions)
-    }
+}
 }
 
+private fun onLessonSelected(lesson: LessonListItem) {
+    LessonProgressPreferences.setCurrentLesson(
+        requireContext(),
+        lesson.id,
+        lesson.title
+    )
+    val directions = LessonListFragmentDirections
+        .actionNavLessonsToLessonDetailFragment(lesson.id)
+    findNavController().navigate(directions)
+}
+}

@@ -1,105 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardContainer"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    app:cardBackgroundColor="@color/step_card_background"
-    app:cardCornerRadius="20dp"
-    app:cardUseCompatPadding="true"
-    app:strokeColor="@color/step_card_stroke"
-    app:strokeWidth="2dp">
+    android:layout_marginTop="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="160dp"
+        android:layout_height="180dp"
+        android:background="@drawable/list_with_quests"
         android:orientation="vertical"
-        android:paddingHorizontal="24dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="20dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/ivStepStatus"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:contentDescription="@string/lesson_detail_status_icon"
-                android:src="@drawable/shield_gray" />
-
-            <TextView
-                android:id="@+id/tvStepNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:fontFamily="@font/inter_18pt_bold"
-                android:textColor="#511300"
-                android:textSize="14sp"
-                tools:text="Step 1" />
-        </LinearLayout>
+        android:padding="40dp">
 
         <TextView
             android:id="@+id/tvStepTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
             android:fontFamily="@font/inter_18pt_bold"
             android:gravity="center"
+            android:text="Step 1: Learn the 25–5 Pomodoro\nstructure"
             android:textColor="#511300"
-            android:textSize="16sp"
-            tools:text="Pomodoro Structure" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/tvStepPreview"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="#511300"
-            android:textSize="13sp"
-            tools:text="Discover how the 25/5 ritual keeps your focus sharp." />
+            android:text="Theory: The Pomodoro method divides work into cycles of 25 minutes ..." />
 
-        <TextView
-            android:id="@+id/tvStepStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/btn_enter_kingdom1"
-            android:fontFamily="@font/inter_18pt_medium"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="6dp"
-            android:textColor="#FFE08A"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            tools:text="Completed"
-            tools:visibility="visible" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnStepAction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/btn_enter_kingdom1"
-            android:minWidth="160dp"
-            android:minHeight="0dp"
-            android:paddingHorizontal="30dp"
-            android:paddingVertical="14dp"
-            android:text="@string/lesson_step_open"
-            android:textAllCaps="false"
-            android:textColor="#FFE08A"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Start" />
 
     </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOpenStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:background="@drawable/btn_enter_kingdom1"
+        android:minWidth="160dp"
+        android:minHeight="0dp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="14dp"
+        android:text="Continue"
+        android:textAllCaps="false"
+        android:textColor="#FFE08A"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</FrameLayout>

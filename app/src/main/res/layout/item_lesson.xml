@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/lesson_list_bg" />
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="30dp">
@@ -48,7 +48,7 @@
             android:layout_marginEnd="10dp"
             android:scaleType="fitEnd"
             android:src="@drawable/shield_bg" />
-    </FrameLayout>
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnContinue"

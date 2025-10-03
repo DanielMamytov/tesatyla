@@ -20,20 +20,19 @@ class LessonStepsAdapter(
             parent,
             false
         )
-        return StepViewHolder(binding)
+        return StepViewHolder(binding, onStepSelected)
     }
 
     override fun onBindViewHolder(holder: StepViewHolder, position: Int) {
-        holder.bind(getItem(position), onStepSelected)
+        holder.bind(getItem(position))
     }
 
     class StepViewHolder(
-        private val binding: LesssonStepItemBinding
+        private val binding: LesssonStepItemBinding,
+        private val onStepSelected: (LessonStepItem) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: LessonStepItem, onStepSelected: (LessonStepItem) -> Unit) {
-            val context = binding.root.context
-            binding.tvStepNumber.text = context.getString(R.string.lesson_step_number_format, item.stepNumber)
+        fun bind(item: LessonStepItem) {
             binding.tvStepTitle.text = item.title
             binding.tvStepPreview.text = item.theoryPreview
 
@@ -89,6 +88,7 @@ class LessonStepsAdapter(
                     onStepSelected(item)
                 }
             }
+
         }
     }
 

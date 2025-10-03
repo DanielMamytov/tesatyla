@@ -1,6 +1,6 @@
 package sr.otaryp.tesatyla.data.lessons
 
-private data class LessonSeed(
+internal data class LessonSeed(
     val id: Int,
     val title: String,
     val description: String,
@@ -8,7 +8,7 @@ private data class LessonSeed(
     val steps: List<LessonStepSeed>
 )
 
-private data class LessonStepSeed(
+internal data class LessonStepSeed(
     val number: Int,
     val title: String,
     val theory: String,

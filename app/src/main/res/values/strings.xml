@@ -53,6 +53,7 @@ Your quests await.</string>
     <string name="lesson_step_detail_title_format">Step %1$d: %2$s</string>
     <string name="lesson_step_locked_detail">Finish the previous quest step to unlock this challenge.</string>
     <string name="lesson_step_completed_message">Quest step completed! Return to the hall to keep progressing.</string>
+
     <string name="victory_next_lesson">Next Lesson</string>
     <string name="victory_replay_lesson">Replay Lesson</string>
     <string name="victory_title_template">Victory! %1$s completed</string>
