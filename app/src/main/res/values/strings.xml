@@ -83,4 +83,15 @@ Your quests await.</string>
     <string name="lesson_description_habit_loop">Understand how habits are formed and how to rewire them. Create small daily routines that lead to long-term success.</string>
     <string name="lesson_title_reflection_chamber">The Reflection Chamber</string>
     <string name="lesson_description_reflection_chamber">End your day by reviewing wins, lessons, and areas to improve. Build a feedback loop that turns every day into progress.</string>
+    <string name="content_description_start">Start pomodoro session</string>
+    <string name="content_description_pause">Pause pomodoro session</string>
+    <string name="content_description_reset">Reset pomodoro session</string>
+    <string name="focus_session_label">Focus Session</string>
+    <string name="break_session_label">Break</string>
+    <string name="focus_session_info">Focus %1$d min · Break %2$d min</string>
+    <string name="focus_victory_message">Victory! Task Completed</string>
+    <string name="focus_break_message">Break time! Enjoy %1$d minutes of rest.</string>
+    <string name="focus_break_complete_message">Break over! Ready for your next focus quest.</string>
+    <string name="progress_percentage_format">%1$d%%</string>
+    <string name="progress_cycles_format">Pomodoro Cycles Completed: %1$d</string>
 </resources>

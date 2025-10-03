@@ -87,20 +87,22 @@
                 android:src="@drawable/progress_bg2" />
 
             <TextView
+                android:id="@+id/progress_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/inter_18pt_extrabold"
-                android:text="75%"
+                android:text="0%"
                 android:textSize="40sp" />
         </FrameLayout>
 
         <TextView
+            android:id="@+id/pomodoro_cycles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/inter_18pt_bold"
-            android:text="Pomodoro Cycles Completed: 4"
+            android:text="Pomodoro Cycles Completed: 0"
             android:textSize="18sp" />
 
         <TextView
