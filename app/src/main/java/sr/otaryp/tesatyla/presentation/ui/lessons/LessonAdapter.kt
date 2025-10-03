@@ -2,6 +2,7 @@ package sr.otaryp.tesatyla.presentation.ui.lessons
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -34,7 +35,17 @@ class LessonAdapter(
             } else {
                 R.drawable.shield_gray
             }
-            binding.levelIm.setImageResource(iconRes)
+            binding.levelIm.apply {
+                setImageResource(iconRes)
+                contentDescription = binding.root.context.getString(
+                    if (item.isCompleted) {
+                        R.string.lesson_status_completed_icon_description
+                    } else {
+                        R.string.lesson_status_in_progress_icon_description
+                    }
+                )
+                isVisible = true
+            }
 
             val buttonTextRes = if (item.isCompleted) {
                 R.string.lesson_action_repeat
