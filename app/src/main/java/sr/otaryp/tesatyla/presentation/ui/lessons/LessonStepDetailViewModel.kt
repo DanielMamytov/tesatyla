@@ -29,9 +29,6 @@ class LessonStepDetailViewModel(
     ) { step, lessonWithSteps ->
         val lesson = lessonWithSteps.lesson
         val sortedSteps = lessonWithSteps.steps.sortedBy { it.number }
-        val currentIndex = sortedSteps.indexOfFirst { it.id == step.id }
-        val firstIncompleteIndex = sortedSteps.indexOfFirst { !it.isCompleted }
-        val isLocked = !step.isCompleted && firstIncompleteIndex != -1 && currentIndex > firstIncompleteIndex
         val remainingIncomplete = sortedSteps.count { !it.isCompleted }
         LessonStepDetailUiState(
             lessonId = lesson.id,
@@ -42,8 +39,8 @@ class LessonStepDetailViewModel(
             theory = step.theory,
             practice = step.practice,
             isCompleted = step.isCompleted,
-            isLocked = isLocked,
-            isLastIncompleteStep = !step.isCompleted && !isLocked && remainingIncomplete <= 1
+            isLocked = false,
+            isLastIncompleteStep = !step.isCompleted && remainingIncomplete <= 1
         )
     }.stateIn(
         scope = viewModelScope,

@@ -132,7 +132,6 @@ class LessonDetailFragment : Fragment() {
     }
 
     private fun onStepSelected(step: LessonStepItem) {
-        if (step.isLocked) return
         val directions = LessonDetailFragmentDirections
             .actionLessonDetailFragmentToLessonStepDetailFragment(
                 lessonId = step.lessonId,
