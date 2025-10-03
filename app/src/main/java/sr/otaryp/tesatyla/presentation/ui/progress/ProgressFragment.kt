@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.databinding.FragmentProgressBinding
@@ -58,7 +59,10 @@ class ProgressFragment : Fragment() {
     }
 
     private fun setupSkillList() {
-        binding.skillProgressList.adapter = skillAdapter
+        binding.skillProgressList.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = skillAdapter
+        }
     }
 
     private fun observeState() {
@@ -71,14 +75,12 @@ class ProgressFragment : Fragment() {
 
     private fun renderState(state: ProgressUiState) = with(binding) {
         textProgressPercentage.text = getString(R.string.progress_percentage_format, state.overallPercent)
-//        textLessonsCompleted.text = getString(
-//            R.string.progress_lessons_completed,
-//            state.completedLessons,
-//            state.totalLessons,
-//        )
-//        progressBar.progress = state.overallPercent
+        textLessonsCompleted.text = getString(
+            R.string.progress_lessons_completed,
+            state.completedLessons,
+            state.totalLessons,
+        )
         pomodoroCycles.text = getString(R.string.progress_cycles_format, state.pomodoroCycles)
-//        pomodoroProgress.progress = state.pomodoroCycles.coerceAtMost(ProgressViewModel.DAILY_POMODORO_GOAL)
 
         skillAdapter.submitList(state.skills)
         skillProgressList.isVisible = state.skills.isNotEmpty()
