@@ -74,13 +74,13 @@ Your quests await.</string>
     <string name="lesson_title_procrastination_dragon">The Procrastination Dragon</string>
     <string name="lesson_description_procrastination_dragon">Face the beast of delay and strike with proven action techniques.</string>
     <string name="lesson_title_focus_forge">The Focus Forge</string>
-    <string name="lesson_description_focus_forge">Sharpen your concentration with practical drills and single-tasking mastery.</string>
+    <string name="lesson_description_focus_forge">Sharpen your concentration with practical drills. Practice single-tasking, minimize context switching, and build mental endurance for deep work.</string>
     <string name="lesson_title_energy_management">Energy Management</string>
-    <string name="lesson_description_energy_management">Align royal duties with your natural energy cycles and let rest refuel you.</string>
+    <string name="lesson_description_energy_management">Learn to align tasks with your natural energy cycles. Discover when you perform best, how breaks recharge you, and why rest is part of productivity.</string>
     <string name="lesson_title_task_alchemy">Task Alchemy</string>
-    <string name="lesson_description_task_alchemy">Transform overwhelming quests into clear, actionable steps fit for victory.</string>
+    <string name="lesson_description_task_alchemy">Transform overwhelming projects into clear, actionable steps. Break down big goals into manageable tasks that you can actually finish.</string>
     <string name="lesson_title_habit_loop">The Habit Loop</string>
-    <string name="lesson_description_habit_loop">Understand how habits are forged and craft routines that lead to success.</string>
+    <string name="lesson_description_habit_loop">Understand how habits are formed and how to rewire them. Create small daily routines that lead to long-term success.</string>
     <string name="lesson_title_reflection_chamber">The Reflection Chamber</string>
-    <string name="lesson_description_reflection_chamber">Review the day’s wins, lessons, and areas to improve for steady progress.</string>
+    <string name="lesson_description_reflection_chamber">End your day by reviewing wins, lessons, and areas to improve. Build a feedback loop that turns every day into progress.</string>
 </resources>

@@ -116,8 +116,25 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="20dp"
             android:nestedScrollingEnabled="false"
             tools:listitem="@layout/lessson_step_item" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLessonCta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/btn_enter_kingdom1"
+            android:minWidth="220dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="36dp"
+            android:paddingVertical="16dp"
+            android:text="@string/lesson_detail_cta_complete"
+            android:textAllCaps="false"
+            android:textColor="#FFE08A"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

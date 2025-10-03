@@ -210,7 +210,7 @@ internal object LessonSeedData {
         LessonSeed(
             id = 6,
             title = "Lesson 6: The Focus Forge",
-            description = "Sharpen your concentration with practical drills and single-tasking mastery.",
+            description = "Sharpen your concentration with practical drills. Practice single-tasking, minimize context switching, and build mental endurance for deep work.",
             teaching = "This lesson strengthens the ability to maintain focus and resist multitasking.",
             steps = listOf(
                 LessonStepSeed(
@@ -248,7 +248,7 @@ internal object LessonSeedData {
         LessonSeed(
             id = 7,
             title = "Lesson 7: Energy Management",
-            description = "Align royal duties with your natural energy cycles and let rest refuel you.",
+            description = "Learn to align tasks with your natural energy cycles. Discover when you perform best, how breaks recharge you, and why rest is part of productivity.",
             teaching = "Learn to align tasks with natural energy cycles to optimize productivity and avoid burnout.",
             steps = listOf(
                 LessonStepSeed(
@@ -286,7 +286,7 @@ internal object LessonSeedData {
         LessonSeed(
             id = 8,
             title = "Lesson 8: Task Alchemy",
-            description = "Transform overwhelming quests into clear, actionable steps fit for victory.",
+            description = "Transform overwhelming projects into clear, actionable steps. Break down big goals into manageable tasks that you can actually finish.",
             teaching = "Learn to break large projects into smaller, manageable tasks, reducing overwhelm and increasing progress visibility.",
             steps = listOf(
                 LessonStepSeed(
@@ -324,7 +324,7 @@ internal object LessonSeedData {
         LessonSeed(
             id = 9,
             title = "Lesson 9: The Habit Loop",
-            description = "Understand how habits are forged and craft routines that lead to success.",
+            description = "Understand how habits are formed and how to rewire them. Create small daily routines that lead to long-term success.",
             teaching = "Learn to change or build habits using the cue → routine → reward model.",
             steps = listOf(
                 LessonStepSeed(
@@ -362,7 +362,7 @@ internal object LessonSeedData {
         LessonSeed(
             id = 10,
             title = "Lesson 10: The Reflection Chamber",
-            description = "Review the day’s wins, lessons, and areas to improve for steady progress.",
+            description = "End your day by reviewing wins, lessons, and areas to improve. Build a feedback loop that turns every day into progress.",
             teaching = "Reflection builds self-awareness, helps identify patterns, and improves decision-making and productivity.",
             steps = listOf(
                 LessonStepSeed(

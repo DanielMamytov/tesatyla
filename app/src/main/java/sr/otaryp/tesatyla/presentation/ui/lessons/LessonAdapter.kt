@@ -53,6 +53,7 @@ class LessonAdapter(
                 R.string.lesson_action_continue
             }
             binding.btnContinue.setText(buttonTextRes)
+            binding.btnContinue.contentDescription = binding.btnContinue.context.getString(buttonTextRes)
 
             binding.btnContinue.setOnClickListener { onLessonSelected(item) }
             binding.root.setOnClickListener { onLessonSelected(item) }
