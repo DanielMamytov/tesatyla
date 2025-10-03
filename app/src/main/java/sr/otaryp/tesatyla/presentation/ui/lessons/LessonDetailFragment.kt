@@ -74,7 +74,7 @@ class LessonDetailFragment : Fragment() {
                         .actionLessonDetailFragmentToVictoryHallFragment(state.lessonId)
                     findNavController().navigate(directions)
                 } else {
-                    val nextStep = state.steps.firstOrNull { !it.isLocked && !it.isCompleted }
+                    val nextStep = state.steps.firstOrNull { !it.isCompleted }
                     if (nextStep != null) {
                         onStepSelected(nextStep)
                     }
@@ -92,7 +92,7 @@ class LessonDetailFragment : Fragment() {
                     binding.tvLessonDescription.text = state.description
                     binding.tvLessonTeaching.text = state.teaching
                     val hasSteps = state.totalSteps > 0
-                    val hasAccessibleStep = state.steps.any { !it.isLocked && !it.isCompleted }
+                    val hasIncompleteStep = state.steps.any { !it.isCompleted }
                     binding.btnLessonCta.isVisible = hasSteps
                     val ctaTextRes = if (state.isCompleted) {
                         R.string.lesson_detail_cta_victory
@@ -101,8 +101,8 @@ class LessonDetailFragment : Fragment() {
                     }
                     binding.btnLessonCta.setText(ctaTextRes)
                     binding.btnLessonCta.contentDescription = getString(ctaTextRes)
-                    binding.btnLessonCta.isEnabled = state.isCompleted || hasAccessibleStep
-                    binding.btnLessonCta.alpha = if (state.isCompleted || hasAccessibleStep) 1f else 0.6f
+                    binding.btnLessonCta.isEnabled = state.isCompleted || hasIncompleteStep
+                    binding.btnLessonCta.alpha = if (state.isCompleted || hasIncompleteStep) 1f else 0.6f
                     stepsAdapter.submitList(state.steps)
 
                     LessonProgressPreferences.setCurrentLesson(

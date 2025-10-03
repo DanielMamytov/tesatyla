@@ -39,7 +39,6 @@ class LessonStepDetailViewModel(
             theory = step.theory,
             practice = step.practice,
             isCompleted = step.isCompleted,
-            isLocked = false,
             isLastIncompleteStep = !step.isCompleted && remainingIncomplete <= 1
         )
     }.stateIn(
@@ -50,7 +49,7 @@ class LessonStepDetailViewModel(
 
     fun onCompleteStep() {
         val currentState = uiState.value
-        if (currentState.isCompleted || currentState.isLocked) {
+        if (currentState.isCompleted) {
             return
         }
         viewModelScope.launch {
@@ -105,7 +104,6 @@ data class LessonStepDetailUiState(
     val theory: String = "",
     val practice: String = "",
     val isCompleted: Boolean = false,
-    val isLocked: Boolean = false,
     val isLastIncompleteStep: Boolean = false
 )
 

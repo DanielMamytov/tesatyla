@@ -82,26 +82,15 @@ class LessonStepDetailFragment : Fragment() {
                     binding.tvTheory.text = state.theory
                     binding.tvPractice.text = state.practice
 
-                    when {
-                        state.isCompleted -> {
-                            binding.tvStepStatus.isVisible = true
-                            binding.tvStepStatus.setText(R.string.lesson_step_completed_message)
-                            binding.btnCompleteQuest.isEnabled = false
-                            binding.btnCompleteQuest.text = getString(R.string.lesson_step_completed_button)
-                        }
-
-                        state.isLocked -> {
-                            binding.tvStepStatus.isVisible = true
-                            binding.tvStepStatus.setText(R.string.lesson_step_locked_detail)
-                            binding.btnCompleteQuest.isEnabled = false
-                            binding.btnCompleteQuest.text = getString(R.string.lesson_step_locked)
-                        }
-
-                        else -> {
-                            binding.tvStepStatus.isVisible = false
-                            binding.btnCompleteQuest.isEnabled = true
-                            binding.btnCompleteQuest.text = getString(R.string.lesson_step_complete)
-                        }
+                    if (state.isCompleted) {
+                        binding.tvStepStatus.isVisible = true
+                        binding.tvStepStatus.setText(R.string.lesson_step_completed_message)
+                        binding.btnCompleteQuest.isEnabled = false
+                        binding.btnCompleteQuest.text = getString(R.string.lesson_step_completed_button)
+                    } else {
+                        binding.tvStepStatus.isVisible = false
+                        binding.btnCompleteQuest.isEnabled = true
+                        binding.btnCompleteQuest.text = getString(R.string.lesson_step_complete)
                     }
                     binding.btnCompleteQuest.alpha =
                         if (binding.btnCompleteQuest.isEnabled) 1f else 0.6f

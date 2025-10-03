@@ -27,8 +27,7 @@ class LessonDetailViewModel(
                     stepNumber = step.number,
                     title = step.title,
                     theoryPreview = step.theory.take(160),
-                    isCompleted = step.isCompleted,
-                    isLocked = false
+                    isCompleted = step.isCompleted
                 )
             }
             val completedSteps = stepItems.count { it.isCompleted }
@@ -83,6 +82,5 @@ data class LessonStepItem(
     val stepNumber: Int,
     val title: String,
     val theoryPreview: String,
-    val isCompleted: Boolean,
-    val isLocked: Boolean
+    val isCompleted: Boolean
 )
