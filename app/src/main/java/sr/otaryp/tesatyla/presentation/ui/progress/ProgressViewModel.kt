@@ -27,28 +27,34 @@ class ProgressViewModel(
 
     private val lessonProgress = repository.observeLessons()
         .map { lessons ->
-            val totalLessons = lessons.size
-            val completedLessons = lessons.count { it.lesson.isCompleted }
+            val totalSteps = lessons.sumOf { it.steps.size }
+            val completedSteps = lessons.sumOf { lesson ->
+                lesson.steps.count { it.isCompleted }
+            }
 
             val skills = SkillCatalog.skills.mapNotNull { skill ->
                 val skillLessons = lessons.filter { skill.lessonIds.contains(it.lesson.id) }
                 if (skillLessons.isEmpty()) return@mapNotNull null
 
-                val total = skillLessons.size
-                val completed = skillLessons.count { it.lesson.isCompleted }
+                val total = skillLessons.sumOf { it.steps.size }
+                val completed = skillLessons.sumOf { lesson ->
+                    lesson.steps.count { it.isCompleted }
+                }
+                val isComplete = total > 0 && completed == total
                 SkillProgressItem(
                     id = skill.id,
                     title = skill.title,
-                    completedLessons = completed,
-                    totalLessons = total,
+                    completedSteps = completed,
+                    totalSteps = total,
                     completionPercent = if (total == 0) 0 else ((completed.toFloat() / total) * 100).roundToInt(),
+                    isComplete = isComplete,
                 )
             }
 
             LessonProgressSnapshot(
-                completedLessons = completedLessons,
-                totalLessons = totalLessons,
-                overallPercent = if (totalLessons == 0) 0 else ((completedLessons.toFloat() / totalLessons) * 100).roundToInt(),
+                completedSteps = completedSteps,
+                totalSteps = totalSteps,
+                overallPercent = if (totalSteps == 0) 0 else ((completedSteps.toFloat() / totalSteps) * 100).roundToInt(),
                 skills = skills,
             )
         }
@@ -56,8 +62,8 @@ class ProgressViewModel(
     val uiState: StateFlow<ProgressUiState> = combine(lessonProgress, pomodoroCount) { progress, pomodoros ->
         ProgressUiState(
             overallPercent = progress.overallPercent,
-            completedLessons = progress.completedLessons,
-            totalLessons = progress.totalLessons,
+            completedSteps = progress.completedSteps,
+            totalSteps = progress.totalSteps,
             skills = progress.skills,
             pomodoroCycles = pomodoros,
         )
@@ -77,8 +83,8 @@ class ProgressViewModel(
     }
 
     private data class LessonProgressSnapshot(
-        val completedLessons: Int,
-        val totalLessons: Int,
+        val completedSteps: Int,
+        val totalSteps: Int,
         val overallPercent: Int,
         val skills: List<SkillProgressItem>,
     )
@@ -101,8 +107,8 @@ class ProgressViewModel(
 
 data class ProgressUiState(
     val overallPercent: Int = 0,
-    val completedLessons: Int = 0,
-    val totalLessons: Int = 0,
+    val completedSteps: Int = 0,
+    val totalSteps: Int = 0,
     val skills: List<SkillProgressItem> = emptyList(),
     val pomodoroCycles: Int = 0,
 )
@@ -110,8 +116,9 @@ data class ProgressUiState(
 data class SkillProgressItem(
     val id: String,
     val title: String,
-    val completedLessons: Int,
-    val totalLessons: Int,
+    val completedSteps: Int,
+    val totalSteps: Int,
     val completionPercent: Int,
+    val isComplete: Boolean,
 )
 

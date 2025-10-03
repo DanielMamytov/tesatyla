@@ -14,23 +14,13 @@ object SkillCatalog {
         val lessonIds: List<Int>,
     )
 
-    val skills: List<Skill> = listOf(
+    val skills: List<Skill> = LessonSeedData.lessons.map { lesson ->
         Skill(
-            id = "focus",
-            title = "Focus & Distraction Shield",
-            lessonIds = listOf(1, 3),
-        ),
-        Skill(
-            id = "planning",
-            title = "Planning & Time Mastery",
-            lessonIds = listOf(2, 4),
-        ),
-        Skill(
-            id = "momentum",
-            title = "Momentum & Motivation",
-            lessonIds = listOf(5),
-        ),
-    )
+            id = lesson.id.toString(),
+            title = lesson.title.substringAfter(": ", lesson.title).trim(),
+            lessonIds = listOf(lesson.id),
+        )
+    }
 
     fun findSkill(skillId: String?): Skill? {
         if (skillId.isNullOrBlank()) return null

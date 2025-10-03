@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_18pt_bold"
-                android:text="9 of 12 lessons completes"
+                android:text="9 of 12 steps completed"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
 
@@ -75,6 +75,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/statusIm"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_gravity="center_vertical|end"
