@@ -41,6 +41,12 @@ class SkillProgressAdapter(
             )
             binding.skillProgressBar.max = 100
             binding.skillProgressBar.progress = item.completionPercent
+            val statusDrawable = if (item.isComplete) {
+                R.drawable.shield_bg
+            } else {
+                R.drawable.shield_gray
+            }
+            binding.statusIm.setImageResource(statusDrawable)
 
             binding.root.setOnClickListener { onSkillSelected(item) }
         }

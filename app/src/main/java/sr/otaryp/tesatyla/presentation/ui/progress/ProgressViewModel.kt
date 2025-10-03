@@ -36,12 +36,14 @@ class ProgressViewModel(
 
                 val total = skillLessons.size
                 val completed = skillLessons.count { it.lesson.isCompleted }
+                val isComplete = total > 0 && completed == total
                 SkillProgressItem(
                     id = skill.id,
                     title = skill.title,
                     completedLessons = completed,
                     totalLessons = total,
                     completionPercent = if (total == 0) 0 else ((completed.toFloat() / total) * 100).roundToInt(),
+                    isComplete = isComplete,
                 )
             }
 
@@ -113,5 +115,6 @@ data class SkillProgressItem(
     val completedLessons: Int,
     val totalLessons: Int,
     val completionPercent: Int,
+    val isComplete: Boolean,
 )
 
