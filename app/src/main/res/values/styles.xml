@@ -8,12 +8,14 @@
         <item name="fontFamily">@font/katibeh_regular</item>
     </style>
 
+    <style name="Shape" />
+
     <style name="Shape.Pill">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="BottomNavLabelActive" parent="@style/TextAppearance.MaterialComponents.LabelMedium">
+    <style name="BottomNavLabelActive" parent="@style/TextAppearance.Material3.LabelMedium">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/bottom_nav_label_background</item>
         <item name="android:paddingLeft">12dp</item>
@@ -22,7 +24,7 @@
         <item name="android:paddingBottom">4dp</item>
     </style>
 
-    <style name="BottomNavLabelInactive" parent="@style/TextAppearance.MaterialComponents.LabelMedium">
+    <style name="BottomNavLabelInactive" parent="@style/TextAppearance.Material3.LabelMedium">
         <item name="android:textColor">#FFD700</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:paddingLeft">12dp</item>
@@ -32,7 +34,7 @@
     </style>
 
     <!-- Legacy style reference used by menu previews -->
-    <style name="BottomNavTextAppearance" parent="@style/TextAppearance.MaterialComponents.LabelMedium">
+    <style name="BottomNavTextAppearance" parent="@style/TextAppearance.Material3.LabelMedium">
         <item name="android:textColor">#FFD700</item>
     </style>
 
