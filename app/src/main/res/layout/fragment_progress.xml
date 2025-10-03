@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -33,10 +32,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="Back"
+                    android:text="@string/article_back"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
-
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -57,29 +55,28 @@
                         android:layout_height="3dp"
                         android:layout_gravity="bottom"
                         android:layout_marginBottom="20dp"
-
                         android:background="@drawable/gradient_view"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </FrameLayout>
-
             </FrameLayout>
-
         </FrameLayout>
 
         <TextView
+            android:id="@+id/text_progress_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/inter_18pt_bold"
-            android:text="Your Progress"
+            android:text="@string/progress_title"
             android:textSize="25sp" />
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -102,16 +99,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/inter_18pt_bold"
-            android:text="Pomodoro Cycles Completed: 0"
-            android:textSize="18sp" />
+            android:text="@string/progress_cycles_format"
+            android:textSize="18sp"
+            tools:text="Pomodoro Cycles Completed: 4" />
 
         <TextView
+            android:id="@+id/skill_mastery_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/inter_18pt_bold"
-            android:text="Skill Mastery"
+            android:text="@string/progress_skill_section"
             android:textSize="20sp" />
 
         <FrameLayout
@@ -122,53 +121,58 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:src="@drawable/lesson_list_bg" />
 
             <LinearLayout
+                android:id="@+id/skill_card_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:padding="30dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/skill_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/inter_18pt_bold"
-                        android:text="Pomodoro Trials"
-                        android:textSize="20sp" />
+                        android:text="@string/lesson_title_pomodoro_trials"
+                        android:textSize="20sp"
+                        tools:text="Pomodoro Trials" />
 
                     <TextView
+                        android:id="@+id/skill_lessons"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_18pt_bold"
-                        android:text="9 of 12 lessons completes"
                         android:textColor="@color/white"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        tools:text="9 of 12 lessons completed" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_marginTop="10dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical">
+
                         <TextView
+                            android:id="@+id/skill_percent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="45%"
-                            android:textColor="#00F8FF"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/inter_18pt_extrabold"
+                            android:textColor="#00F8FF"
                             android:textSize="20sp"
-                            android:fontFamily="@font/inter_18pt_extrabold"/>
-
+                            tools:text="45%" />
 
                         <ProgressBar
                             android:id="@+id/progressBar"
@@ -176,13 +180,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
                             android:layout_marginTop="5dp"
-                            android:progressDrawable="@drawable/progress_layer"
                             android:max="100"
-                            android:progress="45"/> <!-- Прогресс 45% -->
-                        <!-- Прогресс 45% -->
+                            android:progress="0"
+                            android:progressDrawable="@drawable/progress_layer"
+                            tools:progress="45" />
                     </LinearLayout>
-
-
                 </LinearLayout>
 
                 <ImageView
@@ -192,8 +194,6 @@
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/shield_gray" />
             </LinearLayout>
-
-
         </FrameLayout>
     </LinearLayout>
 
