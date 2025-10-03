@@ -1,55 +1,70 @@
-<FrameLayout android:layout_width="match_parent"
-    android:layout_height="210dp"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="16dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
     android:layout_marginTop="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_marginBottom="16dp">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/lesson_list_bg" />
+        android:layout_height="230dp"
+        android:src="@drawable/lesson_list_bg"
+        tools:ignore="ContentDescription" />
 
+    <!-- Внешний контейнер: горизонтальный ряд (текст + иконка) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:padding="30dp">
 
+        <!-- Текстовый контейнер: занимает всё оставшееся место -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="15dp"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:layout_marginStart="15dp">
 
             <TextView
                 android:id="@+id/titleTv"
+                android:maxLines="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/inter_18pt_bold"
                 android:text="Pomodoro Trials"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                tools:text="Pomodoro Trials: The Knight’s Path to Focus" />
 
             <TextView
                 android:id="@+id/textDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_18pt_medium"
-                android:maxLines="3"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:maxLines="2"
                 android:ellipsize="end"
                 android:text="Pick up your sword\nwhere you left off."
-                android:textColor="@color/white"
-                android:textSize="13sp" />
+                tools:text="Train in timed battles: 25 minutes of focus, 5 minutes of rest. Master the rhythm and sharpen your discipline." />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView            android:id="@+id/levelIm"
-            android:layout_width="match_parent"
+        <!-- Иконка-щит: фиксированные размеры, всегда видима -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/levelIm"
+            android:layout_width="110dp"
             android:layout_height="110dp"
-            android:layout_gravity="center_vertical|end"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="10dp"
-            android:scaleType="fitEnd"
-            app:srcCompat="@drawable/shield_gray" />    </LinearLayout>
+            app:srcCompat="@drawable/shield_gray"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnContinue"

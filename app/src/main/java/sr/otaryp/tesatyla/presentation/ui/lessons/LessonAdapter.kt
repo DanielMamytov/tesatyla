@@ -26,10 +26,6 @@ class LessonAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: LessonListItem, onLessonSelected: (LessonListItem) -> Unit) {
-            binding.titleTv.text = item.title
-            binding.textDescription.text = item.description
-
-
             binding.levelIm.apply {
                 setImageResource(R.drawable.shield_gray)
                 contentDescription = binding.root.context.getString(
@@ -41,8 +37,13 @@ class LessonAdapter(
                         R.string.lesson_status_completed_icon_description
                     )
                 }
-
             }
+
+            binding.titleTv.text = item.title
+            binding.textDescription.text = item.description
+
+
+
 
             val buttonTextRes = if (item.isCompleted) {
                 R.string.lesson_action_repeat
