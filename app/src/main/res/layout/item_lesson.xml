@@ -35,6 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_18pt_medium"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:text="Pick up your sword\nwhere you left off."
                 android:textColor="@color/white"
                 android:textSize="13sp" />
@@ -60,7 +62,7 @@
         android:minHeight="0dp"
         android:paddingHorizontal="30dp"
         android:paddingVertical="14dp"
-        android:text="Continue"
+        android:text="@string/lesson_action_continue"
         android:textAllCaps="false"
         android:textColor="#FFE08A"
         android:textSize="18sp"

@@ -1,9 +1,7 @@
 package sr.otaryp.tesatyla.presentation.ui.lessons
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -36,8 +34,14 @@ class LessonStepsAdapter(
             binding.tvStepTitle.text = item.title
             binding.tvStepPreview.text = item.theoryPreview
 
-            // Текст кнопки по статусу шага (можешь заменить на строки-ресурсы при желании)
-            binding.btnOpenStep.text = if (item.isCompleted) "Review" else "Continue"
+            val context = binding.root.context
+            val buttonTextRes = if (item.isCompleted) {
+                R.string.lesson_step_review
+            } else {
+                R.string.lesson_step_open
+            }
+            binding.btnOpenStep.setText(buttonTextRes)
+            binding.btnOpenStep.contentDescription = context.getString(buttonTextRes)
 
             binding.btnOpenStep.setOnClickListener { onStepSelected(item) }
             binding.root.setOnClickListener { onStepSelected(item) }

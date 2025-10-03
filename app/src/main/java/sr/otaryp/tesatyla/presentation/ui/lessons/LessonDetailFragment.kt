@@ -67,20 +67,20 @@ class LessonDetailFragment : Fragment() {
     }
 
     private fun setupCallToAction() {
-//        binding.btnLessonCta.setOnClickListener {
-//            currentState?.let { state ->
-//                if (state.isCompleted) {
-//                    val directions = LessonDetailFragmentDirections
-//                        .actionLessonDetailFragmentToVictoryHallFragment(state.lessonId)
-//                    findNavController().navigate(directions)
-//                } else {
-//                    val nextStep = state.steps.firstOrNull { !it.isCompleted }
-//                    if (nextStep != null) {
-//                        onStepSelected(nextStep)
-//                    }
-//                }
-//            }
-//        }
+        binding.btnLessonCta.setOnClickListener {
+            currentState?.let { state ->
+                if (state.isCompleted) {
+                    val directions = LessonDetailFragmentDirections
+                        .actionLessonDetailFragmentToVictoryHallFragment(state.lessonId)
+                    findNavController().navigate(directions)
+                } else {
+                    val nextStep = state.steps.firstOrNull { !it.isLocked && !it.isCompleted }
+                    if (nextStep != null) {
+                        onStepSelected(nextStep)
+                    }
+                }
+            }
+        }
     }
 
     private fun observeUiState() {
@@ -91,34 +91,18 @@ class LessonDetailFragment : Fragment() {
                     binding.tvLessonTitle.text = state.title
                     binding.tvLessonDescription.text = state.description
                     binding.tvLessonTeaching.text = state.teaching
-//                    binding.ivLessonStatus.setImageResource(
-//                        if (state.isCompleted) R.drawable.shield_bg else R.drawable.shield_gray
-//                    )
-//                    binding.tvLessonStatus.setText(
-//                        if (state.isCompleted) {
-//                            R.string.lesson_detail_progress_completed
-//                        } else {
-//                            R.string.lesson_detail_progress_in_progress
-//                        }
-//                    )
-//                    binding.tvLessonProgress.text = getString(
-//                        R.string.lesson_detail_progress_template,
-//                        state.completedSteps,
-//                        state.totalSteps
-//                    )
                     val hasSteps = state.totalSteps > 0
                     val hasAccessibleStep = state.steps.any { !it.isLocked && !it.isCompleted }
-//                    binding.tvLessonProgress.isVisible = hasSteps
-//                    binding.progressContainer.isVisible = hasSteps
-//                    binding.btnLessonCta.setText(
-//                        if (state.isCompleted) {
-//                            R.string.lesson_detail_cta_victory
-//                        } else {
-//                            R.string.lesson_detail_cta_complete
-//                        }
-//                    )
-//                    binding.btnLessonCta.isEnabled = state.isCompleted || hasAccessibleStep
-//                    binding.btnLessonCta.alpha = if (state.isCompleted || hasAccessibleStep) 1f else 0.6f
+                    binding.btnLessonCta.isVisible = hasSteps
+                    val ctaTextRes = if (state.isCompleted) {
+                        R.string.lesson_detail_cta_victory
+                    } else {
+                        R.string.lesson_detail_cta_complete
+                    }
+                    binding.btnLessonCta.setText(ctaTextRes)
+                    binding.btnLessonCta.contentDescription = getString(ctaTextRes)
+                    binding.btnLessonCta.isEnabled = state.isCompleted || hasAccessibleStep
+                    binding.btnLessonCta.alpha = if (state.isCompleted || hasAccessibleStep) 1f else 0.6f
                     stepsAdapter.submitList(state.steps)
 
                     LessonProgressPreferences.setCurrentLesson(

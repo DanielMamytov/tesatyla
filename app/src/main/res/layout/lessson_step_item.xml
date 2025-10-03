@@ -28,6 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:maxLines="3"
+            android:ellipsize="end"
             android:text="Theory: The Pomodoro method divides work into cycles of 25 minutes ..." />
 
 
@@ -43,7 +45,7 @@
         android:minHeight="0dp"
         android:paddingHorizontal="30dp"
         android:paddingVertical="14dp"
-        android:text="Continue"
+        android:text="@string/lesson_step_open"
         android:textAllCaps="false"
         android:textColor="#FFE08A"
         android:textSize="18sp"

@@ -56,6 +56,12 @@
         android:label="Lessons"
         tools:layout="@layout/fragment_lesson_list">
         <action
+            android:id="@+id/action_nav_lessons_to_nav_home"
+            app:destination="@id/nav_home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_lessons"
+            app:popUpToInclusive="true" />
+        <action
             android:id="@+id/action_nav_lessons_to_lessonDetailFragment"
             app:destination="@id/lessonDetailFragment" />
     </fragment>
