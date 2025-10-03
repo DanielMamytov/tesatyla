@@ -102,4 +102,22 @@ Your quests await.</string>
     <string name="progress_skill_section">Skill Progress</string>
     <string name="progress_no_skills">No skills to display yet.</string>
     <string name="progress_motivation">Keep going! Every lesson makes your kingdom stronger.</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_share_app">Share the App</string>
+    <string name="settings_rate_us">Rate Us</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_terms_conditions">Terms and Conditions</string>
+    <string name="settings_clear_data">Clear App data</string>
+    <string name="settings_share_message">Upgrade your skill in Total Shine app: http://play.google.com/store/apps/details?id=%1$s</string>
+    <string name="settings_share_chooser_title">Share via</string>
+    <string name="settings_clear_data_confirm_title">Clear all data?</string>
+    <string name="settings_clear_data_confirm_message">This will remove your saved progress and preferences. Continue?</string>
+    <string name="settings_clear_data_confirm_positive">Clear</string>
+    <string name="settings_clear_data_confirm_negative">Cancel</string>
+    <string name="settings_clear_data_success">All app data has been cleared.</string>
+    <string name="privacy_policy_placeholder_title">Privacy Policy</string>
+    <string name="privacy_policy_placeholder_message">Your privacy matters to us. The detailed policy will appear here soon.</string>
+    <string name="terms_conditions_placeholder_title">Terms &amp; Conditions</string>
+    <string name="terms_conditions_placeholder_message">The full terms and conditions will be available on this screen in a future update.</string>
 </resources>

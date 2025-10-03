@@ -6,4 +6,5 @@
     <color name="step_card_stroke">#E2B886</color>
     <color name="step_card_background_completed">#FFE6B4</color>
     <color name="step_card_stroke_completed">#FFC25A</color>
+    <color name="settings_divider">#FFE0E0E0</color>
 </resources>

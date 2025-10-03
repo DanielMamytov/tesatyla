@@ -156,4 +156,29 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="sr.otaryp.tesatyla.presentation.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_termsConditionsFragment"
+            app:destination="@id/termsConditionsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="sr.otaryp.tesatyla.presentation.ui.settings.PrivacyPolicyFragment"
+        android:label="Privacy Policy"
+        tools:layout="@layout/fragment_privacy_policy" />
+
+    <fragment
+        android:id="@+id/termsConditionsFragment"
+        android:name="sr.otaryp.tesatyla.presentation.ui.settings.TermsConditionsFragment"
+        android:label="Terms and Conditions"
+        tools:layout="@layout/fragment_terms_conditions" />
+
 </navigation>

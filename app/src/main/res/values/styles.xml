@@ -19,14 +19,27 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="NavBar.ActiveIndicator" parent="@style/Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:height">28dp</item>
-        <item name="android:insetLeft">8dp</item>
-        <item name="android:insetRight">8dp</item>
-        <item name="android:insetTop">36dp</item>
-        <item name="android:insetBottom">6dp</item>
-        <item name="shapeAppearance">@style/Shape.Pill</item>
-        <item name="android:background">@drawable/active_text_pill</item>
+    <style name="BottomNavLabelActive" parent="@style/TextAppearance.MaterialComponents.LabelMedium">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/bottom_nav_label_background</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <style name="BottomNavLabelInactive" parent="@style/TextAppearance.MaterialComponents.LabelMedium">
+        <item name="android:textColor">#FFD700</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <!-- Legacy style reference used by menu previews -->
+    <style name="BottomNavTextAppearance" parent="@style/TextAppearance.MaterialComponents.LabelMedium">
+        <item name="android:textColor">#FFD700</item>
     </style>
 
     <!-- Legacy alias used by menu previews -->
