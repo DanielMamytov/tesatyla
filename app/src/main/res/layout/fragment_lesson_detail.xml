@@ -110,7 +110,7 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <sr.otaryp.tesatyla.presentation.ui.common.NonScrollableRecyclerView
             android:id="@+id/rvSteps"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
