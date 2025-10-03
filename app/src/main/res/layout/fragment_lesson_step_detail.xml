@@ -68,6 +68,8 @@
                 android:layout_height="300dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
+                android:scaleType="centerCrop"
+
                 android:src="@drawable/steps_bg" />
 
             <TextView
@@ -82,6 +84,20 @@
                 android:textSize="18sp"
                 tools:text="Step 1" />
         </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvStepStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/steps_bg_im"
+            android:fontFamily="@font/inter_18pt_medium"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone"
+            tools:text="Finish the previous quest step to unlock this challenge." />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -138,12 +154,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_complete_quest"
+            android:letterSpacing="0.1"
+
             android:paddingHorizontal="28dp"
             android:paddingVertical="12dp"
             android:text="@string/lesson_step_complete"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp" />
+
     </LinearLayout>
+
 </ScrollView>
+

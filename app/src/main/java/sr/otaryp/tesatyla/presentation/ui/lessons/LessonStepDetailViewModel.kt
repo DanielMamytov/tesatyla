@@ -28,7 +28,11 @@ class LessonStepDetailViewModel(
         repository.observeLesson(lessonId)
     ) { step, lessonWithSteps ->
         val lesson = lessonWithSteps.lesson
-        val remainingIncomplete = lessonWithSteps.steps.count { !it.isCompleted }
+        val sortedSteps = lessonWithSteps.steps.sortedBy { it.number }
+        val currentIndex = sortedSteps.indexOfFirst { it.id == step.id }
+        val firstIncompleteIndex = sortedSteps.indexOfFirst { !it.isCompleted }
+        val isLocked = !step.isCompleted && firstIncompleteIndex != -1 && currentIndex > firstIncompleteIndex
+        val remainingIncomplete = sortedSteps.count { !it.isCompleted }
         LessonStepDetailUiState(
             lessonId = lesson.id,
             lessonTitle = lesson.title,
@@ -38,7 +42,8 @@ class LessonStepDetailViewModel(
             theory = step.theory,
             practice = step.practice,
             isCompleted = step.isCompleted,
-            isLastIncompleteStep = !step.isCompleted && remainingIncomplete <= 1
+            isLocked = isLocked,
+            isLastIncompleteStep = !step.isCompleted && !isLocked && remainingIncomplete <= 1
         )
     }.stateIn(
         scope = viewModelScope,
@@ -47,6 +52,10 @@ class LessonStepDetailViewModel(
     )
 
     fun onCompleteStep() {
+        val currentState = uiState.value
+        if (currentState.isCompleted || currentState.isLocked) {
+            return
+        }
         viewModelScope.launch {
             when (repository.completeStep(lessonId, stepId)) {
                 StepCompletionResult.StepCompleted ->
@@ -99,6 +108,7 @@ data class LessonStepDetailUiState(
     val theory: String = "",
     val practice: String = "",
     val isCompleted: Boolean = false,
+    val isLocked: Boolean = false,
     val isLastIncompleteStep: Boolean = false
 )
 
