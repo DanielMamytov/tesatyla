@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="@drawable/ripple_gold"
+    android:minWidth="64dp"
+    android:minHeight="64dp">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_launcher_background"
+    android:contentDescription="@null"
+    android:importantForAccessibility="no" />
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="6dp"
+        android:text="Label"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/katibeh_regular"
+        android:textColor="@color/bottom_nav_text_color"
+        android:background="@drawable/nav_label_background_selector"
+        android:duplicateParentState="true"/>
+</LinearLayout>

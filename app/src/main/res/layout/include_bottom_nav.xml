@@ -12,7 +12,6 @@
         android:background="@drawable/bg_bottom_nav"
         android:paddingStart="14dp"
         android:paddingEnd="14dp"
-        app:itemActiveIndicatorStyle="@style/NavBar.ActiveIndicator"
         app:itemBackground="@drawable/bottom_nav_item_background"
         app:itemIconSize="36dp"
         app:itemIconTint="@null"

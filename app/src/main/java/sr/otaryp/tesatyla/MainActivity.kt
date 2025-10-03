@@ -1,6 +1,7 @@
 package sr.otaryp.tesatyla
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import sr.otaryp.tesatyla.presentation.ui.setupCustomBottomNav
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -39,5 +42,17 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNavigation.isVisible = destination.id in destinationsWithBottomNav
         }
+
+        val bottomNav = findViewById<View>(R.id.customBottomNav)
+        bottomNav.setupCustomBottomNav { index ->
+            when (index) {
+                0 -> openHome()
+                1 -> openLessons()
+                2 -> openArticles()
+                3 -> openProgress()
+                4 -> openFocus()
+            }
+        }
+    }
     }
 }

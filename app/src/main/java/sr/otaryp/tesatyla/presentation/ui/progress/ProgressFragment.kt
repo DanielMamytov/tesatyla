@@ -77,8 +77,8 @@ class ProgressFragment : Fragment() {
         textProgressPercentage.text = getString(R.string.progress_percentage_format, state.overallPercent)
         textLessonsCompleted.text = getString(
             R.string.progress_lessons_completed,
-            state.completedLessons,
-            state.totalLessons,
+            state.completedSteps,
+            state.totalSteps,
         )
         pomodoroCycles.text = getString(R.string.progress_cycles_format, state.pomodoroCycles)
 

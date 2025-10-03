@@ -27,8 +27,8 @@ class ProgressViewModel(
 
     private val lessonProgress = repository.observeLessons()
         .map { lessons ->
-            val totalLessons = lessons.sumOf { it.steps.size }
-            val completedLessons = lessons.sumOf { lesson ->
+            val totalSteps = lessons.sumOf { it.steps.size }
+            val completedSteps = lessons.sumOf { lesson ->
                 lesson.steps.count { it.isCompleted }
             }
 

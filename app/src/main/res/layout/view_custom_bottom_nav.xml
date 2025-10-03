@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottomBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="16dp"
+    android:background="@drawable/bg_bottom_nav">
+
+    <!-- Контейнер с 5 пунктами -->
+    <LinearLayout
+        android:id="@+id/navContainer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingHorizontal="12dp"
+        android:gravity="center"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <!-- Каждая ячейка — одинаковая, различаются только id, иконка и текст -->
+        <include
+            layout="@layout/item_nav"
+            android:id="@+id/itemHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <include
+            layout="@layout/item_nav"
+            android:id="@+id/itemLessons"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <include
+            layout="@layout/item_nav"
+            android:id="@+id/itemArticles"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <include
+            layout="@layout/item_nav"
+            android:id="@+id/itemProgress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <include
+            layout="@layout/item_nav"
+            android:id="@+id/itemFocus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</FrameLayout>
