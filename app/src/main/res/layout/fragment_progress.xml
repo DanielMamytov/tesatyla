@@ -95,6 +95,18 @@
         </FrameLayout>
 
         <TextView
+            android:id="@+id/textLessonsCompleted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/inter_18pt_bold"
+            android:text="@string/progress_lessons_completed"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:text="4 of 10 lessons completed" />
+
+        <TextView
             android:id="@+id/pomodoroCycles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
