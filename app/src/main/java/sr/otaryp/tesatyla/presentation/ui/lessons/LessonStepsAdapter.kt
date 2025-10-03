@@ -20,75 +20,27 @@ class LessonStepsAdapter(
             parent,
             false
         )
-        return StepViewHolder(binding)
+        return StepViewHolder(binding, onStepSelected)
     }
 
     override fun onBindViewHolder(holder: StepViewHolder, position: Int) {
-        holder.bind(getItem(position), onStepSelected)
+        holder.bind(getItem(position))
     }
 
     class StepViewHolder(
-        private val binding: LesssonStepItemBinding
+        private val binding: LesssonStepItemBinding,
+        private val onStepSelected: (LessonStepItem) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: LessonStepItem, onStepSelected: (LessonStepItem) -> Unit) {
-            val context = binding.root.context
-            binding.tvStepNumber.text = context.getString(R.string.lesson_step_number_format, item.stepNumber)
+        fun bind(item: LessonStepItem) {
             binding.tvStepTitle.text = item.title
             binding.tvStepPreview.text = item.theoryPreview
 
-            when {
-                item.isCompleted -> {
-                    binding.tvStepStatus.visibility = View.VISIBLE
-                    binding.tvStepStatus.setText(R.string.lesson_step_completed)
-                    binding.btnStepAction.setText(R.string.lesson_step_review)
-                    binding.btnStepAction.isEnabled = true
-                    binding.btnStepAction.alpha = 1f
-                    binding.ivStepStatus.setImageResource(R.drawable.shield_bg)
-                    binding.cardContainer.setCardBackgroundColor(
-                        ContextCompat.getColor(context, R.color.step_card_background_completed)
-                    )
-                    binding.cardContainer.strokeColor =
-                        ContextCompat.getColor(context, R.color.step_card_stroke_completed)
-                }
+            // Текст кнопки по статусу шага (можешь заменить на строки-ресурсы при желании)
+            binding.btnOpenStep.text = if (item.isCompleted) "Review" else "Continue"
 
-                item.isLocked -> {
-                    binding.tvStepStatus.visibility = View.GONE
-                    binding.btnStepAction.setText(R.string.lesson_step_locked)
-                    binding.btnStepAction.isEnabled = false
-                    binding.btnStepAction.alpha = 0.6f
-                    binding.ivStepStatus.setImageResource(R.drawable.shield_gray)
-                    binding.cardContainer.setCardBackgroundColor(
-                        ContextCompat.getColor(context, R.color.step_card_background)
-                    )
-                    binding.cardContainer.strokeColor =
-                        ContextCompat.getColor(context, R.color.step_card_stroke)
-                }
-
-                else -> {
-                    binding.tvStepStatus.visibility = View.GONE
-                    binding.btnStepAction.setText(R.string.lesson_step_open)
-                    binding.btnStepAction.isEnabled = true
-                    binding.btnStepAction.alpha = 1f
-                    binding.ivStepStatus.setImageResource(R.drawable.shield_gray)
-                    binding.cardContainer.setCardBackgroundColor(
-                        ContextCompat.getColor(context, R.color.step_card_background)
-                    )
-                    binding.cardContainer.strokeColor =
-                        ContextCompat.getColor(context, R.color.step_card_stroke)
-                }
-            }
-
-            binding.btnStepAction.setOnClickListener {
-                if (!item.isLocked) {
-                    onStepSelected(item)
-                }
-            }
-            binding.root.setOnClickListener {
-                if (!item.isLocked) {
-                    onStepSelected(item)
-                }
-            }
+            binding.btnOpenStep.setOnClickListener { onStepSelected(item) }
+            binding.root.setOnClickListener { onStepSelected(item) }
         }
     }
 
