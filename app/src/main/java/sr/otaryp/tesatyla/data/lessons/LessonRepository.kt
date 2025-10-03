@@ -101,6 +101,43 @@ class LessonRepository private constructor(
         lessonDao.insertLessons(lessons)
         lessonDao.insertSteps(steps)
     }
+    // Пример в LessonRepository (или отдельный Seeder)
+    private fun mapLessonSeedsToEntities(seeds: List<LessonSeed>): Pair<List<LessonEntity>, List<LessonStepEntity>> {
+        val lessons = seeds.map { seed ->
+            LessonEntity(
+                id = seed.id,
+                title = seed.title,
+                description = seed.description,
+                teaching = seed.teaching,
+                isCompleted = false
+            )
+        }
+        val steps = seeds.flatMap { lesson ->
+            lesson.steps.map { step ->
+                // Уникальный ID (с запасом): lessonId * 100 + number
+                val uniqueStepId = lesson.id * 100 + step.number
+                LessonStepEntity(
+                    id = uniqueStepId,
+                    lessonId = lesson.id,
+                    number = step.number,
+                    title = step.title,
+                    theory = step.theory,
+                    practice = step.practice,
+                    isCompleted = false
+                )
+            }
+        }
+        return lessons to steps
+    }
+
+    suspend fun seedIfEmpty() {
+        if (lessonDao.countLessons() == 0) {
+            val (lessons, steps) = mapLessonSeedsToEntities(LessonSeedData.lessons)
+            lessonDao.insertLessons(lessons)
+            lessonDao.insertSteps(steps)
+        }
+    }
+
 
     companion object {
         @Volatile

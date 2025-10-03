@@ -63,8 +63,10 @@ class LessonDetailFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = stepsAdapter
             setHasFixedSize(false)
+            isNestedScrollingEnabled = false // важно, если RV внутри NestedScrollView
         }
     }
+
 
     private fun setupCallToAction() {
         binding.btnLessonCta.setOnClickListener {
