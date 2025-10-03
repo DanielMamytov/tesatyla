@@ -45,7 +45,7 @@ class FocusFragment : Fragment() {
     }
 
     private fun setupUi() {
-        binding.progressBar.max = PROGRESS_MAX
+//        binding.progressBar.max = PROGRESS_MAX
         binding.sessionInfo.text = getString(
             R.string.focus_session_info,
             FOCUS_DURATION_MINUTES,
@@ -142,14 +142,16 @@ class FocusFragment : Fragment() {
     private fun updateTimerUi() {
         binding.timer.text = formatTime(remainingMillis)
         val duration = if (isFocusSession) FOCUS_DURATION_MILLIS else BREAK_DURATION_MILLIS
-        val progress = if (duration == 0L) {
-            0
-        } else {
+        val progress = if (duration == 0L) 0 else {
             val elapsed = duration - remainingMillis
-            ((elapsed.coerceAtLeast(0L).toFloat() / duration) * PROGRESS_MAX).toInt().coerceIn(0, PROGRESS_MAX)
+            ((elapsed.coerceAtLeast(0L).toFloat() / duration) * PROGRESS_MAX)
+                .toInt()
+                .coerceIn(0, PROGRESS_MAX)
         }
-        binding.progressBar.progress = progress
+        binding.progressBar.setMax(PROGRESS_MAX)
+        binding.progressBar.setProgress(progress)   // <<— используем кастомный метод
     }
+
 
     private fun formatTime(millis: Long): String {
         val minutes = TimeUnit.MILLISECONDS.toMinutes(millis)

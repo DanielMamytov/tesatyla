@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="CircularProgressBar">
+        <attr name="cpb_progressColor" format="color"/>
+        <attr name="cpb_trackColor" format="color"/>
+        <attr name="cpb_strokeWidth" format="dimension"/>
+        <attr name="cpb_headFade" format="boolean"/> <!-- полупрозрачный "хвост" на конце -->
+    </declare-styleable>
+</resources>

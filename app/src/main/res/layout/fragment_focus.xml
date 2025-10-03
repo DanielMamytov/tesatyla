@@ -95,19 +95,16 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <ProgressBar
+            <sr.otaryp.tesatyla.presentation.ui.custom.CircularProgressBar
                 android:id="@+id/progress_bar"
-                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="36dp"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="0"
-                android:progressDrawable="@drawable/progress_layer" />
+                android:layout_margin="50dp"
+                app:cpb_progressColor="@color/white"
+            app:cpb_trackColor="#33FFFFFF"
+            app:cpb_strokeWidth="14dp"
+            app:cpb_headFade="true" />
         </FrameLayout>
 
         <FrameLayout
