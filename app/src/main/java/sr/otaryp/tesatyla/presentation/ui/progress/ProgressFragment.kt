@@ -38,7 +38,7 @@ class ProgressFragment : Fragment() {
         setupToolbar()
         setupSkillList()
         observeState()
-        binding.pomodoroProgress.max = ProgressViewModel.DAILY_POMODORO_GOAL
+//        binding.pomodoroProgress.max = ProgressViewModel.DAILY_POMODORO_GOAL
     }
 
     override fun onResume() {
@@ -71,14 +71,14 @@ class ProgressFragment : Fragment() {
 
     private fun renderState(state: ProgressUiState) = with(binding) {
         textProgressPercentage.text = getString(R.string.progress_percentage_format, state.overallPercent)
-        textLessonsCompleted.text = getString(
-            R.string.progress_lessons_completed,
-            state.completedLessons,
-            state.totalLessons,
-        )
-        progressBar.progress = state.overallPercent
+//        textLessonsCompleted.text = getString(
+//            R.string.progress_lessons_completed,
+//            state.completedLessons,
+//            state.totalLessons,
+//        )
+//        progressBar.progress = state.overallPercent
         pomodoroCycles.text = getString(R.string.progress_cycles_format, state.pomodoroCycles)
-        pomodoroProgress.progress = state.pomodoroCycles.coerceAtMost(ProgressViewModel.DAILY_POMODORO_GOAL)
+//        pomodoroProgress.progress = state.pomodoroCycles.coerceAtMost(ProgressViewModel.DAILY_POMODORO_GOAL)
 
         skillAdapter.submitList(state.skills)
         skillProgressList.isVisible = state.skills.isNotEmpty()
