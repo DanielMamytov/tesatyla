@@ -86,20 +86,21 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="20dp">
+                android:paddingHorizontal="10dp">
 
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
                     android:contentDescription="@null"
                     android:src="@drawable/books" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top"
+                    android:layout_gravity="center"
+
                     android:layout_marginBottom="5dp"
                     android:layout_marginStart="20dp"
                     android:orientation="vertical">
@@ -120,6 +121,8 @@
                         android:id="@+id/textContinueLessonMessage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:lines="2"
+                        android:ellipsize="end"
                         android:text="@string/home_continue_card_in_progress"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
@@ -152,11 +155,11 @@
                     android:foreground="?attr/selectableItemBackground"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="15dp">
+                    android:paddingHorizontal="15dp">
 
                     <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
                         android:contentDescription="@null"
                         android:padding="10dp"
                         android:src="@drawable/tip_im" />
@@ -197,10 +200,10 @@
                     android:padding="15dp">
 
                     <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
                         android:contentDescription="@null"
-                        android:padding="10dp"
+                        android:paddingHorizontal="10dp"
                         android:src="@drawable/random_im" />
 
                     <LinearLayout

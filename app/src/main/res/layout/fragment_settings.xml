@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -56,82 +56,77 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_marginHorizontal="40dp"
+            android:gravity="center"
             android:orientation="vertical">
 
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonShareApp"
-                android:fontFamily="@font/inter_18pt_extrabold"
-
                 android:layout_width="match_parent"
+
                 android:layout_height="56dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/btn_settings"
                 android:elevation="6dp"
+                android:fontFamily="@font/inter_18pt_extrabold"
                 android:letterSpacing="0.02"
                 android:text="Share the App"
                 android:textAllCaps="true"
                 android:textColor="#FFFDF5"
                 android:textSize="18sp"
-                android:textStyle="bold"
-               />
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRateUs"
 
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/btn_settings"
-                android:layout_marginBottom="50dp"
 
                 android:elevation="6dp"
+                android:fontFamily="@font/inter_18pt_extrabold"
                 android:letterSpacing="0.02"
                 android:text="RATE US"
                 android:textAllCaps="true"
                 android:textColor="#FFFDF5"
                 android:textSize="18sp"
-                android:fontFamily="@font/inter_18pt_extrabold"
 
-                android:textStyle="bold"
-        />
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonPrivacyPolicy"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/btn_settings"
-                android:layout_marginBottom="50dp"
                 android:elevation="6dp"
+                android:fontFamily="@font/inter_18pt_extrabold"
                 android:letterSpacing="0.02"
                 android:text="Privacy Policy"
-                android:fontFamily="@font/inter_18pt_extrabold"
                 android:textAllCaps="true"
                 android:textColor="#FFFDF5"
                 android:textSize="18sp"
-                android:textStyle="bold"
-       />
+                android:textStyle="bold" />
 
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonTerms"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/btn_settings"
-                android:fontFamily="@font/inter_18pt_extrabold"
 
                 android:elevation="6dp"
+                android:fontFamily="@font/inter_18pt_extrabold"
                 android:letterSpacing="0.02"
                 android:text="Terms and Conditions"
-                android:layout_marginBottom="50dp"
 
                 android:textAllCaps="true"
                 android:textColor="#FFFDF5"
                 android:textSize="18sp"
-                android:textStyle="bold"
-              />
-
+                android:textStyle="bold" />
 
 
             <androidx.appcompat.widget.AppCompatButton
@@ -147,10 +142,9 @@
                 android:textAllCaps="true"
                 android:textColor="#FFFDF5"
                 android:textSize="18sp"
-                android:textStyle="bold"
-          />
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
 
-</FrameLayout>
+</ScrollView>
