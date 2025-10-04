@@ -19,7 +19,7 @@ class CircularProgressBar @JvmOverloads constructor(
     private val backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val progressPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var progress: Float = 0f
-    private val strokeWidth: Float = resources.displayMetrics.density * 16f
+    private val strokeWidth: Int = 20
     private var radius: Float = 0f
     private val maxProgress = 100f
 
@@ -45,29 +45,25 @@ class CircularProgressBar @JvmOverloads constructor(
         backgroundPaint.apply {
             color = Color.TRANSPARENT
             style = Paint.Style.STROKE
-            strokeWidth = this@CircularProgressBar.strokeWidth
+            strokeWidth = this@CircularProgressBar.strokeWidth.toFloat()
         }
 
         progressPaint.apply {
             style = Paint.Style.STROKE
-            strokeWidth = this@CircularProgressBar.strokeWidth
+            strokeWidth = this@CircularProgressBar.strokeWidth.toFloat()
             strokeCap = Paint.Cap.ROUND
         }
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        radius = (minOf(w, h) / 2f) - (strokeWidth / 2f)
+        radius = (minOf(w, h) / 2f) - strokeWidth
 
         progressShader = SweepGradient(
             w / 2f,
             h / 2f,
-            intArrayOf(
-                Color.parseColor("#1DF2F8"),
-                Color.parseColor("#00F8FF"),
-                Color.parseColor("#001DF2F8"),
-            ),
-            floatArrayOf(0f, 0.72f, 1f),
+            intArrayOf(Color.parseColor("#1A7F7F"), Color.parseColor("#009999")),
+            floatArrayOf(0f, 1f),
         ).also(progressPaint::setShader)
     }
 
@@ -96,10 +92,10 @@ class CircularProgressBar @JvmOverloads constructor(
         }
 
         canvas.drawArc(
-            strokeWidth / 2f,
-            strokeWidth / 2f,
-            width - (strokeWidth / 2f),
-            height - (strokeWidth / 2f),
+            strokeWidth.toFloat(),
+            strokeWidth.toFloat(),
+            (width - strokeWidth).toFloat(),
+            (height - strokeWidth).toFloat(),
             startAngle,
             sweepAngle,
             false,
