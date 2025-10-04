@@ -36,6 +36,7 @@ class ArticleFragment : Fragment() {
         setupRecyclerView()
         setupSearchBar()
         setupBackButton()
+        setupSettingsButton()
 
         // стартовый список
         showArticles(allArticles)
@@ -76,6 +77,12 @@ class ArticleFragment : Fragment() {
             // если экран живёт в нижней навигации — можно вернуть на home
             // findNavController().navigate(R.id.nav_home)
             findNavController().navigateUp()
+        }
+    }
+
+    private fun setupSettingsButton() {
+        binding.imageSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_global_settingsFragment)
         }
     }
 

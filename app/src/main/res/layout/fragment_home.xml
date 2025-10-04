@@ -45,10 +45,14 @@
 
 
             <ImageView
+                android:id="@+id/imageSettings"
                 android:layout_width="60dp"
                 android:layout_height="53dp"
                 android:layout_gravity="center"
-                android:contentDescription="@null"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/settings_title"
+                android:focusable="true"
                 android:src="@drawable/settings_bg" />
 
         </LinearLayout>

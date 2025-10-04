@@ -84,6 +84,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        binding.imageSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_global_settingsFragment)
+        }
+
         binding.continueLesson.setOnClickListener {
             val navController = findNavController()
             val lessonProgress = LessonProgressPreferences.getCurrentLesson(requireContext())
