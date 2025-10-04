@@ -47,6 +47,8 @@ class LessonStepDetailFragment : Fragment() {
         setupButton()
         observeUiState()
         observeEvents()
+
+        binding.tvLessonTitle.applyVerticalGradient()
     }
 
     override fun onDestroyView() {

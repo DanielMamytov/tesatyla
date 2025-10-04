@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.databinding.ItemSkillProgressBinding
+import sr.otaryp.tesatyla.presentation.ui.lessons.applyVerticalGradient
 
 class SkillProgressAdapter(
     private val onSkillSelected: (SkillProgressItem) -> Unit,
@@ -49,7 +50,9 @@ class SkillProgressAdapter(
             binding.statusIm.setImageResource(statusDrawable)
 
             binding.root.setOnClickListener { onSkillSelected(item) }
+            binding.textSkillTitle.applyVerticalGradient()
         }
+
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<SkillProgressItem>() {

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import sr.otaryp.tesatyla.databinding.FragmentArticleDetailBinding
+import sr.otaryp.tesatyla.presentation.ui.lessons.applyVerticalGradient
 
 class ArticleDetailFragment : Fragment() {
 
@@ -28,6 +29,8 @@ class ArticleDetailFragment : Fragment() {
         binding.textArticleTitle.text = args.articleTitle
         binding.textArticleContent.text = args.articleContent
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+
+        binding.textArticleTitle.applyVerticalGradient()
     }
 
     override fun onDestroyView() {

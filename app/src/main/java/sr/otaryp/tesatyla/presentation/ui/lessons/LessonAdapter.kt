@@ -1,7 +1,12 @@
 package sr.otaryp.tesatyla.presentation.ui.lessons
 
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +26,7 @@ class LessonAdapter(
         holder.bind(getItem(position), onLessonSelected)
     }
 
+
     class LessonViewHolder(
         private val binding: ItemLessonBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -39,9 +45,10 @@ class LessonAdapter(
                 }
             }
 
-            binding.titleTv.text = item.title
-            binding.textDescription.text = item.description
 
+            binding.titleTv.text = item.title
+
+            binding.textDescription.text = item.description
 
 
 
@@ -55,8 +62,15 @@ class LessonAdapter(
 
             binding.btnContinue.setOnClickListener { onLessonSelected(item) }
             binding.root.setOnClickListener { onLessonSelected(item) }
+
+            binding.titleTv.applyVerticalGradient()
+            binding.btnContinue.applyVerticalGradient()
         }
+
+
     }
+
+
 
     private object DiffCallback : DiffUtil.ItemCallback<LessonListItem>() {
         override fun areItemsTheSame(oldItem: LessonListItem, newItem: LessonListItem): Boolean =

@@ -27,6 +27,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/titleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
@@ -68,43 +69,26 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/session_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_18pt_bold"
-                    android:text="Focus Session"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/timer"
+                    android:id="@+id/timerTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_18pt_extrabold"
                     android:text="25:00"
                     android:textSize="40sp" />
 
-                <TextView
-                    android:id="@+id/session_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/inter_18pt_bold"
-                    android:text="Focus 25 min · Break 5 min"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+
             </LinearLayout>
 
-            <sr.otaryp.tesatyla.presentation.ui.custom.CircularProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:layout_margin="50dp"
-                app:cpb_progressColor="@color/white"
-            app:cpb_trackColor="#33FFFFFF"
-            app:cpb_strokeWidth="14dp"
-            app:cpb_headFade="true" />
+<!--            <sr.otaryp.tesatyla.presentation.ui.custom.CircularProgressBar-->
+<!--                android:id="@+id/progress_bar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="bottom"-->
+<!--                android:layout_margin="50dp"-->
+<!--                app:cpb_progressColor="@color/white"-->
+<!--            app:cpb_trackColor="#33FFFFFF"-->
+<!--            app:cpb_strokeWidth="14dp"-->
+<!--            app:cpb_headFade="true" />-->
         </FrameLayout>
 
         <FrameLayout
@@ -160,6 +144,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/CompletedTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_18pt_bold"

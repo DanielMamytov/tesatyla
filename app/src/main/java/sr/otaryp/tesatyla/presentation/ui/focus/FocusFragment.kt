@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.preferences.FocusPreferences
 import sr.otaryp.tesatyla.databinding.FragmentFocusBinding
+import sr.otaryp.tesatyla.presentation.ui.lessons.applyVerticalGradient
 
 class FocusFragment : Fragment() {
 
@@ -36,6 +37,10 @@ class FocusFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupUi()
         setupListeners()
+
+        binding.timerTv.applyVerticalGradient()
+        binding.titleTv.applyVerticalGradient()
+        binding.completedPomodoros.applyVerticalGradient()
     }
 
     override fun onDestroyView() {
@@ -45,12 +50,7 @@ class FocusFragment : Fragment() {
     }
 
     private fun setupUi() {
-//        binding.progressBar.max = PROGRESS_MAX
-        binding.sessionInfo.text = getString(
-            R.string.focus_session_info,
-            FOCUS_DURATION_MINUTES,
-            BREAK_DURATION_MINUTES,
-        )
+
         updateCompletedPomodoros()
         updateSessionLabels()
         updateTimerUi()
@@ -126,12 +126,12 @@ class FocusFragment : Fragment() {
         } else {
             R.string.break_session_label
         }
-        binding.sessionStatus.setText(sessionLabelRes)
-        binding.sessionInfo.text = getString(
-            R.string.focus_session_info,
-            FOCUS_DURATION_MINUTES,
-            BREAK_DURATION_MINUTES,
-        )
+//        binding.sessionStatus.setText(sessionLabelRes)
+//        binding.sessionInfo.text = getString(
+//            R.string.focus_session_info,
+//            FOCUS_DURATION_MINUTES,
+//            BREAK_DURATION_MINUTES,
+//        )
     }
 
     private fun updateCompletedPomodoros() {
@@ -140,7 +140,7 @@ class FocusFragment : Fragment() {
     }
 
     private fun updateTimerUi() {
-        binding.timer.text = formatTime(remainingMillis)
+//        binding.timer.text = formatTime(remainingMillis)
         val duration = if (isFocusSession) FOCUS_DURATION_MILLIS else BREAK_DURATION_MILLIS
         val progress = if (duration == 0L) 0 else {
             val elapsed = duration - remainingMillis
@@ -148,8 +148,8 @@ class FocusFragment : Fragment() {
                 .toInt()
                 .coerceIn(0, PROGRESS_MAX)
         }
-        binding.progressBar.setMax(PROGRESS_MAX)
-        binding.progressBar.setProgress(progress)   // <<— используем кастомный метод
+//        binding.progressBar.setMax(PROGRESS_MAX)
+//        binding.progressBar.setProgress(progress)   // <<— используем кастомный метод
     }
 
 

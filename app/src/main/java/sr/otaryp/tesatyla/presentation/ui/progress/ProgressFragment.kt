@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.databinding.FragmentProgressBinding
+import sr.otaryp.tesatyla.presentation.ui.lessons.applyVerticalGradient
 
 class ProgressFragment : Fragment() {
 
@@ -39,6 +40,11 @@ class ProgressFragment : Fragment() {
         setupToolbar()
         setupSkillList()
         observeState()
+
+        binding.pomodoroCycles.applyVerticalGradient()
+        binding.skillMasteryTitle.applyVerticalGradient()
+        binding.textProgressPercentage.applyVerticalGradient()
+        binding.textProgressTitle.applyVerticalGradient()
 //        binding.pomodoroProgress.max = ProgressViewModel.DAILY_POMODORO_GOAL
     }
 
@@ -75,11 +81,11 @@ class ProgressFragment : Fragment() {
 
     private fun renderState(state: ProgressUiState) = with(binding) {
         textProgressPercentage.text = getString(R.string.progress_percentage_format, state.overallPercent)
-        textLessonsCompleted.text = getString(
-            R.string.progress_lessons_completed,
-            state.completedSteps,
-            state.totalSteps,
-        )
+//        textLessonsCompleted.text = getString(
+//            R.string.progress_lessons_completed,
+//            state.completedSteps,
+//            state.totalSteps,
+//        )
         pomodoroCycles.text = getString(R.string.progress_cycles_format, state.pomodoroCycles)
 
         skillAdapter.submitList(state.skills)

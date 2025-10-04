@@ -59,57 +59,57 @@
             android:src="@drawable/quest_photo"
             android:contentDescription="@null" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/steps_bg_im"
-            android:orientation="vertical"
-            android:padding="20dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="20dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:background="@drawable/steps_bg_im"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="20dp">-->
 
-            <TextView
-                android:id="@+id/tvLessonDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_18pt_medium"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                tools:text="Train in timed battles: 25 minutes of focus, 5 minutes of rest." />
-        </LinearLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/tvLessonDescription"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/inter_18pt_medium"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="14sp"-->
+<!--                tools:text="Train in timed battles: 25 minutes of focus, 5 minutes of rest." />-->
+<!--        </LinearLayout>-->
 
-        <TextView
-            android:id="@+id/tvLessonTeachingLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/inter_18pt_bold"
-            android:text="@string/lesson_teaches_label"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/tvLessonTeachingLabel"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:fontFamily="@font/inter_18pt_bold"-->
+<!--            android:text="@string/lesson_teaches_label"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="18sp" />-->
 
-        <TextView
-            android:id="@+id/tvLessonTeaching"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter_18pt_regular"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            tools:text="This lesson introduces you to the Pomodoro Technique — a method to increase focus and avoid burnout." />
+<!--        <TextView-->
+<!--            android:id="@+id/tvLessonTeaching"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="20dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:fontFamily="@font/inter_18pt_regular"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="14sp"-->
+<!--            tools:text="This lesson introduces you to the Pomodoro Technique — a method to increase focus and avoid burnout." />-->
 
-        <TextView
-            android:id="@+id/tvStepsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/inter_18pt_bold"
-            android:text="@string/lesson_steps_title"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/tvStepsTitle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:fontFamily="@font/inter_18pt_bold"-->
+<!--            android:text="@string/lesson_steps_title"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="18sp" />-->
 
         <sr.otaryp.tesatyla.presentation.ui.common.NonScrollableRecyclerView
             android:id="@+id/rvSteps"

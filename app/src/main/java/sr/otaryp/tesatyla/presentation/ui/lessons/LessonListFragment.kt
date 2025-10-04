@@ -1,9 +1,13 @@
 package sr.otaryp.tesatyla.presentation.ui.lessons
 
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -48,8 +52,28 @@ class LessonListFragment : Fragment() {
         setupToolbar()
         setupRecyclerView()
         observeLessons()
+        applyVerticalGradient(binding.tvTitle)
     }
-
+    private fun applyVerticalGradient(tv: TextView) {
+        tv.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+            override fun onLayoutChange(
+                v: View, left: Int, top: Int, right: Int, bottom: Int,
+                oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int
+            ) {
+                tv.removeOnLayoutChangeListener(this)
+                val h = tv.height.coerceAtLeast(tv.lineHeight) // на случай wrap_content до измерения
+                val shader = LinearGradient(
+                    0f, 0f, 0f, h.toFloat(),                 // вертикальный градиент сверху вниз
+                    intArrayOf(Color.parseColor("#FBF990"),  // light
+                        Color.parseColor("#F8BB24")), // dark
+                    null,
+                    Shader.TileMode.CLAMP
+                )
+                tv.paint.shader = shader
+                tv.invalidate()
+            }
+        })
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -60,7 +84,6 @@ class LessonListFragment : Fragment() {
             findNavController().navigateUp()
         }
         val skill = SkillCatalog.findSkill(args.skillId)
-        binding.tvTitle.text = skill?.title ?: getString(R.string.lesson_list_title_all)
     }
 
     private fun setupRecyclerView() {

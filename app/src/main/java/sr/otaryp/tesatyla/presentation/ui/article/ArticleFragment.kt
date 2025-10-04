@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.content.InspirationRepository
 import sr.otaryp.tesatyla.databinding.FragmentArticleBinding
+import sr.otaryp.tesatyla.presentation.ui.lessons.applyVerticalGradient
 
 class ArticleFragment : Fragment() {
 
@@ -38,6 +39,7 @@ class ArticleFragment : Fragment() {
 
         // стартовый список
         showArticles(allArticles)
+        binding.titleTv.applyVerticalGradient()
     }
 
     private fun setupRecyclerView() {

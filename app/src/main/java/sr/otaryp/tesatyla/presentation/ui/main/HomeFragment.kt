@@ -1,12 +1,15 @@
 package sr.otaryp.tesatyla.presentation.ui.main
 
 import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 
 import androidx.fragment.app.Fragment
@@ -40,7 +43,35 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         renderContinueLessonState()
         setupClickListeners()
+        applyVerticalGradient(binding.textWelcome)
+        applyVerticalGradient(binding.textWelcome1)
+        applyVerticalGradient(binding.continueLessonTv)
+        applyVerticalGradient(binding.discoverInspirationTv)
+        applyVerticalGradient(binding.dailyTipTv)
+        applyVerticalGradient(binding.randomArticleTv)
     }
+
+    private fun applyVerticalGradient(tv: TextView) {
+        tv.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+            override fun onLayoutChange(
+                v: View, left: Int, top: Int, right: Int, bottom: Int,
+                oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int
+            ) {
+                tv.removeOnLayoutChangeListener(this)
+                val h = tv.height.coerceAtLeast(tv.lineHeight) // на случай wrap_content до измерения
+                val shader = LinearGradient(
+                    0f, 0f, 0f, h.toFloat(),                 // вертикальный градиент сверху вниз
+                    intArrayOf(Color.parseColor("#FBF990"),  // light
+                        Color.parseColor("#F8BB24")), // dark
+                    null,
+                    Shader.TileMode.CLAMP
+                )
+                tv.paint.shader = shader
+                tv.invalidate()
+            }
+        })
+    }
+
 
     private fun renderContinueLessonState() {
         val lessonProgress = LessonProgressPreferences.getCurrentLesson(requireContext())

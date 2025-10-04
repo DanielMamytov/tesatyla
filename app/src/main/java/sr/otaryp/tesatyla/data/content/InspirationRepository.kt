@@ -88,15 +88,15 @@ object InspirationRepository {
 
     fun imageFor(articleId: Int): Int = when (articleId) {
         1 -> R.drawable.article_im1
-        2 -> R.drawable.article_im1
-        3 -> R.drawable.article_im1
-        4 -> R.drawable.article_im1
-        5 -> R.drawable.article_im1
-        6 -> R.drawable.article_im1
-        7 -> R.drawable.article_im1
-        8 -> R.drawable.article_im1
-        9 -> R.drawable.article_im1
-        10 -> R.drawable.article_im1
+        2 -> R.drawable.article_im2
+        3 -> R.drawable.article_im3
+        4 -> R.drawable.article_im4
+        5 -> R.drawable.article_im5
+        6 -> R.drawable.article_im6
+        7 -> R.drawable.article_im7
+        8 -> R.drawable.article_im8
+        9 -> R.drawable.article_im9
+        10 -> R.drawable.article_im3
         else -> R.drawable.article_im1
     }
 }

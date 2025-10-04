@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.preferences.LaunchPreferences
 import sr.otaryp.tesatyla.databinding.FragmentOnBoardingBinding
+import sr.otaryp.tesatyla.presentation.ui.lessons.applyVerticalGradient
 import kotlin.math.abs
 
 class OnBoardingFragment : Fragment() {
@@ -78,6 +79,8 @@ class OnBoardingFragment : Fragment() {
             }
             findNavController().navigate(R.id.nav_home, null, options)
         }
+
+        binding.btnEnterKingdom.applyVerticalGradient()
     }
 
 

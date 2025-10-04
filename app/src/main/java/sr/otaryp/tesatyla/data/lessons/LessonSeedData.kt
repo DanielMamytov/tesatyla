@@ -20,7 +20,7 @@ internal object LessonSeedData {
         LessonSeed(
             id = 1,
             title = "Lesson 1: Pomodoro Trials",
-            description = "Train ies of rest.",
+            description = "Train in timed battles: 25 minutes of focus, 5 minutes of rest.",
             teaching = "This lesson introduces you to the Pomodoro Technique — a method to increase focus and avoid burnout. By working in short, structured sprints, you’ll learn to manage your energy, stay consistent, and reduce mental fatigue.",
             steps = listOf(
                 LessonStepSeed(

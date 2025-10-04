@@ -47,6 +47,8 @@ class LessonDetailFragment : Fragment() {
         setupRecyclerView()
         setupCallToAction()
         observeUiState()
+
+        binding.tvLessonTitle.applyVerticalGradient()
     }
 
     override fun onDestroyView() {
@@ -91,8 +93,8 @@ class LessonDetailFragment : Fragment() {
                 viewModel.uiState.collect { state ->
                     currentState = state
                     binding.tvLessonTitle.text = state.title
-                    binding.tvLessonDescription.text = state.description
-                    binding.tvLessonTeaching.text = state.teaching
+//                    binding.tvLessonDescription.text = state.description
+//                    binding.tvLessonTeaching.text = state.teaching
                     val hasSteps = state.totalSteps > 0
                     val hasIncompleteStep = state.steps.any { !it.isCompleted }
                     binding.btnLessonCta.isVisible = hasSteps

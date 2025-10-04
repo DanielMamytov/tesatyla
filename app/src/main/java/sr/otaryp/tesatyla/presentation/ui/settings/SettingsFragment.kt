@@ -22,6 +22,7 @@ import sr.otaryp.tesatyla.data.preferences.FocusPreferences
 import sr.otaryp.tesatyla.data.preferences.LaunchPreferences
 import sr.otaryp.tesatyla.data.preferences.LessonProgressPreferences
 import sr.otaryp.tesatyla.databinding.FragmentSettingsBinding
+import sr.otaryp.tesatyla.presentation.ui.lessons.applyVerticalGradient
 
 class SettingsFragment : Fragment() {
 
@@ -40,6 +41,7 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
+        binding.mainTv.applyVerticalGradient()
     }
 
     override fun onDestroyView() {
@@ -49,7 +51,7 @@ class SettingsFragment : Fragment() {
 
     private fun setupClickListeners() {
         binding.buttonShareApp.setOnClickListener { shareApp() }
-        binding.buttonRateUs.setOnClickListener { openStorePage() }
+        binding.btnRateUs.setOnClickListener { openStorePage() }
         binding.buttonPrivacyPolicy.setOnClickListener { openPrivacyPolicy() }
         binding.buttonTerms.setOnClickListener { openTermsAndConditions() }
         binding.buttonClearData.setOnClickListener { confirmClearAppData() }

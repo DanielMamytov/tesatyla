@@ -45,6 +45,8 @@ class LessonStepsAdapter(
 
             binding.btnOpenStep.setOnClickListener { onStepSelected(item) }
             binding.root.setOnClickListener { onStepSelected(item) }
+
+            binding.btnOpenStep.applyVerticalGradient()
         }
     }
 

@@ -1,6 +1,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="#FDE17D" /> <!-- Background color -->
-    <corners android:radius="18px" /> <!-- Rounded corners -->
+    <corners android:radius="22px" /> <!-- Rounded corners -->
 
     <gradient
         android:angle="270"

@@ -1,77 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="@color/white"
+    android:background="@drawable/settings_screen_bg"
     tools:context=".presentation.ui.settings.SettingsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textTitle"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings_title"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
+            android:background="#420840"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="30dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonShareApp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_share_app" />
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/arrow_back"
+                android:text="Back"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonRateUs"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_rate_us"
-            android:layout_marginTop="12dp" />
+            <TextView
+                android:id="@+id/mainTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/inter_18pt_bold"
+                android:paddingTop="20dp"
+                android:text="settings"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+
+        </FrameLayout>
 
         <View
+            android:id="@+id/goldDivider"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="24dp"
-            android:background="@color/settings_divider" />
+            android:layout_height="3dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/gradient_view" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonPrivacyPolicy"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_privacy_policy" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginHorizontal="40dp"
+            android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonTerms"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_terms_conditions"
-            android:layout_marginTop="12dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="24dp"
-            android:background="@color/settings_divider" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonShareApp"
+                android:fontFamily="@font/inter_18pt_extrabold"
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonClearData"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_clear_data" />
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/btn_settings"
+                android:elevation="6dp"
+                android:letterSpacing="0.02"
+                android:text="Share the App"
+                android:textAllCaps="true"
+                android:textColor="#FFFDF5"
+                android:textSize="18sp"
+                android:textStyle="bold"
+               />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnRateUs"
+
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/btn_settings"
+                android:layout_marginBottom="50dp"
+
+                android:elevation="6dp"
+                android:letterSpacing="0.02"
+                android:text="RATE US"
+                android:textAllCaps="true"
+                android:textColor="#FFFDF5"
+                android:textSize="18sp"
+                android:fontFamily="@font/inter_18pt_extrabold"
+
+                android:textStyle="bold"
+        />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonPrivacyPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/btn_settings"
+                android:layout_marginBottom="50dp"
+                android:elevation="6dp"
+                android:letterSpacing="0.02"
+                android:text="Privacy Policy"
+                android:fontFamily="@font/inter_18pt_extrabold"
+                android:textAllCaps="true"
+                android:textColor="#FFFDF5"
+                android:textSize="18sp"
+                android:textStyle="bold"
+       />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonTerms"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/btn_settings"
+                android:fontFamily="@font/inter_18pt_extrabold"
+
+                android:elevation="6dp"
+                android:letterSpacing="0.02"
+                android:text="Terms and Conditions"
+                android:layout_marginBottom="50dp"
+
+                android:textAllCaps="true"
+                android:textColor="#FFFDF5"
+                android:textSize="18sp"
+                android:textStyle="bold"
+              />
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonClearData"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/btn_settings"
+                android:elevation="6dp"
+                android:fontFamily="@font/inter_18pt_extrabold"
+
+                android:letterSpacing="0.02"
+                android:text="Clear App data"
+                android:textAllCaps="true"
+                android:textColor="#FFFDF5"
+                android:textSize="18sp"
+                android:textStyle="bold"
+          />
+        </LinearLayout>
 
     </LinearLayout>
-</ScrollView>
+
+</FrameLayout>

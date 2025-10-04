@@ -10,8 +10,7 @@
     <string name="onboarding_progress_description">Each completed lesson is a jewel in your crown. Watch your royal achievements grow brighter.</string>
     <string name="onboarding_enter_kingdom">Enter the Kingdom</string>
 
-    <string name="home_welcome_message">Rise, Young Knight!
-Your quests await.</string>
+    <string name="home_welcome_message">Rise, Young Knight!</string>
     <string name="home_continue_section_title">Continue Lesson</string>
     <string name="home_continue_card_title">Your quest continues</string>
     <string name="home_continue_card_in_progress">Pick up your sword where you left it.</string>
@@ -50,7 +49,7 @@ Your quests await.</string>
     <string name="lesson_step_number_format">Step %1$d</string>
     <string name="lesson_step_theory">Theory</string>
     <string name="lesson_step_practice">Practice</string>
-    <string name="lesson_step_complete">Complete Quest</string>
+    <string name="lesson_step_complete">Complete the Quest</string>
     <string name="lesson_step_completed_button">Quest Completed</string>
     <string name="lesson_step_detail_title_format">Step %1$d: %2$s</string>
     <string name="lesson_step_locked_detail">Finish the previous quest step to unlock this challenge.</string>
