@@ -156,6 +156,14 @@ class FocusFragment : Fragment() {
 
     private fun updateTimerUi() {
         binding.timerTv.text = formatTime(remainingMillis)
+        val duration = if (isFocusSession) FOCUS_DURATION_MILLIS else BREAK_DURATION_MILLIS
+        val progress = if (duration == 0L) 0 else {
+            val elapsed = duration - remainingMillis
+            ((elapsed.coerceAtLeast(0L).toFloat() / duration) * PROGRESS_MAX)
+                .toInt()
+                .coerceIn(0, PROGRESS_MAX)
+        }
+        binding.circularProgressBar.setProgress(progress.toFloat())
     }
 
 
