@@ -84,6 +84,9 @@ class LessonListFragment : Fragment() {
             findNavController().navigateUp()
         }
         val skill = SkillCatalog.findSkill(args.skillId)
+        binding.imageSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_global_settingsFragment)
+        }
     }
 
     private fun setupRecyclerView() {

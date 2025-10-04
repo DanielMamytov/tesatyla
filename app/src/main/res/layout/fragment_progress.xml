@@ -44,10 +44,15 @@
                     android:background="#00FFFFFF">
 
                     <ImageView
+                        android:id="@+id/imageSettings"
                         android:layout_width="60dp"
                         android:layout_height="53dp"
                         android:layout_gravity="end"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="@string/settings_title"
                         android:elevation="1dp"
+                        android:focusable="true"
                         android:src="@drawable/settings_bg" />
 
                     <View
