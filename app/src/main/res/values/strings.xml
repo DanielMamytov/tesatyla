@@ -52,6 +52,7 @@
     <string name="lesson_step_complete">Complete the Quest</string>
     <string name="lesson_step_completed_button">Quest Completed</string>
     <string name="lesson_step_detail_title_format">Step %1$d: %2$s</string>
+    <string name="lesson_step_detail_step_number_format">Step %1$d</string>
     <string name="lesson_step_locked_detail">Finish the previous quest step to unlock this challenge.</string>
     <string name="lesson_step_completed_message">Quest step completed! Return to the hall to keep progressing.</string>
     <string name="lesson_list_title_all">All Lessons</string>

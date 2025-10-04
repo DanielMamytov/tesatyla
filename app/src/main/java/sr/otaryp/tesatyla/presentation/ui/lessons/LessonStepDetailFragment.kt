@@ -71,11 +71,10 @@ class LessonStepDetailFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
                     binding.tvLessonTitle.text = state.lessonTitle
-                    val formattedTitle = if (state.stepNumber > 0 && state.stepTitle.isNotBlank()) {
+                    val formattedTitle = if (state.stepNumber > 0) {
                         getString(
-                            R.string.lesson_step_detail_title_format,
-                            state.stepNumber,
-                            state.stepTitle
+                            R.string.lesson_step_detail_step_number_format,
+                            state.stepNumber
                         )
                     } else {
                         state.stepTitle
