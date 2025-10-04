@@ -3,14 +3,16 @@ package sr.otaryp.tesatyla.presentation.ui.custom
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.SweepGradient
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.LinearInterpolator
 
 class CircularProgressBar @JvmOverloads constructor(
     context: Context,
-    attrs: AttributeSet? = null
+    attrs: AttributeSet? = null,
 ) : View(context, attrs) {
 
     private val backgroundPaint: Paint = Paint()
@@ -21,15 +23,12 @@ class CircularProgressBar @JvmOverloads constructor(
     private val maxProgress = 100f
 
     init {
-        // Paint for background circle (inactive portion)
         backgroundPaint.apply {
-            color = Color.parseColor("#E0E0E0")
+            color = Color.TRANSPARENT
             style = Paint.Style.STROKE
             strokeWidth = this@CircularProgressBar.strokeWidth.toFloat()
-            isAntiAlias = true
         }
 
-        // Paint for progress circle (active portion)
         progressPaint.apply {
             style = Paint.Style.STROKE
             strokeWidth = this@CircularProgressBar.strokeWidth.toFloat()
@@ -53,19 +52,41 @@ class CircularProgressBar @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        // Draw background circle
-        canvas.drawCircle(width / 2f, height / 2f, radius, backgroundPaint)
+        if (backgroundPaint.color != Color.TRANSPARENT) {
+            canvas.drawCircle(width / 2f, height / 2f, radius, backgroundPaint)
+        }
+
+        val startAngle = when {
+            isIndeterminate -> currentStartAngle
+            staticStartAngle != null -> staticStartAngle!!
+            else -> -90f
+        }
+
+        val sweepAngle = when {
+            isIndeterminate || staticStartAngle != null -> spinSweepAngle
+            else -> (360f * progress) / maxProgress
+        }
+
+        progressShader?.let { shader ->
+            gradientMatrix.reset()
+            gradientMatrix.postRotate(startAngle + 90f, width / 2f, height / 2f)
+            shader.setLocalMatrix(gradientMatrix)
+        }
 
         // Draw progress circle (animated)
         val angle = (360 * progress) / maxProgress
         canvas.drawArc(
-            strokeWidth.toFloat(), strokeWidth.toFloat(),
-            (width - strokeWidth).toFloat(), (height - strokeWidth).toFloat(),
-            -90f, angle, false, progressPaint
-        ) // -90 to start the arc from the top
+            strokeWidth.toFloat(),
+            strokeWidth.toFloat(),
+            (width - strokeWidth).toFloat(),
+            (height - strokeWidth).toFloat(),
+            startAngle,
+            sweepAngle,
+            false,
+            progressPaint,
+        )
     }
 
-    // Method to update progress dynamically
     fun setProgress(progress: Float) {
         this.progress = progress.coerceIn(0f, maxProgress)
         invalidate() // Redraw the view with updated progress

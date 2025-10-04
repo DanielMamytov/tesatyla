@@ -47,9 +47,11 @@ class FocusFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
+        binding.circularProgressBar.stopIndeterminateAnimation(resetToStart = true)
         countDownTimer?.cancel()
+        countDownTimer = null
         _binding = null
+        super.onDestroyView()
     }
 
     private fun setupUi() {
@@ -88,12 +90,14 @@ class FocusFragment : Fragment() {
         }.also { it.start() }
 
         isTimerRunning = true
+        binding.circularProgressBar.startIndeterminateAnimation()
     }
 
     private fun pauseTimer() {
         countDownTimer?.cancel()
         countDownTimer = null
         isTimerRunning = false
+        binding.circularProgressBar.stopIndeterminateAnimation()
     }
 
     private fun resetTimer() {
@@ -102,6 +106,7 @@ class FocusFragment : Fragment() {
         remainingMillis = FOCUS_DURATION_MILLIS
         updateSessionLabels()
         updateTimerUi()
+        binding.circularProgressBar.stopIndeterminateAnimation(resetToStart = true)
     }
 
     private fun handleTimerFinished() {
@@ -126,6 +131,7 @@ class FocusFragment : Fragment() {
             remainingMillis = FOCUS_DURATION_MILLIS
             updateSessionLabels()
             updateTimerUi()
+            binding.circularProgressBar.stopIndeterminateAnimation()
         }
     }
 
@@ -170,7 +176,6 @@ class FocusFragment : Fragment() {
     companion object {
         private const val FOCUS_DURATION_MINUTES = 25
         private const val BREAK_DURATION_MINUTES = 5
-        private const val PROGRESS_MAX = 100
         private const val SECONDS_IN_MINUTE = 60
         private const val TICK_INTERVAL_MILLIS = 1_000L
 
