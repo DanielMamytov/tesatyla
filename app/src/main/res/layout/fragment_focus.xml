@@ -79,16 +79,13 @@
 
             </LinearLayout>
 
-<!--            <sr.otaryp.tesatyla.presentation.ui.custom.CircularProgressBar-->
-<!--                android:id="@+id/progress_bar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_gravity="bottom"-->
-<!--                android:layout_margin="50dp"-->
-<!--                app:cpb_progressColor="@color/white"-->
-<!--            app:cpb_trackColor="#33FFFFFF"-->
-<!--            app:cpb_strokeWidth="14dp"-->
-<!--            app:cpb_headFade="true" />-->
+            <sr.otaryp.tesatyla.presentation.ui.custom.CircularProgressBar
+                android:id="@+id/circularProgressBar"
+                android:layout_width="220dp"
+                android:layout_gravity="center"
+                android:layout_height="220dp"
+                android:layout_centerInParent="true" />
+
         </FrameLayout>
 
         <FrameLayout
@@ -150,7 +147,7 @@
                         android:fontFamily="@font/inter_18pt_bold"
                         android:gravity="center"
                         android:text="Completed Pomodoros for\nthe day:"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/completed_pomodoros"
@@ -160,7 +157,7 @@
                         android:fontFamily="@font/inter_18pt_extrabold"
                         android:text="0"
                         android:textColor="@color/white"
-                        android:textSize="25sp"/>
+                        android:textSize="25sp" />
                 </LinearLayout>
 
             </LinearLayout>
