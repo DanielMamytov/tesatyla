@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import sr.otaryp.tesatyla.R
@@ -36,8 +35,15 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hideBottomNavigation()
-        startProgressAnimation()
-        launchNavigation()
+
+        val hasSeenSplash = LaunchPreferences.isSplashShown(requireContext())
+
+        if (hasSeenSplash) {
+            launchNavigation(skipDelay = true)
+        } else {
+            startProgressAnimation()
+            launchNavigation(skipDelay = false)
+        }
     }
 
     override fun onDestroyView() {
@@ -48,7 +54,7 @@ class SplashFragment : Fragment() {
     }
 
     private fun hideBottomNavigation() {
-        val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.bottom_nav)
+        val bottomNavigation = activity?.findViewById<View>(R.id.bottomBar)
         bottomNavigation?.visibility = View.GONE
     }
 
@@ -66,23 +72,29 @@ class SplashFragment : Fragment() {
         }
     }
 
-    private fun launchNavigation() {
+    private fun launchNavigation(skipDelay: Boolean) {
         viewLifecycleOwner.lifecycleScope.launch {
-            delay(SPLASH_DURATION)
-            val destination = if (LaunchPreferences.isOnboardingComplete(requireContext())) {
-                R.id.nav_home
-            } else {
-                R.id.onBoardingFragment
+            if (!skipDelay) {
+                delay(SPLASH_DURATION)
+                LaunchPreferences.setSplashShown(requireContext())
             }
-            val options = navOptions {
-                popUpTo(R.id.splashFragment) {
-                    inclusive = true
-                }
-            }
-
-            findNavController().navigate(destination, null, options)
-
+            navigateNext()
         }
+    }
+
+    private fun navigateNext() {
+        val destination = if (LaunchPreferences.isOnboardingComplete(requireContext())) {
+            R.id.nav_home
+        } else {
+            R.id.onBoardingFragment
+        }
+        val options = navOptions {
+            popUpTo(R.id.splashFragment) {
+                inclusive = true
+            }
+        }
+
+        findNavController().navigate(destination, null, options)
     }
 
     companion object {
