@@ -62,6 +62,9 @@ class ProgressFragment : Fragment() {
         binding.btnBack.setOnClickListener {
             findNavController().navigateUp()
         }
+        binding.imageSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_global_settingsFragment)
+        }
     }
 
     private fun setupSkillList() {
