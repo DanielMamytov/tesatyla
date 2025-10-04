@@ -157,8 +157,7 @@ class FocusFragment : Fragment() {
                 .toInt()
                 .coerceIn(0, PROGRESS_MAX)
         }
-//        binding.progressBar.setMax(PROGRESS_MAX)
-//        binding.progressBar.setProgress(progress)   // <<— используем кастомный метод
+        binding.circularProgressBar.setProgress(progress.toFloat())
     }
 
 

@@ -1,12 +1,10 @@
 package sr.otaryp.tesatyla.presentation.ui.custom
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.RadialGradient
-import android.graphics.Shader
+import android.graphics.SweepGradient
 import android.util.AttributeSet
 import android.view.View
 
@@ -17,9 +15,10 @@ class CircularProgressBar @JvmOverloads constructor(
 
     private val backgroundPaint: Paint = Paint()
     private val progressPaint: Paint = Paint()
-    private var progress: Float = 0f // Start with 0% progress
+    private var progress: Float = 0f
     private val strokeWidth: Int = 20 // Set stroke width
     private var radius: Float = 0f
+    private val maxProgress = 100f
 
     init {
         // Paint for background circle (inactive portion)
@@ -36,24 +35,19 @@ class CircularProgressBar @JvmOverloads constructor(
             strokeWidth = this@CircularProgressBar.strokeWidth.toFloat()
             isAntiAlias = true
         }
-
-        // Apply gradient to progress paint
-        val gradient = RadialGradient(0f, 0f, radius, Color.parseColor("#1A7F7F"), Color.parseColor("#009999"), Shader.TileMode.CLAMP)
-        progressPaint.shader = gradient
-
-        // Animate progress (example)
-        val animator = ValueAnimator.ofFloat(0f, 360f) // Animate from 0% to 100%
-        animator.duration = 2000 // Duration of animation (2 seconds)
-        animator.addUpdateListener {
-            progress = it.animatedValue as Float
-            invalidate() // Redraw view to show progress update
-        }
-        animator.start()
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         radius = (Math.min(w, h) / 2f) - strokeWidth // Set radius based on view size
+
+        // Apply gradient to progress paint once we know the view size
+        progressPaint.shader = SweepGradient(
+            w / 2f,
+            h / 2f,
+            intArrayOf(Color.parseColor("#1A7F7F"), Color.parseColor("#009999")),
+            floatArrayOf(0f, 1f)
+        )
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -63,7 +57,7 @@ class CircularProgressBar @JvmOverloads constructor(
         canvas.drawCircle(width / 2f, height / 2f, radius, backgroundPaint)
 
         // Draw progress circle (animated)
-        val angle = (360 * progress) / 100
+        val angle = (360 * progress) / maxProgress
         canvas.drawArc(
             strokeWidth.toFloat(), strokeWidth.toFloat(),
             (width - strokeWidth).toFloat(), (height - strokeWidth).toFloat(),
@@ -73,7 +67,7 @@ class CircularProgressBar @JvmOverloads constructor(
 
     // Method to update progress dynamically
     fun setProgress(progress: Float) {
-        this.progress = progress
+        this.progress = progress.coerceIn(0f, maxProgress)
         invalidate() // Redraw the view with updated progress
     }
 }
