@@ -1,106 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/article_fragment_bg"
     tools:context=".presentation.ui.article.ArticleFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:drawableStart="@drawable/arrow_back"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageSettings"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/settings_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:text="Royal Insights"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="30dp">
+    <View
+        android:id="@+id/goldDivider"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/gradient_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTv" />
 
-            <TextView
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Back"
-                android:drawableStart="@drawable/arrow_back"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/search_bar_background"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/search_ic"
+        android:fontFamily="@font/poppins_regular"
+        android:hint="Search"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingVertical="10dp"
+        android:textColor="#666666A1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/goldDivider" />
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="end"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/settings_bg" />
+    <TextView
+        android:id="@+id/textEmptyState"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_scroll_note"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="No matching articles found"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        tools:visibility="gone" />
 
-            <TextView
-                android:id="@+id/titleTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:paddingTop="20dp"
-                android:text="Royal Insights"
-                android:textSize="25sp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textEmptyState"
+        tools:itemCount="10"
+        tools:listitem="@layout/article_item" />
 
-
-        </FrameLayout>
-
-        <View
-            android:id="@+id/goldDivider"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/gradient_view"
-            />
-
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search"
-            android:paddingStart="16dp"
-            android:fontFamily="@font/poppins_regular"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/search_ic"
-            android:paddingVertical="10dp"
-            android:layout_marginHorizontal="30dp"
-            android:paddingEnd="16dp"
-            android:textColor="#666666A1"
-            android:background="@drawable/search_bar_background"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:id="@+id/textEmptyState"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"
-            android:padding="16dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="No matching articles found"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_regular"
-            android:background="@drawable/bg_scroll_note"
-            tools:visibility="gone"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            tools:itemCount="20"
-            android:layout_marginBottom="20dp"
-            tools:listitem="@layout/article_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"/>
-    </LinearLayout>
-
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

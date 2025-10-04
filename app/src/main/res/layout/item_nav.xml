@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="14dp"
         android:text="Label"
+        android:ellipsize="end"
         android:lines="1"
         android:textSize="18sp"
         android:textStyle="bold"

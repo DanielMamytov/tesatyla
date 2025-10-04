@@ -41,6 +41,7 @@ class FocusFragment : Fragment() {
         binding.timerTv.applyVerticalGradient()
         binding.titleTv.applyVerticalGradient()
         binding.completedPomodoros.applyVerticalGradient()
+        binding.CompletedTv.applyVerticalGradient()
     }
 
     override fun onDestroyView() {
@@ -140,7 +141,7 @@ class FocusFragment : Fragment() {
     }
 
     private fun updateTimerUi() {
-//        binding.timer.text = formatTime(remainingMillis)
+        binding.timerTv.text = formatTime(remainingMillis)
         val duration = if (isFocusSession) FOCUS_DURATION_MILLIS else BREAK_DURATION_MILLIS
         val progress = if (duration == 0L) 0 else {
             val elapsed = duration - remainingMillis
