@@ -50,6 +50,9 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
         binding.buttonShareApp.setOnClickListener { shareApp() }
         binding.btnRateUs.setOnClickListener { openStorePage() }
         binding.buttonPrivacyPolicy.setOnClickListener { openPrivacyPolicy() }

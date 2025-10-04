@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 import sr.otaryp.tesatyla.R
@@ -37,6 +38,7 @@ class FocusFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupUi()
         setupListeners()
+        setupBackNavigation()
 
         binding.timerTv.applyVerticalGradient()
         binding.titleTv.applyVerticalGradient()
@@ -60,6 +62,12 @@ class FocusFragment : Fragment() {
         binding.btnStart.setOnClickListener { startTimer() }
         binding.btnPause.setOnClickListener { pauseTimer() }
         binding.btnReplay.setOnClickListener { resetTimer() }
+    }
+
+    private fun setupBackNavigation() {
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun startTimer() {
