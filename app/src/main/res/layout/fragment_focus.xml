@@ -81,9 +81,9 @@
 
             <sr.otaryp.tesatyla.presentation.ui.custom.CircularProgressBar
                 android:id="@+id/circularProgressBar"
-                android:layout_width="220dp"
+                android:layout_width="210dp"
                 android:layout_gravity="center"
-                android:layout_height="220dp" />
+                android:layout_height="210dp" />
 
         </FrameLayout>
 

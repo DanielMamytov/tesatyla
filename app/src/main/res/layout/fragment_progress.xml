@@ -97,6 +97,12 @@
                 android:fontFamily="@font/inter_18pt_extrabold"
                 android:text="0%"
                 android:textSize="40sp" />
+            <sr.otaryp.tesatyla.presentation.ui.custom.CircularProgressBar
+                android:id="@+id/circularProgressBar"
+                android:layout_width="210dp"
+                android:layout_gravity="center"
+                android:layout_height="210dp" />
+
         </FrameLayout>
 
 <!--        <TextView-->
