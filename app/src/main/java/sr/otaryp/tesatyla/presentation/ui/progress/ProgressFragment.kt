@@ -84,6 +84,7 @@ class ProgressFragment : Fragment() {
 
     private fun renderState(state: ProgressUiState) = with(binding) {
         textProgressPercentage.text = getString(R.string.progress_percentage_format, state.overallPercent)
+        circularProgressBar.animateProgress(state.overallPercent.toFloat())
 //        textLessonsCompleted.text = getString(
 //            R.string.progress_lessons_completed,
 //            state.completedSteps,

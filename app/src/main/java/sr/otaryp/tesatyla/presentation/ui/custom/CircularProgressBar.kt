@@ -9,6 +9,7 @@ import android.graphics.Paint
 import android.graphics.SweepGradient
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 
 class CircularProgressBar @JvmOverloads constructor(
@@ -40,6 +41,8 @@ class CircularProgressBar @JvmOverloads constructor(
             invalidate()
         }
     }
+
+    private var progressAnimator: ValueAnimator? = null
 
     init {
         backgroundPaint.apply {
@@ -104,7 +107,32 @@ class CircularProgressBar @JvmOverloads constructor(
     }
 
     fun setProgress(progress: Float) {
-        this.progress = progress.coerceIn(0f, maxProgress)
+        progressAnimator?.cancel()
+        updateProgress(progress.coerceIn(0f, maxProgress))
+    }
+
+    fun animateProgress(targetProgress: Float, duration: Long = 800L) {
+        val startProgress = progress
+        val clampedTarget = targetProgress.coerceIn(0f, maxProgress)
+
+        if (clampedTarget == startProgress) {
+            setProgress(clampedTarget)
+            return
+        }
+
+        progressAnimator?.cancel()
+        progressAnimator = ValueAnimator.ofFloat(startProgress, clampedTarget).apply {
+            this.duration = duration
+            interpolator = DecelerateInterpolator()
+            addUpdateListener { animator ->
+                updateProgress(animator.animatedValue as Float)
+            }
+            start()
+        }
+    }
+
+    private fun updateProgress(newProgress: Float) {
+        progress = newProgress
         staticStartAngle = null
         invalidate()
     }
@@ -138,6 +166,7 @@ class CircularProgressBar @JvmOverloads constructor(
 
     override fun onDetachedFromWindow() {
         rotationAnimator.cancel()
+        progressAnimator?.cancel()
         super.onDetachedFromWindow()
     }
 }
