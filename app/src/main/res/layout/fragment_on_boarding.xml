@@ -8,67 +8,80 @@
     android:paddingHorizontal="24dp"
     tools:context=".presentation.ui.onboarding.OnBoardingFragment">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="240dp"
+            android:layout_gravity="bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:background="@drawable/paper"
-                android:contentDescription="@null" />
+                android:layout_height="wrap_content">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPagerOnboarding"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:overScrollMode="never"
-                android:padding="15dp"
-                tools:listitem="@layout/item_onboarding_slide" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:background="@drawable/paper"
+                    android:contentDescription="@null" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPagerOnboarding"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:padding="15dp"
+                    tools:listitem="@layout/item_onboarding_slide" />
+            </FrameLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnEnterKingdom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/btn_enter_kingdom"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.03"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingHorizontal="28dp"
+                android:paddingVertical="14dp"
+                android:text="@string/onboarding_enter_kingdom"
+                android:textAllCaps="true"
+                android:textColor="#FFE08A"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
         </FrameLayout>
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabDotsOnboarding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="88dp"
+            android:layout_marginBottom="20dp"
             app:tabGravity="center"
             app:tabIndicator="@android:color/transparent"
+            android:background="#00FFFFFF"
             app:tabIndicatorFullWidth="false"
             app:tabMode="fixed"
             app:tabRippleColor="@android:color/transparent" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnEnterKingdom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/btn_enter_kingdom"
-            android:includeFontPadding="false"
-            android:letterSpacing="0.03"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:paddingHorizontal="28dp"
-            android:paddingVertical="14dp"
-            android:text="@string/onboarding_enter_kingdom"
-            android:textAllCaps="true"
-            android:textColor="#FFE08A"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
-
-    </FrameLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
