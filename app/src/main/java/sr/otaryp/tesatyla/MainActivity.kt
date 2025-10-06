@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.addCallback
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var navController: NavController
+    private lateinit var backPressedCallback: OnBackPressedCallback
     private val destinationsWithBottomNav = setOf(
         R.id.nav_home,
         R.id.nav_lessons,
@@ -55,13 +56,17 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_home
         ) ?: R.id.nav_home
 
+        backPressedCallback = object : OnBackPressedCallback(false) {
+            override fun handleOnBackPressed() {
+                this@MainActivity.handleOnBackPressed()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, backPressedCallback)
+
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-
-        onBackPressedDispatcher.addCallback(this) {
-            handleOnBackPressed()
-        }
+        backPressedCallback.isEnabled = true
 
         val bottomNav = findViewById<View>(R.id.bottomBar)
 
@@ -70,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             destinationToNavIndex[destination.id]?.let { index ->
                 bottomNav?.setSelectedIndex(index)
             }
+            backPressedCallback.isEnabled = destination.id != R.id.onBoardingFragment
         }
 
         bottomNav?.let { view ->
