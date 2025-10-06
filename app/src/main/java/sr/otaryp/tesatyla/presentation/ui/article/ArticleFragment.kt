@@ -96,7 +96,8 @@ class ArticleFragment : Fragment() {
         // Вариант с SafeArgs (как у тебя было ранее)
         val directions = ArticleFragmentDirections.actionNavArticlesToArticleDetailFragment(
             articleTitle = article.title,
-            articleContent = article.content
+            articleContent = article.content,
+            articleImageRes = InspirationRepository.imageFor(article.id)
         )
         findNavController().navigate(directions)
 

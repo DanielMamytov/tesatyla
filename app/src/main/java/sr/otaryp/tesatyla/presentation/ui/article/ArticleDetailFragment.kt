@@ -29,6 +29,7 @@ class ArticleDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.textArticleTitle.text = args.articleTitle
         binding.textArticleContent.text = args.articleContent
+        binding.imageArticleCover.setImageResource(args.articleImageRes)
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
         binding.imageSettings.setOnClickListener {
             findNavController().navigate(R.id.action_global_settingsFragment)
