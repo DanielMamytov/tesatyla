@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         val navOptions = NavOptions.Builder()
             .setLaunchSingleTop(true)
-            .setPopUpTo(R.id.nav_graph, false)
+            .setPopUpTo(navController.currentDestination?.id ?: destinationId, true)
             .build()
 
         navController.navigate(destinationId, null, navOptions)
