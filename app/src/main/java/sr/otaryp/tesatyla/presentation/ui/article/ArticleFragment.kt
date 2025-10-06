@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -37,6 +38,7 @@ class ArticleFragment : Fragment() {
         setupSearchBar()
         setupBackButton()
         setupSettingsButton()
+        setupSystemBackNavigation()
 
         // стартовый список
         showArticles(allArticles)
@@ -74,9 +76,13 @@ class ArticleFragment : Fragment() {
 
     private fun setupBackButton() {
         binding.btnBack.setOnClickListener {
-            // если экран живёт в нижней навигации — можно вернуть на home
-            // findNavController().navigate(R.id.nav_home)
-            findNavController().navigateUp()
+            navigateHome()
+        }
+    }
+
+    private fun setupSystemBackNavigation() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            navigateHome()
         }
     }
 
@@ -104,6 +110,13 @@ class ArticleFragment : Fragment() {
         // Если нужен переход по ID, раскомментируй этот вариант и поправь граф:
 //         val action = ArticleFragmentDirections.actionArticleFragmentToArticleDetailFragment(article.id)
 //         findNavController().navigate(action)
+    }
+
+    private fun navigateHome() {
+        val navController = findNavController()
+        if (!navController.popBackStack(R.id.nav_home, false)) {
+            navController.navigate(R.id.nav_home)
+        }
     }
 
     override fun onDestroyView() {

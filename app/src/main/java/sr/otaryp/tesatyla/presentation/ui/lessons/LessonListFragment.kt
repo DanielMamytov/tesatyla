@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -53,6 +54,7 @@ class LessonListFragment : Fragment() {
         setupRecyclerView()
         observeLessons()
         applyVerticalGradient(binding.tvTitle)
+        setupSystemBackNavigation()
     }
     private fun applyVerticalGradient(tv: TextView) {
         tv.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
@@ -81,11 +83,17 @@ class LessonListFragment : Fragment() {
 
     private fun setupToolbar() {
         binding.btnBack.setOnClickListener {
-            findNavController().navigateUp()
+            navigateHome()
         }
         val skill = SkillCatalog.findSkill(args.skillId)
         binding.imageSettings.setOnClickListener {
             findNavController().navigate(R.id.action_global_settingsFragment)
+        }
+    }
+
+    private fun setupSystemBackNavigation() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            navigateHome()
         }
     }
 
@@ -122,5 +130,12 @@ class LessonListFragment : Fragment() {
         val directions = LessonListFragmentDirections
             .actionNavLessonsToLessonDetailFragment(lesson.id)
         findNavController().navigate(directions)
+    }
+
+    private fun navigateHome() {
+        val navController = findNavController()
+        if (!navController.popBackStack(R.id.nav_home, false)) {
+            navController.navigate(R.id.nav_home)
+        }
     }
 }

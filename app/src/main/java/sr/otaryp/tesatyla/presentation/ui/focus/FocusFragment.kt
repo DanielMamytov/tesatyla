@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import java.util.Locale
@@ -40,6 +41,7 @@ class FocusFragment : Fragment() {
         setupUi()
         setupListeners()
         setupBackNavigation()
+        setupSystemBackNavigation()
 
         binding.timerTv.applyVerticalGradient()
         binding.titleTv.applyVerticalGradient()
@@ -70,7 +72,13 @@ class FocusFragment : Fragment() {
 
     private fun setupBackNavigation() {
         binding.btnBack.setOnClickListener {
-            findNavController().navigateUp()
+            navigateHome()
+        }
+    }
+
+    private fun setupSystemBackNavigation() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            navigateHome()
         }
     }
 
@@ -174,6 +182,13 @@ class FocusFragment : Fragment() {
         val minutes = TimeUnit.MILLISECONDS.toMinutes(millis)
         val seconds = TimeUnit.MILLISECONDS.toSeconds(millis) % SECONDS_IN_MINUTE
         return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
+    }
+
+    private fun navigateHome() {
+        val navController = findNavController()
+        if (!navController.popBackStack(R.id.nav_home, false)) {
+            navController.navigate(R.id.nav_home)
+        }
     }
 
     companion object {
