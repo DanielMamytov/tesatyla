@@ -14,8 +14,8 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="30dp">
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/btnBack"
@@ -30,7 +30,7 @@
                 android:id="@+id/imageSettings"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_gravity="end"
+                android:layout_gravity="end|top"
                 android:layout_marginEnd="20dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:maxWidth="280dp"
@@ -104,12 +104,13 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_18pt_regular"
                 android:paddingHorizontal="20dp"
+                android:textColor="@color/white"
                 android:paddingVertical="20dp"
                 android:textSize="14sp"
                 tools:text="Theory: The Pomodoro method divides work into cycles..." />
         </LinearLayout>
     </LinearLayout>
-    
+
 </ScrollView>
 
 

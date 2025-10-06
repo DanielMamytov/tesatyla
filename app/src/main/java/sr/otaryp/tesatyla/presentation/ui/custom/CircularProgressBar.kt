@@ -20,7 +20,7 @@ class CircularProgressBar @JvmOverloads constructor(
     private val backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val progressPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var progress: Float = 0f
-    private val strokeWidth: Int = 20
+    private val strokeWidth: Int = 45
     private var radius: Float = 0f
     private val maxProgress = 100f
 
