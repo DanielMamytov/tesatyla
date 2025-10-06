@@ -158,6 +158,10 @@
         <argument
             android:name="articleContent"
             app:argType="string" />
+        <argument
+            android:name="articleImageRes"
+            app:argType="reference"
+            android:defaultValue="@drawable/article_im1" />
     </fragment>
 
     <fragment
