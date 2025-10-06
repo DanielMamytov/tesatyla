@@ -24,6 +24,7 @@ class FocusFragment : Fragment() {
     private var isTimerRunning = false
     private var isFocusSession = true
     private var remainingMillis = FOCUS_DURATION_MILLIS
+    private var sessionDurationMillis = FOCUS_DURATION_MILLIS
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +48,7 @@ class FocusFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        binding.circularProgressBar.stopIndeterminateAnimation(resetToStart = true)
+        binding.circularProgressBar.setProgress(0f)
         countDownTimer?.cancel()
         countDownTimer = null
         _binding = null
@@ -90,14 +91,12 @@ class FocusFragment : Fragment() {
         }.also { it.start() }
 
         isTimerRunning = true
-        binding.circularProgressBar.startIndeterminateAnimation()
     }
 
     private fun pauseTimer() {
         countDownTimer?.cancel()
         countDownTimer = null
         isTimerRunning = false
-        binding.circularProgressBar.stopIndeterminateAnimation()
     }
 
     private fun resetTimer() {
@@ -106,7 +105,7 @@ class FocusFragment : Fragment() {
         remainingMillis = FOCUS_DURATION_MILLIS
         updateSessionLabels()
         updateTimerUi()
-        binding.circularProgressBar.stopIndeterminateAnimation(resetToStart = true)
+        binding.circularProgressBar.setProgress(0f)
     }
 
     private fun handleTimerFinished() {
@@ -131,7 +130,6 @@ class FocusFragment : Fragment() {
             remainingMillis = FOCUS_DURATION_MILLIS
             updateSessionLabels()
             updateTimerUi()
-            binding.circularProgressBar.stopIndeterminateAnimation()
         }
     }
 
@@ -140,6 +138,11 @@ class FocusFragment : Fragment() {
             R.string.focus_session_label
         } else {
             R.string.break_session_label
+        }
+        sessionDurationMillis = if (isFocusSession) {
+            FOCUS_DURATION_MILLIS
+        } else {
+            BREAK_DURATION_MILLIS
         }
 //        binding.sessionStatus.setText(sessionLabelRes)
 //        binding.sessionInfo.text = getString(
@@ -156,6 +159,14 @@ class FocusFragment : Fragment() {
 
     private fun updateTimerUi() {
         binding.timerTv.text = formatTime(remainingMillis)
+        val clampedRemaining = remainingMillis.coerceIn(0L, sessionDurationMillis)
+        val elapsed = sessionDurationMillis - clampedRemaining
+        val progress = if (sessionDurationMillis == 0L) {
+            0f
+        } else {
+            (elapsed.toFloat() / sessionDurationMillis.toFloat()) * MAX_PROGRESS
+        }
+        binding.circularProgressBar.setProgress(progress)
     }
 
 
@@ -170,6 +181,7 @@ class FocusFragment : Fragment() {
         private const val BREAK_DURATION_MINUTES = 5
         private const val SECONDS_IN_MINUTE = 60
         private const val TICK_INTERVAL_MILLIS = 1_000L
+        private const val MAX_PROGRESS = 100f
 
         private val FOCUS_DURATION_MILLIS = TimeUnit.MINUTES.toMillis(FOCUS_DURATION_MINUTES.toLong())
         private val BREAK_DURATION_MILLIS = TimeUnit.MINUTES.toMillis(BREAK_DURATION_MINUTES.toLong())
