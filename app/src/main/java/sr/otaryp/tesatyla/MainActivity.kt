@@ -103,26 +103,12 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        if (navController.popBackStack()) {
-            return
-        }
+        val currentDestinationId = navController.currentDestination?.id
 
-        val currentDestinationId = navController.currentDestination?.id ?: run {
-            finish()
-            return
+        when {
+            navController.previousBackStackEntry != null -> navController.popBackStack()
+            currentDestinationId == R.id.nav_home -> finish()
+            else -> openHome()
         }
-
-        if (currentDestinationId in destinationsWithBottomNav && currentDestinationId != R.id.nav_home) {
-            if (!navController.popBackStack(R.id.nav_home, false)) {
-                val navOptions = NavOptions.Builder()
-                    .setLaunchSingleTop(true)
-                    .setPopUpTo(currentDestinationId, true)
-                    .build()
-                navController.navigate(R.id.nav_home, null, navOptions)
-            }
-            return
-        }
-
-        finish()
     }
 }
