@@ -37,12 +37,24 @@
                 tools:listitem="@layout/item_onboarding_slide" />
         </FrameLayout>
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabDotsOnboarding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="88dp"
+            app:tabGravity="center"
+            app:tabIndicator="@android:color/transparent"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="fixed"
+            app:tabRippleColor="@android:color/transparent" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnEnterKingdom"
             android:layout_width="wrap_content"
-            android:layout_marginEnd="20dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/btn_enter_kingdom"
             android:includeFontPadding="false"
             android:letterSpacing="0.03"
