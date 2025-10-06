@@ -17,6 +17,10 @@ import sr.otaryp.tesatyla.presentation.ui.setupCustomBottomNav
 import sr.otaryp.tesatyla.presentation.ui.setSelectedIndex
 
 class MainActivity : AppCompatActivity() {
+    private companion object {
+        const val KEY_LAST_BOTTOM_NAV_DESTINATION = "last_bottom_nav_destination"
+    }
+
     private lateinit var navController: NavController
     private val destinationsWithBottomNav = setOf(
         R.id.nav_home,
@@ -32,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         R.id.nav_progress to 3,
         R.id.nav_focus to 4
     )
+    private var lastBottomNavDestinationId: Int = R.id.nav_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +50,11 @@ class MainActivity : AppCompatActivity() {
         val text = findViewById<TextView>(R.id.label)
         text.applyVerticalGradient()
         
+        lastBottomNavDestinationId = savedInstanceState?.getInt(
+            KEY_LAST_BOTTOM_NAV_DESTINATION,
+            R.id.nav_home
+        ) ?: R.id.nav_home
+
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
@@ -87,11 +97,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToRootDestination(destinationId: Int) {
         if (!::navController.isInitialized) return
-        if (navController.currentDestination?.id == destinationId) return
+
+        val currentDestinationId = navController.currentDestination?.id
+        lastBottomNavDestinationId = destinationId
+
+        if (currentDestinationId == destinationId) return
 
         val navOptions = NavOptions.Builder()
             .setLaunchSingleTop(true)
-            .setPopUpTo(navController.currentDestination?.id ?: destinationId, true)
+            .setPopUpTo(currentDestinationId ?: destinationId, true)
             .build()
 
         navController.navigate(destinationId, null, navOptions)
@@ -106,9 +120,22 @@ class MainActivity : AppCompatActivity() {
         val currentDestinationId = navController.currentDestination?.id
 
         when {
-            navController.previousBackStackEntry != null -> navController.popBackStack()
+            currentDestinationId != null &&
+                currentDestinationId in destinationsWithBottomNav &&
+                currentDestinationId != R.id.nav_home &&
+                currentDestinationId == lastBottomNavDestinationId &&
+                navController.previousBackStackEntry == null -> openHome()
+            currentDestinationId != null &&
+                currentDestinationId !in destinationsWithBottomNav &&
+                navController.previousBackStackEntry != null -> navController.popBackStack()
             currentDestinationId == R.id.nav_home -> finish()
+            navController.previousBackStackEntry != null -> navController.popBackStack()
             else -> openHome()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(KEY_LAST_BOTTOM_NAV_DESTINATION, lastBottomNavDestinationId)
+        super.onSaveInstanceState(outState)
     }
 }
