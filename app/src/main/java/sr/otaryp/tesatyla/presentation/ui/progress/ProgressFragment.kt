@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -40,6 +41,7 @@ class ProgressFragment : Fragment() {
         setupToolbar()
         setupSkillList()
         observeState()
+        setupSystemBackNavigation()
 
         binding.pomodoroCycles.applyVerticalGradient()
         binding.skillMasteryTitle.applyVerticalGradient()
@@ -60,10 +62,16 @@ class ProgressFragment : Fragment() {
 
     private fun setupToolbar() {
         binding.btnBack.setOnClickListener {
-            findNavController().navigateUp()
+            navigateHome()
         }
         binding.imageSettings.setOnClickListener {
             findNavController().navigate(R.id.action_global_settingsFragment)
+        }
+    }
+
+    private fun setupSystemBackNavigation() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            navigateHome()
         }
     }
 
@@ -101,5 +109,12 @@ class ProgressFragment : Fragment() {
         val directions = ProgressFragmentDirections
             .actionNavProgressToNavLessons(item.id)
         findNavController().navigate(directions)
+    }
+
+    private fun navigateHome() {
+        val navController = findNavController()
+        if (!navController.popBackStack(R.id.nav_home, false)) {
+            navController.navigate(R.id.nav_home)
+        }
     }
 }
