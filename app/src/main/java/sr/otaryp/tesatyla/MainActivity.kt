@@ -76,13 +76,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openHome() = navigateToRootDestination(R.id.nav_home)
-
     private fun openLessons() = navigateToRootDestination(R.id.nav_lessons)
-
     private fun openArticles() = navigateToRootDestination(R.id.nav_articles)
-
     private fun openProgress() = navigateToRootDestination(R.id.nav_progress)
-
     private fun openFocus() = navigateToRootDestination(R.id.nav_focus)
 
     private fun navigateToRootDestination(destinationId: Int) {
