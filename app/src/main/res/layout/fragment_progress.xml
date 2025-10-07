@@ -138,14 +138,21 @@
             android:textSize="20sp" />
         <TextView
             android:id="@+id/textNoSkills"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/progress_no_skills"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:visibility="gone"
-            />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_scroll_note"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="No skills to display yet."
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:visibility="gone" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/skillProgressList"
             android:layout_marginBottom="10dp"

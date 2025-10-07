@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 import sr.otaryp.tesatyla.R
 import sr.otaryp.tesatyla.data.preferences.LaunchPreferences
 import sr.otaryp.tesatyla.databinding.FragmentSplashBinding
-
 class SplashFragment : Fragment() {
 
     private var _binding: FragmentSplashBinding? = null
@@ -36,14 +35,8 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         hideBottomNavigation()
 
-        val hasSeenSplash = LaunchPreferences.isSplashShown(requireContext())
-
-        if (hasSeenSplash) {
-            launchNavigation(skipDelay = true)
-        } else {
-            startProgressAnimation()
-            launchNavigation(skipDelay = false)
-        }
+        startProgressAnimation()
+        launchNavigation()
     }
 
     override fun onDestroyView() {
@@ -72,12 +65,9 @@ class SplashFragment : Fragment() {
         }
     }
 
-    private fun launchNavigation(skipDelay: Boolean) {
+    private fun launchNavigation() {
         viewLifecycleOwner.lifecycleScope.launch {
-            if (!skipDelay) {
-                delay(SPLASH_DURATION)
-                LaunchPreferences.setSplashShown(requireContext())
-            }
+            delay(SPLASH_DURATION) // задержка всегда
             navigateNext()
         }
     }
