@@ -109,7 +109,7 @@
     <string name="settings_privacy_policy">Privacy Policy</string>
     <string name="settings_terms_conditions">Terms and Conditions</string>
     <string name="settings_clear_data">Clear App data</string>
-    <string name="settings_share_message">Upgrade your skill in Total Shine app: http://play.google.com/store/apps/details?id=%1$s</string>
+    <string name="settings_share_message">“Upgrade your self-organization skills with Royal Steps: http://play.google.com/store/apps/details?id=%1$s</string>
     <string name="settings_share_chooser_title">Share via</string>
     <string name="settings_clear_data_confirm_title">Clear all data?</string>
     <string name="settings_clear_data_confirm_message">This will remove your saved progress and preferences. Continue?</string>
