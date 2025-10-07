@@ -59,6 +59,13 @@ class LessonRepository private constructor(
         lessonDao.updateLessonCompletion(lessonId, false)
     }
 
+    suspend fun resetAllProgress() {
+        prepopulateJob.await()
+
+        lessonDao.resetAllSteps()
+        lessonDao.resetAllLessons()
+    }
+
     suspend fun getNextIncompleteStep(lessonId: Int): LessonStepEntity? {
         prepopulateJob.await()
         return lessonDao.getNextIncompleteStep(lessonId)

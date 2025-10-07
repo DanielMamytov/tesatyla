@@ -17,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import sr.otaryp.tesatyla.R
-import sr.otaryp.tesatyla.data.lessons.LessonDatabase
+import sr.otaryp.tesatyla.data.lessons.LessonRepository
 import sr.otaryp.tesatyla.data.preferences.FocusPreferences
 import sr.otaryp.tesatyla.data.preferences.LaunchPreferences
 import sr.otaryp.tesatyla.data.preferences.LessonProgressPreferences
@@ -104,9 +104,10 @@ class SettingsFragment : Fragment() {
 
     private fun clearAppData() {
         val appContext = requireContext().applicationContext
+        val repository = LessonRepository.getInstance(appContext)
         viewLifecycleOwner.lifecycleScope.launch {
             withContext(Dispatchers.IO) {
-                LessonDatabase.getInstance(appContext).clearAllTables()
+                repository.resetAllProgress()
                 clearPreferences(appContext)
             }
             Toast.makeText(requireContext(), R.string.settings_clear_data_success, Toast.LENGTH_SHORT).show()
