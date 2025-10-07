@@ -36,6 +36,12 @@ interface LessonDao {
     @Query("UPDATE lessons SET isCompleted = :isCompleted WHERE id = :lessonId")
     suspend fun updateLessonCompletion(lessonId: Int, isCompleted: Boolean)
 
+    @Query("UPDATE lesson_steps SET isCompleted = 0")
+    suspend fun resetAllSteps()
+
+    @Query("UPDATE lessons SET isCompleted = 0")
+    suspend fun resetAllLessons()
+
     @Query("SELECT COUNT(*) FROM lessons")
     suspend fun countLessons(): Int
 
